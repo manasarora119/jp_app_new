@@ -1,0 +1,15 @@
+
+<div class="sort-wrapper">
+    <div class="sort-inner">
+        <ion-list>
+            <ion-list-header>Sort By</ion-list-header>
+            <ion-item 
+                *ngFor="let i of sortData" 
+                (click)="dismiss(i.value)" 
+                [ngClass]="(sortByNew[0] == i.value) ? 'active' : ''">
+                {{i.label}}
+            </ion-item>
+          </ion-list>
+    </div>
+</div>
+

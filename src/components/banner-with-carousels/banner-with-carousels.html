@@ -1,0 +1,109 @@
+
+<div class="banner-with-carousels">
+
+  <div class="bwc-sec" *ngFor="let items of carouselComponent let pindex=index">
+    <div class="header-sec" *ngIf="items.type == 'banner'">
+      <div class="banner" *ngIf="items.header">
+        <h4 *ngIf="items.header.event_title" [innerHTML]="items.header.event_title"></h4>
+        <!-- <div *ngIf="items.header.brand_name" class="b-name" [innerHTML]="items.header.brand_name"></div>         -->
+        <p *ngIf="items.header.description" [innerHTML]="items.header.description"></p>
+         <img [src]="items.header.event_banner[0].banner" alt="Banner Image"> 
+       
+      </div>
+      <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 306px">
+        <div class="ion-scroll-item" *ngFor="let item of items.data let cindex=index">
+          <!-- wishlist start -->
+          <div class="wishlist-icon">
+            <button (click)="addToWishlist(item.id, pindex, cindex)" tappable class="ab">
+              <img *ngIf="addingToWishList !== cindex" class="iconBL" [src]="((item.fave_flag  &&  item.id != removedPidFromWishList) ? 'assets/icon/05-Listing/heart-red-icon.svg' :'assets/icon/05-Listing/heart-gray-icon.svg' )"
+              />
+            </button>
+            <img *ngIf="addingToWishList === cindex" class="loading-icon" src="assets/icon/04-PDP/loader.gif" />
+          </div>
+          <!-- wishlist end -->
+
+          <div class="item-image" (click)="gotoPdp(item.id,item.name,item.gallery.thumbnail,item.gallery.zoom,item.brand_name,'CMSPAGE',item.final_price, item.normal_price,getDiscount(item.normal_price,item.final_price),'')">
+            <img [src]="item.gallery.thumbnail" alt="Banner Image">
+          </div>
+          <div class="item-text">
+            <div class="desc" [innerHTML]="item.name | wordbreak:30"></div>
+            <!-- <div class="c-price"> Rs. {{item.final_price}}</div> -->
+            <div class="c-price" *ngIf="item.final_price >=10000">{{'Currency' | translate}}{{item.final_price|number}}</div>
+            <div class="c-price" *ngIf="item.final_price < 10000">{{'Currency' | translate}}{{item.final_price}}</div>            
+            <button class="addTbag" ion-button full (click)="addToBag(item,i)">ADD TO BAG</button>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+
+    <div class="slider-sec" *ngIf="items.type == 'slider'">
+      <h4 [innerHTML]="items.title"></h4>
+      <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 306px">
+        <div class="ion-scroll-item" *ngFor="let item of items.data let cindex=index">
+           <!-- wishlist start -->
+           <div class="wishlist-icon">
+              <button (click)="addToWishlist(item.id, pindex, cindex)" tappable class="ab">
+                <img *ngIf="addingToWishList !== cindex" class="iconBL" [src]="((item.fave_flag  &&  item.id != removedPidFromWishList) ? 'assets/icon/05-Listing/heart-red-icon.svg' :'assets/icon/05-Listing/heart-gray-icon.svg' )"
+                />
+              </button>
+              <img *ngIf="addingToWishList === cindex" class="loading-icon" src="assets/icon/04-PDP/loader.gif" />
+            </div>
+            <!-- wishlist end -->
+          <div class="item-image" (click)="gotoPdp(item.id,item.name,item.gallery.thumbnail,item.gallery.zoom,'','CMSPAGE',item.final_price, item.normal_price,getDiscount(item.normal_price,item.final_price),'')">
+            <img [src]="item.gallery.thumbnail" [alt]="">
+          </div>
+          <div class="item-text">
+            <div class="desc" [innerHTML]="item.name | wordbreak:30"></div>
+            <!-- <div class="c-price"> Rs. {{item.final_price}}</div> -->
+            <div class="c-price" *ngIf="item.final_price >=10000">{{'Currency' | translate}}{{item.final_price|number}}</div>
+            <div class="c-price" *ngIf="item.final_price < 10000">{{'Currency' | translate}}{{item.final_price}}</div>            
+            <button class="addTbag" ion-button full (click)="addToBag(item,i)">ADD TO BAG</button>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+ <div class="slider-sec" *ngIf="items.type == 'sliderwishlist'">
+      <h4 [innerHTML]="items.title"></h4>
+      <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 306px">
+        <div class="ion-scroll-item" *ngFor="let item of items.data let cindex=index">
+           <!-- wishlist start -->
+           <div class="wishlist-icon">
+              <button (click)="addToWishlist(item.id, pindex, cindex)" tappable class="ab">
+                <img *ngIf="addingToWishList !== cindex" class="iconBL" [src]="((item.fave_flag  &&  item.id != removedPidFromWishList) ? 'assets/icon/05-Listing/heart-red-icon.svg' :'assets/icon/05-Listing/heart-gray-icon.svg' )"
+                />
+              </button>
+              <img *ngIf="addingToWishList === cindex" class="loading-icon" src="assets/icon/04-PDP/loader.gif" />
+            </div>
+            <!-- wishlist end -->
+          <div class="item-image" (click)="gotoPdp(item.id,item.name,item.listimg1,item.gallery,'','CMSPAGE',item.final_price, item.normal_price,getDiscount(item.normal_price,item.final_price),'')">
+            <img [src]="item.listimg1" [alt]="">
+          </div>
+          <div class="item-text">
+            <div class="desc" [innerHTML]="item.name | wordbreak:30"></div>
+            <div class="c-price" *ngIf="item.final_price >=10000">{{'Currency' | translate}}{{item.final_price|number}}</div>
+            <div class="c-price" *ngIf="item.final_price < 10000">{{'Currency' | translate}}{{item.final_price}}</div>
+            <button class="addTbag" ion-button full (click)="addToBag(item,i)">ADD TO BAG</button>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+    <div class="slider-sec event" *ngIf="items.type == 'events'">
+      <h4 [innerHTML]="items.title"></h4>
+      <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 250px">
+        <div class="ion-scroll-item" *ngFor="let item of items.data">
+          <div (click)="golist(item.id,'event', '',item.brand_name)">
+            <div class="item-image">
+              <img [src]="item.image" [alt]="">
+            </div>
+            <div class="e-text">
+              <div class="e-title" [innerHTML]="item.title | wordbreak : 18"></div>
+              <div class="e-desc" [innerHTML]="item.description | wordbreak : 36"></div>
+            </div>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+
+  </div>
+
+</div>

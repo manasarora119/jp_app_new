@@ -1,0 +1,57 @@
+<ion-header class="header-search">
+    <!--<ion-navbar [ngStyle]="{'min-height' : (this.isIos) ? '84px' : '64px' }">-->
+  <!--<ion-searchbar [ngStyle]="{'margin-top' : (this.isIos) ? '16px' : 'auto' ,'padding' : (this.isIos) ? '16px 8px' : '8px'}"-->
+
+  <ion-navbar >
+      <ion-searchbar
+              [(ngModel)]="search_query"
+              class="brand-search search-searchbar"
+              (input)="filterItems($event)"
+              placeholder="Search for brands and products"
+              (search)="gotoListingOnEnter($event)"
+              >
+            </ion-searchbar>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="search-result" *ngIf="searchHide">
+
+  <ion-list class="recent-search">
+
+    <div class="options-list" *ngIf="options">
+      <ion-item item-right *ngFor="let item of options" (click)="gotoListing(item.name)">
+        {{item.name}}
+      </ion-item>
+    </div>
+
+    <div class="recent-list" *ngIf="recentSearch.length > 0">
+    <h3>RECENT SEARCHES</h3>
+    <ion-item item-right *ngFor="let item of recentSearch">
+      <span class="s-label"  (click)="gotoListing(item)">{{item | wordbreak :40}}</span>
+      <button ion-button icon-only clear round (click)="removeRecent(item)">
+          <img src="assets/icon/06-Search/Cross.svg"/>
+        </button>
+    </ion-item>
+    </div>
+
+  </ion-list>
+
+
+
+
+  <div *ngIf="hideRecent" class="shop-by-search">
+    <ion-list class="shop-category" *ngIf="shopByData">
+      <h3>SHOP BY CATEGORY</h3>
+      <div class="shop-by-cat-list">
+      <div class="cat-item" *ngFor="let cat of shopByData.component_data" (click)="gotoListingShopBy(cat.type_id,cat.type)">
+        <div class="catImg">
+            <img src="{{cat.image}}"/>
+        </div>
+      <div class="name"> {{cat.description}}  </div>
+        <img class ="chevron" src="assets/icon/06-Search/chevron-right.svg" *ngIf="cat.type == 'Category' || cat.type == 'Event' || cat.type == 'Search' || cat.type == 'Brand'"/>
+      </div>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

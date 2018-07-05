@@ -1,0 +1,18 @@
+{
+  "android": {
+    "debug": {
+      "keystore": "jaypore.keystore",
+      "storePassword": "jaypore",
+      "alias": "jp",
+      "password" : "jaypore",
+      "keystoreType": ""
+    },
+    "release": {
+      "keystore": "jaypore.keystore",
+      "storePassword": "jaypore",
+      "alias": "jp",
+      "password" : "jaypore",
+      "keystoreType": ""
+    }
+  }
+}

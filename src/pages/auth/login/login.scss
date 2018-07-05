@@ -1,0 +1,24 @@
+page-login {
+    ion-content .scroll-content{
+        padding  : 0px !important;
+    }
+    .auth-container{
+         
+        .forgot{
+                margin: 32px 0;
+                text-align: center;
+                @include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+                letter-spacing: 0.25px;
+        }
+        .tnc-text{
+            @include fontStyles($font-Regular, $jp-color-gray, 13px);
+            margin : 16px 32px 12px 32px;
+            text-align: center;
+            line-height: 19px;
+            span {
+                @include fontStyles($font-SBold, $jp-color-gray, 13px);
+                text-transform: uppercase;
+            }
+        }
+    }
+}

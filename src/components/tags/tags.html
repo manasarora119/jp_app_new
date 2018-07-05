@@ -1,0 +1,8 @@
+<div class="all-tags" *ngIf="productTags">
+  <h4 no-margin>{{productTags.component_data[0].header}} </h4>
+  <p no-margin>{{productTags.component_data[0].sub_header}}</p>
+  <div class="tag-items">
+    <button *ngFor="let item of productTags.component_data" (click)="goToSearch(item.tag)"[innerHTML]="item.tag"></button>
+  </div>
+</div>
+

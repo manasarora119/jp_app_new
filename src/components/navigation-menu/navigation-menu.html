@@ -1,0 +1,12 @@
+<div class="all-categories" *ngIf="allCatogery">
+  <div class="shop-by-cat">
+    <h3 [innerHTML]="allCatogery.component_data[0].header"></h3>
+    <ion-list>
+      <button ion-item icon-left *ngFor="let item of allCatogery.component_data" (click)="goToAction(item.type_id,item.type,item.myfilter, item.description)">
+       <span class="catogery-icon"><img [src]="item.image"></span> 
+       <span  [innerHTML]="item.description"></span>
+       <img src="assets/icon/10-Universal-Icons/chevron-right.svg" [alt]="item.description">
+      </button>  
+    </ion-list>
+  </div>
+</div>

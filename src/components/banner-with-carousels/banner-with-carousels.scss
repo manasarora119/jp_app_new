@@ -1,0 +1,150 @@
+banner-with-carousels {
+
+}
+.banner-with-carousels{
+    background: $jp-color-white;
+    border-bottom: solid 8px $jp-color-gray-devider;
+    
+    .header-sec{
+        border-bottom: solid 1px $jp-color-lighter-gray;   
+        padding: 16px;  
+        &:last-child{
+            border: none;
+        }    
+    }
+    .banner{
+        // padding: 0px 16px 16px;
+        // background: $jp-color-white;
+        padding-bottom: 16px;
+        h4{
+            @include fontStyles($font-SBold, $jp-color-black, 18px);
+            text-align: center;
+           margin: 0 8px 8px;
+           letter-spacing: 0.25px;
+           text-transform: uppercase;
+        }
+        .b-name{
+            @include fontStyles($font-SBold, $jp-color-black, 14px);           
+            text-align: center;
+            margin: 0 8px 8px;
+            letter-spacing: 0.25px;
+            text-transform: uppercase;
+            padding-top: 4px;
+        }
+        p{
+            @include fontStyles($font-Regular, $jp-color-darker-grey, 14px);
+            line-height: 20px;
+            margin:0 8px 8px;
+            text-align: center;
+        }
+        img{
+            width: 100%;
+            display: block;
+            @include borderRadius(2px);
+        }
+        
+    }
+    ion-scroll{
+        white-space: nowrap;        
+        .ion-scroll-item{
+            width: 138px;
+            margin-right: 8px;
+            border: 1px solid $jp-color-lighter-gray;
+            @include borderRadius(2px);
+            overflow: hidden;
+            display: inline-block;
+            position: relative;
+            .item-image{
+                border-bottom: 1px solid $jp-color-lighter-gray;
+                img{
+                    width: 100%;
+                    display: block;
+                }
+            }
+            .wishlist-icon{
+                display: block;
+                margin-bottom: 8px;
+                height: 32px;
+                width: 32px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                button{
+                  background:none;
+                  padding: 0px;
+                  float: right;
+                  position: relative;
+                  z-index: 2;
+                  padding: 5px;
+                }
+                .loading-icon {
+                    position: absolute;
+                    width: 17px;
+                    height: 18px;
+                    top: 5px;
+                    z-index: 2;
+                    left: 8px;      
+                  }  
+              }
+            .item-text{
+                padding: 8px;
+                .desc{
+                    @include fontStyles($font-Regular, $jp-color-darker-grey, 14px);
+                    line-height: 20px;
+                    margin-bottom: 4px;
+                    height: 40px;
+                    white-space: normal;
+                    overflow: hidden;
+                }
+                .c-price{
+                    @include fontStyles($font-SBold, $jp-color-black, 14px);
+                    margin-bottom: 8px;
+                }
+                .addTbag{
+                    background: $jp-color-white !important;
+                    border: solid 1px #bb4225;
+                    @include borderRadius(2px);
+                    @include fontStyles($font-SBold,$jp-color-red,14px);
+                    letter-spacing: .25px;
+                    box-shadow: none;
+                }
+            }
+        }
+        
+    }
+    .bwc-sec{
+        border-bottom: solid 1px $jp-color-lighter-gray; 
+        &:last-child{
+            border: none;
+        } 
+    }
+    .slider-sec{
+        padding: 16px;
+        
+        h4{
+            @include fontStyles($font-SBold, $jp-color-black, 14px);
+           margin: 0 0px 16px;
+           letter-spacing: 0.25px;
+           text-transform: uppercase;
+        }
+    }
+    .event{
+        .ion-scroll-item{
+            border: none;
+        .e-text{
+           padding: 8px 0;
+            .e-title{
+                @include fontStyles($font-SBold, $jp-color-black, 14px);
+                margin-bottom: 4px;
+            }
+            .e-desc{
+                @include fontStyles($font-Regular, $jp-color-gray, 14px);
+                line-height: 20px;
+                height: 40px;
+                white-space: normal;
+                overflow: hidden;
+            }
+        }
+    }
+}
+}

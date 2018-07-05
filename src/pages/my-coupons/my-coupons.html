@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons start>
+      <button ion-button outline clear  class="closeBtn" (click)="back()">
+              <img class="iconShare" src="assets/icon/10-Universal-Icons/Cross-Icon.svg" />
+          </button>
+    </ion-buttons>
+    <ion-title>My Coupons</ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div *ngIf="itemscouponall && couponcode !=''">
+  <div class="container" >
+  <div class="card" *ngFor="let item of itemscouponall">
+    <div class="title">{{item.block}}</div>
+    <div class="card-inner">
+    <div class="code-desc">
+      <div class="sub-title">Coupon Code</div>
+      <div class="coupon-code">{{item.couponcode}}</div>
+      <div class="contant" (click)="shareInfo(item.couponcode)">
+             <button ion-button outline item-end icon-left>
+              Tap to copy this code
+              </button>
+       </div>
+    </div>
+    <div class="terms-condition" *ngIf="item.terms">
+      <div class="sub-title">Terms & Conditions</div>
+      <ul>
+       <!--  <li>Valid till {{getdatformat(item.referee_created_at)}}</li> -->
+        <li>{{item.terms}}</li>
+        
+      </ul>
+    </div>
+    </div>
+
+  </div> 
+</div>
+  </div>
+<ion-card class="ls-footer jpCard" *ngIf="couponchk == 1 ">
+      <p class="f-text" >Oops! No Coupons found!</p>     
+    </ion-card>
+
+</ion-content>

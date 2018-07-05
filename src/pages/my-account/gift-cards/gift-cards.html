@@ -1,0 +1,51 @@
+<ion-content>
+  <div class="header">
+    <button ion-button outline clear (click)="goToMyAccount()">
+          <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+          <ion-label>Gift Cards</ion-label>
+        </button>
+  </div>
+  <div class="content">
+   
+    
+    <ion-card *ngIf="bannerData">
+        <div class="mastHead">
+          <ion-slides pager>
+            <ion-slide *ngFor="let banner of bannerData.component_data" (click)="goToGiftDetail(banner.type+'_'+banner.type_id)">
+              <div class="img"><img src="{{banner.image}}"></div>
+              <div class="slider-text" *ngIf="banner.description">
+                <div class="slider-title">{{banner.description}}</div>
+                <!--<div class="slider-desc"></div>-->
+              </div>
+            </ion-slide>
+          </ion-slides>
+        </div>
+    </ion-card>
+
+    <div class="gift-btn" >
+      <button ion-button full class="disable-hover button button-ios button-default button-default-ios" (click)="goToGiftDetail('')">
+      <span class="button-inner">SEND GIFT CARD</span>
+    </button>
+    </div>
+
+
+    <div class="mastText">
+        <div class="title">Redeem E-gift cards</div>
+        <div class="t-text">You can redeem your e-gift card during checkout.</div>
+        <div class="t-text">or</div>
+        <div class="title">Browse Gift Cards by Occasion</div>
+    </div>
+    
+    <div class="collection" >
+     
+      <div *ngFor="let item of collection; let i=index;">
+        {{item.name}}
+        <ion-row *ngIf="(i==0 || i%3==0) && (i==0?(collection.length>3?true:false):(collection.length>i+3?ture:false))">
+          <ion-col col-4 (click)="goToGiftDetail(collection[i].type+'_'+collection[i].type_id)"><img src="{{collection[i].imgName}}"><span class="text">{{collection[i].name}}</span></ion-col>
+          <ion-col col-4 (click)="goToGiftDetail(collection[i+1].type+'_'+collection[i+1].type_id)"><img src="{{collection[i+1].imgName}}"><span class="text">{{collection[i+1].name}}</span> </ion-col>
+          <ion-col col-4 (click)="goToGiftDetail(collection[i+2].type+'_'+collection[i+2].type_id)"><img src="{{collection[i+2].imgName}}"><span class="text">{{collection[i+2].name}}</span> </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+</ion-content>

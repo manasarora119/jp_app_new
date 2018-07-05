@@ -1,0 +1,90 @@
+<ion-content class="" overflow-scroll="false" no-bounce>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="auth-container">
+            <div class="logo">
+                <img src="assets/icon/01-Login-Signup/jaypore_logo_retina.png" />
+            </div>
+            <div class="join-now">
+             Sign-up now for exclusive access to India's most beautiful products
+            </div>
+            <ion-list>
+                <div class="err-msg" *ngIf="registerForm.get('name').touched" [hidden]="(registerForm.get('name').valid )">
+                    Only alphabets allowed
+                </div>
+                <ion-item>
+                    <ion-input
+                        type="text"
+                        formControlName="name"
+                        placeholder="Full Name"
+                        onfocus="this.placeholder=''"
+                        class="nameInput"
+                        onblur="this.placeholder='Full Name'"
+                        required></ion-input>
+                </ion-item>
+
+                <div class="err-msg">
+                    <div *ngIf="registerForm.get('email').touched" [hidden]="(registerForm.get('email').valid )">
+                        Email ID must have @,. and a valid domain (.com etc)
+                    </div>
+                </div>
+
+                <ion-item>
+                    <ion-input type="email" formControlName="email" placeholder="Email Address" onfocus="this.placeholder=''" onblur="this.placeholder='Email Address'"
+                        required></ion-input>
+                </ion-item>
+                <div class="err-msg">
+                    <div *ngIf="registerForm.get('password').touched" [hidden]="registerForm.get('password').valid">
+                        Must have min. 6 characters & be alphanumeric
+                    </div>
+                </div>
+
+
+                <ion-item>
+                    <ion-input #signupPass type="password" formControlName="password" placeholder="Set a Password" clearOnEdit="false" onfocus="this.placeholder=''"
+                        onblur="this.placeholder='Set a Password'" required></ion-input>
+                    <button ion-button type="button" item-end clear class="show-btn" (click)="toggle(signupPass)" [disabled]="!(registerForm.value.password &&
+                      registerForm.value.password.length > 0)">
+                        <span *ngIf="signupPass.type == 'password' " [ngStyle]="{opacity : (registerForm.value.password &&
+                      registerForm.value.password.length > 0) ? 1 : 0.2}">SHOW</span>
+                        <span *ngIf="signupPass.type == 'text' " >HIDE</span>
+                    </button>
+                </ion-item>
+
+                <div class="err-msg">
+                    <div *ngIf="registerForm.get('password').valid && registerForm.get('confirm_password').touched" [hidden]="registerForm.get('password').value == registerForm.get('confirm_password').value" style="color:#bb4225;">
+                       Must match the above entered password
+                    </div>
+                </div>
+
+                <ion-item>
+                    <ion-input #signupRePass type="password" formControlName="confirm_password" clearOnEdit="false" placeholder="Re-enter Password"
+                        onfocus="this.placeholder=''" onblur="this.placeholder='Re-enter Password'" required></ion-input>
+                    <button ion-button type="button" item-end clear class="show-btn" (click)="toggle(signupRePass)" [disabled]="!(registerForm.value.confirm_password &&
+                      registerForm.value.confirm_password.length > 0)">
+                        <span *ngIf="signupRePass.type == 'password' " [ngStyle]="{opacity : (registerForm.value.confirm_password &&
+                      registerForm.value.confirm_password.length > 0) ? 1 : 0.2}" >SHOW</span>
+                        <span *ngIf="signupRePass.type == 'text' "  >HIDE</span>
+
+                    </button>
+                </ion-item>
+
+
+            </ion-list>
+
+            <div class="tnc-text" >
+                <!-- By Signing Up. You are agreeing to our<br/> -->
+                <!-- <span>Terms & Privacy Policy</span> -->
+                By Signing Up, you are agreeing to our<br/>
+                 <span (click)="openTnc()"><u>Terms</u></span> <span (click)="openPP()">& <u>Privacy Policy</u></span>
+            </div>
+
+            <button ion-button block class="action-btn" type="submit" [disabled]="!registerForm.valid || !(registerForm.get('password').value == registerForm.get('confirm_password').value)">REGISTER</button>
+        
+
+            <button ion-button block clear class="back-btn" type="button" (click)="back()">GO BACK TO SOCIAL LOGIN</button>
+
+
+
+        </div>
+    </form>
+</ion-content>

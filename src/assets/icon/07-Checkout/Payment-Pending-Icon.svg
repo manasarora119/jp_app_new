@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Payment-Pending" transform="translate(-157.000000, -119.000000)">
+            <g id="Group-4" transform="translate(158.000000, 120.000000)">
+                <circle id="Oval" stroke="#F3A320" stroke-width="2" cx="21.5" cy="21.5" r="21.5"></circle>
+                <g id="Group-2" transform="translate(14.000000, 20.000000)" fill="#F3A320">
+                    <circle id="Oval-5" cx="2" cy="2" r="2"></circle>
+                    <circle id="Oval-5" cx="8" cy="2" r="2"></circle>
+                    <circle id="Oval-5" cx="14" cy="2" r="2"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,22 @@
+<ion-content>
+  <div class="walkthrough-slider">
+      <ion-slides (ionSlideDidChange)="slideChanged()" pager>
+          <ion-slide *ngFor="let thitem of walkthoughts">
+            <div class="walkthrough-image">
+              <img [src]="thitem.imageUrl" [alt]="thitem.headingText">
+            </div>
+            <div class="walkthrough-desc">
+              <h4>{{thitem.headingText}}</h4>
+              <p>
+                {{thitem.descriptionsText}}
+              </p>
+            </div>
+            <div class="skip-wrapper">
+              <button (click)="gotoHome()">SKIP</button>
+            </div>
+          </ion-slide>
+          
+      </ion-slides>
+      
+  </div>
+</ion-content>

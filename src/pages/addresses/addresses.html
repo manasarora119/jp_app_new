@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-title>Address</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding #addContent>
+
+  <button ion-button full icon-end class="add-new-btn" (click)="addNew()">
+    Add a New Shipping Address
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
+
+  <div class="address-section">
+    <h5 *ngIf="addressesItem">Saved Address</h5>
+    <div class="address">
+      <ion-list class="address-item" *ngIf="addressesItem">
+        <div class="item-box" *ngFor="let item of addressesItem; let i = index;">
+          <div class="item-col">
+          <h3 (click)="toggleGroup(i,item.city,item.postcode,item.street,item.country_id)" [ngClass]="{activeAddress: (i == selectedAddress)}">
+            <span></span>
+            <strong>{{item.firstname }} {{ item.lastname}}</strong>
+            <p>{{item.street}}, {{item.city}} , {{item.postcode}} {{item.country_id}}</p>
+          </h3>
+          <div class="btn-edit-delete" *ngIf="(i == selectedAddress)">
+            <ion-row class="delete-edit">
+              <ion-col col-6 class="left">
+                <button (click)="editAddress(item)">Edit</button>
+              </ion-col>
+              <ion-col col-6 class="right">
+                <button (click)="deleteAddress(item)">Delete</button>
+              </ion-col>
+            </ion-row>
+            <ion-item class="same-checkbox">
+              <ion-label>Billing Address: Same as Shipping Address</ion-label>
+              <ion-checkbox [checked]="sameAddress" (ionChange)="updateBillingAddress($event)"></ion-checkbox>
+            </ion-item>
+
+            </div>
+          </div>
+        </div>
+      </ion-list>
+    </div>
+    <div *ngIf="noaddchk == 2">
+         <h5> You have no saved addresses. Please add a new shipping address to continue.</h5>
+    </div>
+   
+
+  </div>
+  <div class="billing-address" *ngIf="!sameAddress" >
+
+    <div class="form-container">
+      <div class="add-txt" (click)="toggleBilling()">Add a Billing Address
+        <ion-icon name="ios-arrow-up"></ion-icon>
+      </div>
+      <form [formGroup]="billingAddressForm" *ngIf="showBillingAdd" (ngSubmit)="selectAddress()">
+        <ion-list>
+          <div class="err-msg" *ngIf="billingAddressForm.get('billing_name').touched" [hidden]="(billingAddressForm.get('billing_name').valid )">
+            Only alphabets allowed
+          </div>
+          <ion-item>
+            <ion-input type="text" formControlName="billing_name" placeholder="Full Name*" onblur="this.placeholder='Full Name*'" required></ion-input>
+          </ion-item>
+
+          <div class="err-msg" *ngIf="billingAddressForm.get('billing_telephone').touched" [hidden]="(billingAddressForm.get('billing_telephone').valid )">
+            Number should be 10 digit
+          </div>
+          <ion-item>
+            <ion-input type="text" formControlName="billing_telephone" placeholder="Mobile Number*" onblur="this.placeholder='Mobile Number*'"
+              required></ion-input>
+          </ion-item>
+
+          <ion-item class="textarea">
+            <ion-label stacked>Address*</ion-label>
+            <ion-textarea type="text" formControlName="billing_street" required></ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="text" formControlName="billing_city" placeholder="City*" onfocus="this.placeholder=''" onblur="this.placeholder='City*'"
+              required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input type="text" formControlName="billing_postcode" placeholder="Pin Code*" onfocus="this.placeholder=''" onblur="this.placeholder='Pin Code*'"
+              required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-select formControlName="billing_country_id" #selectedCountry placeholder="Country*" (ionChange)="getCountryStates(selectedCountry.value)"
+              onfocus="this.placeholder=''" onblur="this.placeholder='Country*'" interface="popover">
+              <ion-option value="IN">India</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-select  [disabled]="!allStates" formControlName="billing_region_id" placeholder="State*" class="state-select"
+              onfocus="this.placeholder=''" onblur="this.placeholder='State*'" interface="popover">
+              <ion-option [value]="state.region_id" *ngFor="let state of allStates">{{state.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+
+          <!-- <ion-item>
+                <ion-select formControlName="country" #selectedCountry placeholder="Country" (ionChange)="getCountryStates(selectedCountry.value)" onfocus="this.placeholder=''"
+                onblur="this.placeholder='Country'" interface="popover">
+                    <ion-option [value]="country.country_id" *ngFor="let country of allCountrys">{{country.name}}</ion-option>
+                  </ion-select>
+            </ion-item> -->
+        </ion-list>
+      </form>
+    </div>
+  </div>
+
+
+
+
+  <!-- <button ion-button full icon-end class="add-new-btn" [disabled]="sameAddress" (click)="addNew()">
+        Add a Billing Address
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </button> -->
+
+ 
+<div id="billingAdd" #billingAdd >
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div class="btn-deliver addAdd" *ngIf="addressesItem">
+    <button ion-button full (click)="selectAddress()" [disabled]="(!sameAddress && !billingAddressForm.valid)">DELIVER TO THIS ADDRESS</button>
+  </div>
+  
+</ion-footer>

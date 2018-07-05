@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="26px" viewBox="0 0 25 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 37</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-1.8%" y="-10.2%" width="103.6%" height="124.1%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="10.-Header-on-scroll" transform="translate(-283.000000, -12.000000)">
+            <g id="Group-38">
+                <g id="Group-24" filter="url(#filter-1)">
+                    <g id="Group-37" transform="translate(283.000000, 12.000000)">
+                        <rect id="Rectangle-3" x="0" y="0" width="24" height="24"></rect>
+                        <path d="M18.1666667,15.7228916 C17.4488889,15.7228916 16.8066667,15.9939759 16.3155556,16.4186747 L9.58166667,12.6686747 C9.62888889,12.4608434 9.66666667,12.253012 9.66666667,12.0361446 C9.66666667,11.8192771 9.62888889,11.6114458 9.58166667,11.4036145 L16.24,7.68975904 C16.75,8.14156627 17.4205556,8.42168675 18.1666667,8.42168675 C19.7344444,8.42168675 21,7.21084337 21,5.71084337 C21,4.21084337 19.7344444,3 18.1666667,3 C16.5988889,3 15.3333333,4.21084337 15.3333333,5.71084337 C15.3333333,5.92771084 15.3711111,6.13554217 15.4183333,6.34337349 L8.76,10.0572289 C8.25,9.60542169 7.57944444,9.3253012 6.83333333,9.3253012 C5.26555556,9.3253012 4,10.5361446 4,12.0361446 C4,13.5361446 5.26555556,14.746988 6.83333333,14.746988 C7.57944444,14.746988 8.25,14.4668675 8.76,14.0150602 L15.4844444,17.7740964 C15.4372222,17.9638554 15.4088889,18.1626506 15.4088889,18.3614458 C15.4088889,19.8162651 16.6461111,21 18.1666667,21 C19.6872222,21 20.9244444,19.8162651 20.9244444,18.3614458 C20.9244444,16.9066265 19.6872222,15.7228916 18.1666667,15.7228916 L18.1666667,15.7228916 Z" id="Shape" fill="#616161"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

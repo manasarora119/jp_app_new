@@ -1,0 +1,47 @@
+narrow-carousel-big {
+
+}
+.mostpopular-carousel{
+    background: $jp-color-white-gray;
+    h4{
+        @include fontStyles($font-SBold, $jp-color-darker-grey, 16px);
+        margin: 0px;
+        margin-bottom: 5px;
+        padding-left: 3px;
+
+    }
+    .most-popular-items{
+        padding: 16px 0px 16px 13px;
+        background: $jp-color-white;
+        ion-slides{
+            .swiper-container{
+                padding: 3px;
+                .swiper-wrapper{
+
+                }
+            }
+            ion-slide{
+                width: 250px;
+                margin-right: 8px;
+                @include boxShadow(0px 0px 3px 1px #e0e0e0);
+                .popular-image{
+                    height: 200px;
+                    img{
+                        vertical-align: middle;
+                    }
+                }
+                .popular-description{
+                    padding: 16px;
+                    h5{
+                        @include fontStyles($font-Regular, $jp-color-black, 14px);
+                        text-align: center;
+                        margin: 0px;
+                        white-space: nowrap;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+    }
+}

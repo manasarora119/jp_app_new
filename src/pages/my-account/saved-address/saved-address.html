@@ -1,0 +1,26 @@
+<ion-content>
+  <div class="header">
+    <button ion-button outline clear (click)="goToMyAccount()">
+          <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+          <ion-label>Saved Address</ion-label>
+        </button>
+  </div>
+  <div class="content">
+    <div class="address-banner">
+      <div class="ab-img">
+        <img src="assets/icon/09-My-Account/Tips-Bulb.svg">
+      </div>
+      <div class="text">
+        <div class="desc">You can edit or remove the saved addresses while placing your next order</div>
+      </div>
+    </div>
+    <div class="title">Saved Addresses</div>    
+    <div class="address-container" *ngIf="savedAddresses">
+      <div class="address-card" *ngFor="let item of savedAddresses">
+        <div class="name">{{item.firstname }} {{ item.lastname}}</div>
+        <div class="detail">{{item.street}}, {{item.city}} , {{item.postcode}} {{item.country_id}}</div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

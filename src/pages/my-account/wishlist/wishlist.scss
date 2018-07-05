@@ -1,0 +1,213 @@
+page-wishlist {
+    ion-header{
+        &:after{
+            display: none;
+        }
+        ion-navbar{
+            .toolbar-background{
+                background: $jp-color-white;
+                border-bottom: solid 2px $jp-color-lighter-gray !important;
+            }
+            .back-button{
+                background: url(../assets/icon/13-wishlist/cross-Icon.svg) no-repeat center center;
+            }
+            .toolbar-content{
+                ion-title{
+                    padding: 0 0px 1px;
+                    position: relative;
+                    .toolbar-title{
+                        @include fontStyles($font-Regular,$jp-color-black,16px);
+                        font-weight: normal;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+
+    ion-content{
+        background-color: $jp-color-light-gray !important;
+        .wishlist-wrapper{
+            h6{
+                @include fontStyles($font-Regular,$jp-color-black,16px);
+                margin: 16px 0px 8px 0px;
+                padding-left: 16px;
+            }
+            .wishlist-tems{
+                background: $jp-color-white;
+                    ion-col{
+                        padding: 0px;
+                        background: $jp-color-white;
+                        .item-box{
+                            .item-image{
+                                height: 237px;
+                                position: relative;
+                                vertical-align: middle;
+                                .remove-product{
+                                    background: none;
+                                    position: absolute;
+                                    right: 0px;
+                                    top: 0px;
+                                    padding: 7px;
+                                    img{
+                                        width: 22px;
+                                        height: 22px;
+                                    }
+                                }
+                                .share-product{
+                                    width: 24px;
+                                    height: 24px;
+                                    background: none;
+                                    position: absolute;
+                                    right: 5px;
+                                    bottom: 5px;
+                                    padding: 0px;
+                                }
+                                img{
+                                    vertical-align: middle;
+                                    width: 100%;
+                                    height: 100%;
+                                    -o-object-fit: cover;
+                                    object-fit: cover;
+                                    -o-object-position: center;
+                                    object-position: center;
+                                }
+                            }
+                            .item-desc{
+                                padding: 8px;
+                                height: 84px;
+                                @include fontStyles($font-SBold, $jp-color-black, 12px);
+                                // padding: 8px;
+                                letter-spacing: 0.5px;
+                                .p-title {
+                                    letter-spacing: 0.5px;
+                                    // padding-top: 4px;
+                                }
+                                .p-desc{
+                                    @include fontStyles($font-Regular, $jp-color-gray, 12px);
+                                    line-height: 15px;
+                                    padding: 4px 0;
+                                    letter-spacing: 0;
+                                    max-height: 35px;
+                                    overflow: hidden;
+                                }
+                                p{
+                                    margin: 0px;
+                                    margin-bottom: 4px;
+                                    @include fontStyles($font-Regular,$jp-color-dark-gray,12px);
+                                    line-height: 20px;
+                                }
+                                .price-box{
+                                    @include fontStyles($font-SBold,$jp-color-black,12px);
+                                    margin-top:6px;
+                                }
+                            }
+                            .wishlist-to-cart{
+                                border-top: solid 1px $jp-color-lighter-gray;
+                                border-bottom: solid 1px $jp-color-lighter-gray;
+                                background: none;
+                                width: 100%;
+                                padding: 16px 0px;
+                                text-align: center;
+                                @include fontStyles($font-SBold,$jp-color-red,14px);
+                                letter-spacing: 0.22px;
+                            }
+                        }
+                    }
+            }
+        }
+
+		.empty-cart{
+			text-align: center;
+			.empty-img{
+				margin: 40px 0 24px 0;
+				text-align : center;
+				img{
+					height  : 147px;
+					width  : 147px;
+				}
+			}
+			.title{
+				@include fontStyles($font-SBold, $jp-color-black, 20px);
+				line-height: 20px;
+				text-align: center;
+			}
+			.subTitle{
+				@include fontStyles($font-Regular, $jp-color-gray, 14px);
+				line-height: 20px;
+				padding-top: 8px;
+				text-align: center;
+			}
+			.btn-red{
+				@include fontStyles($font-SBold, $jp-color-white, 16px);
+				line-height: 20px;
+				background-color: $jp-color-red;
+				margin-top: 80px;
+				letter-spacing: 0.25px;
+				width: 206px;
+				height: 48px;
+				border-radius: 2px;
+				text-align: center;
+			}
+			.btn-clear{
+				@include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+				line-height: 20px;
+				letter-spacing: 0.25px;
+				margin-top: 24px;
+				text-align: center;
+
+			}
+        }   
+        .banner{
+            background: $jp-color-white;
+            padding: 16px;
+            @include borderRadius(2px);
+            border: 1px solid $jp-color-lighter-gray;
+				.b-img{
+					display: inline-block;
+					padding: 8px 0;
+					width: 45px;
+				}
+				.title{
+					@include fontStyles($font-SBold, $jp-color-black, 16px);
+					line-height: 22px;
+					text-align: center;
+					padding-bottom: 8px;
+				}
+			}
+		.action{
+            padding: 16px;
+                .retry-btn{
+                    @include fontStyles($font-SBold,$jp-color-white,16px);
+                    height: 48px;
+                    width: 200px;
+                    background: $jp-color-red;
+                    margin: 32px auto 38px;
+                    @include borderRadius(2px);
+                    letter-spacing: 0.25px;
+                }
+                .cshopping-btn{
+                    width: 180px;
+                    background: none;
+                    margin: 0 auto;
+                    text-align: center;
+                    @include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+                    padding: 10px 10px;
+                    @include borderRadius(0px);
+                    @include boxShadow(none);
+                }
+             }     
+        .soldout-product{
+            position: absolute;
+            left: 4px;
+            bottom: 12px;
+            @include fontStyles($font-SBold, $jp-color-lite-red, 16px);
+            background: $jp-color-white;
+            padding: 3px 5px;
+            line-height: 16px;
+            text-align: center;
+            @include borderRadius(2px);
+        }
+    }
+    
+}

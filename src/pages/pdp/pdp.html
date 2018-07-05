@@ -1,0 +1,445 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="false">{{pname}}</ion-title>
+    <ion-buttons class="header-btns" end>
+      <button (click)="shareInfo()" tappable class="pdp-share-icon">
+        <img *ngIf="shareSatus==1" src="assets/icon/04-PDP/Share-Icon-White.svg" /> 
+        <img *ngIf="shareSatus==0" src="assets/icon/04-PDP/loader.gif" />
+     </button>
+      <button (click)="gotoWishlist()" tappable class="wishlist-icon">
+        <img src="assets/icon/03-Header/wishlist-icon.svg"/>
+      </button>
+      <button (click)="gotoCart()" tappable class="bag-icon">
+        <img src="assets/icon/04-PDP/Bag-Icon-White.svg"/>
+        <ion-badge item-end *ngIf="isLoggedIn && bagcount != 0">{{bagcount}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+
+<!-- <ion-content (ionScroll)="onScroll($event)" [ngStyle]="{'margin-top' : (this.isIos) ? '24px' : '0px' }"> -->
+<ion-content [ngClass]="{'pdp-initial' : !pdpSpinner}">
+  <div [ngStyle]="{'margin-top' : (this.isIos) ? '0px' : '0px' }">
+
+      <div class="mastHead" #pdpContent>
+        <ion-slides pager>
+          <ion-slide *ngFor="let Imageinfo of MainImage; let i= index;">
+               <div (click)="zoomModal(Imageinfo.zoom, i)">
+                <img *ngIf="loaded!=true" src= "assets/icon/04-PDP/BlankScreenPDP.svg" >
+
+                <img class="img-responsive" [src]="Imageinfo.zoom" (load)="loaded = true" [ngClass]="{'img-loaded':loaded}" [hidden]="!loaded"
+                *ngIf="Imageinfo.zoom" />
+
+                <!-- <img class="img-responsive" [src]="Imageinfo.zoom" imageViewer="Imageinfo.zoom" (load)="loaded = true" [ngClass]="{'img-loaded':loaded}" [hidden]="!loaded"
+                *ngIf="Imageinfo.zoom" /> -->
+              <!-- <ion-spinner [ngStyle]="{'center':true}" ></ion-spinner> -->
+               <div class="readyToShip" *ngIf="itemspartners && itemspartners.ready_ship_flag">
+                <ion-buttons><img class="iconBL" src="assets/icon/04-PDP/Ready-To-Ship.svg" /></ion-buttons>
+              </div>
+              <span *ngIf="soldoutchk == 0" class="soldout-product">SOLD OUT</span>
+            </div>
+          </ion-slide>
+        </ion-slides>
+        <!-- <div class="right-bottom">
+          <button (click)="goToDestination(tooMuch)"><img src="assets/icon/10/buy-the-look.svg" /></button>
+        </div> -->
+      </div>
+
+
+      <ion-row class="brand-details">
+        <div class="content">
+          <div class="product-details-box">
+            <h4 *ngIf="pBrand">{{pBrand}}</h4>
+            <h5 *ngIf="pname">{{pname}}</h5>
+            <div class="wishlist-box">
+              <button (click)="addInWishlist()">
+                <img *ngIf="addingToWishList !== true" class="iconBL" [src]="(fave_flag ? 'assets/icon/05-Listing/heart-red-icon.svg' :'assets/icon/05-Listing/heart-gray-icon.svg' )"/>
+              </button>
+              <img *ngIf="addingToWishList === true" class="loading-icon" src="assets/icon/04-PDP/loader.gif" />
+            </div>
+          </div>
+          <div class="price-container" *ngIf="fPrice">
+            <span class="current-price" *ngIf="fPrice >=10000" >{{'Currency' | translate}}{{fPrice|number}}</span>
+            <span class="current-price" *ngIf="fPrice <10000" >{{'Currency' | translate}}{{fPrice}}</span>
+
+            <span class="discount-price" *ngIf="nPrice && nPrice != 0">{{'Currency' | translate}}{{nPrice}}</span>
+            <span class="discont-persent" *ngIf="sPrice && sPrice != 0">({{sPrice }}% OFF)</span>
+          </div>
+        </div>
+      </ion-row>
+      <div class="pdpSpinner" *ngIf="!pdpSpinner" style="position:fixed; bottom:0px; width:100%; text-align:center;">
+        <ion-spinner name="circles" class="spin"></ion-spinner>
+    </div>
+
+    <div *ngIf="itemspartners">
+  <ion-row class="select-your-size" [ngClass]="{'fixSize': selectSizeFirst}" *ngIf="psize != 0">
+    <div class="size-and-chart">
+      <span class="title" *ngIf="allSizes">SELECT SIZE</span>
+      <button ion-button clear float-right *ngIf="allSizes" (click)="sizeChart()">SIZE CHART</button>
+    </div>
+    <div class="sizes" *ngIf="itemspartners">
+      <button ion-button class="not-availabel" clear *ngFor="let noSize of noSize;" >{{noSize}}</button>
+      <!-- <button ion-button clear round *ngFor="let size of psize;" (click)="selectSize(size)" [ngClass]="{'select-size':(isSelected == size )}" [ngStyle]="{ 'border-color' : (isSelected == size ) ? '#bb4225' : '#757575', 'color':(isSelected == size ) ? '#fff' : '#757575', 'background':(isSelected == size) ? '#bb4225' : '#fff' }">{{size}}</button> -->
+      <button ion-button clear round *ngFor="let size of psize;" (click)="selectSize(size)" [ngClass]="{'select-size':(isSelected == size )}">{{size}}</button>
+    </div>
+    <div class="size-not-available" *ngIf="viewSimlar != 0">
+      <p>Size not available <button ion-button clear (click)="goToSimilar(destinationVewsimilar)">VIEW SIMILAR</button></p>
+    </div>
+  </ion-row>
+  <!-- <div class="select-qnty" *ngIf="qtychk > 0">
+     <span class="title">SELECT QUANTITY</span>
+      <ion-select [(ngModel)]="qty" name="qty">
+        <ion-option *ngFor="let quantity of allQty">{{quantity}}</ion-option>
+      </ion-select>
+
+
+  </div> -->
+          <ion-item class="select-qnty" *ngIf="qtychk > 0">
+          <ion-label class="title">SELECT QUANTITY:</ion-label>
+              <ion-select [(ngModel)]="qty" name="qty" > 
+                <ion-option *ngFor="let qnty of allQty" >{{qnty}}</ion-option>
+              </ion-select>
+            </ion-item>
+
+      <ion-row class="product-options">
+        <div class="title">PRODUCT DETAILS</div>
+        <div class="product-contant" *ngIf="itemspartners">
+          <ion-grid>
+            <ion-row>
+              <ion-col class="heading" col-5>Category </ion-col>
+              <ion-col class="value" col-7>{{itemspartners.category_name}}</ion-col>
+            </ion-row>
+            <!-- <ion-row *ngIf="sizeFlag ==1"> -->
+            <ion-row *ngIf="sizeFlag ==1">
+              <ion-col *ngIf="allSizes" class="heading" col-5>Measurements</ion-col>
+              <ion-col *ngIf="allSizes" class="value" col-7>Refer to <button (click)="sizeChart()">size chart</button></ion-col>
+            </ion-row>
+
+             <ion-row *ngIf="sizeFlag ==0">
+              <ion-col class="heading" col-5>Measurements</ion-col>
+              <ion-col  class="value" col-7>{{itemspartners.measurements}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="heading" col-5>Color</ion-col>
+              <ion-col class="value" col-7>{{itemspartners.color}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="heading" col-5>Weight ({{itemspartners.weight_unit}})</ion-col>
+              <ion-col class="value" col-7>{{itemspartners.weight}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="heading" col-5>Material</ion-col>
+              <ion-col class="value" col-7>{{itemspartners.material}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="heading" col-5>Care</ion-col>
+              <ion-col class="value" col-7>{{itemspartners.care}}</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="heading" col-5>SKU</ion-col>
+              <ion-col class="value" col-7>{{itemspartners.sku}}</ion-col>
+            </ion-row>
+            <p class="tip-desc" [innerHtml]="itemspartners.description" *ngIf="itemspartners.description"></p>
+          </ion-grid>
+        </div>
+      </ion-row>
+
+      <ion-row class="shipping-details">
+        <div class="title">SHIPPING DETAILS</div>
+        <div class="shipping-list" *ngIf="itemspartners">
+          <p class="dispatched">Dispatched by <strong>{{dispachedate}}</strong></p>
+          <p class="return" *ngIf="itemspartners.returnday > 0">Returns accepted in <strong>{{itemspartners.returnday}} days</strong> of delivery.</p>
+          <p class="return" *ngIf="itemspartners.returnday == 0">This item is not eligible for return</p>
+        </div>
+        <div id="destinationVewsimilar" #destinationVewsimilar>&nbsp;</div>
+      </ion-row>
+
+
+
+
+
+      <!-- <div class="addCart fixed-bottom" [ngClass]="{'releaseFix': fixCart}"> -->
+        <!--   <div class="addCart releaseFix" *ngIf="fixCart">
+
+      <button ion-button full (click)="addToBag()">ADD TO BAG</button>
+    </div> -->
+
+    
+       <div>
+        
+      <ion-row  class="similar-products" *ngIf="SimilarImagechk != 2">
+          <div class="title" >SIMILAR PRODUCTS</div>
+          <div class="contant" *ngIf="SimilarImagechk == 1 && itemspartnersSimilar">
+            <ion-grid>
+              <div class="prodict-row" *ngFor="let similar of itemspartnersSimilar; let i=index;">
+                <ion-row *ngIf="i==0 || i%2==0">
+                  <ion-col col-6 class="prodct-box-left">
+                    <div class="item" (click)="goPdp(itemspartnersSimilar[i].id,itemspartnersSimilar[i].name,itemspartnersSimilar[i].img,itemspartnersSimilar[i].img,'','similar link',itemspartnersSimilar[i].final_price,itemspartnersSimilar[i].normal_price,itemspartnersSimilar[i].special_price, 'similar_product')">
+                      <div class="item-images" *ngIf="itemspartnersSimilar[i] && itemspartnersSimilar[i].img">
+                        <img src="{{itemspartnersSimilar[i].img}}" *ngIf="itemspartnersSimilar[i].img" />
+                        <span class="item-discount-persent" *ngIf=" itemspartnersSimilar[i] && itemspartnersSimilar[i].special_price != 0">({{itemspartnersSimilar[i].special_price}} % OFF)</span>
+                        <!-- <div class="readyToShip">
+                          <ion-buttons><img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg" /></ion-buttons>
+                        </div> -->
+                      </div>
+                      <div class="item-descriptions">
+                        <p class="item-name" *ngIf="itemspartnersSimilar[i] && itemspartnersSimilar[i].name">{{itemspartnersSimilar[i].name | wordbreak : 40}}</p>
+                        <p class="item-price">
+                          <span class="item-price-current" *ngIf="itemspartnersSimilar[i] && itemspartnersSimilar[i].final_price >=10000">{{'Currency' | translate}}{{itemspartnersSimilar[i].final_price|number}}</span>
+                          <span class="item-price-current" *ngIf="itemspartnersSimilar[i] && itemspartnersSimilar[i].final_price<10000">{{'Currency' | translate}}{{itemspartnersSimilar[i].final_price}}</span>
+
+                          <span class="item-price-discount" *ngIf="itemspartnersSimilar[i] && itemspartnersSimilar[i].normal_price != 0"> {{'Currency' | translate}}{{itemspartnersSimilar[i].normal_price}}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col col-6 class="prodct-box-right">
+                    <div class="item" (click)="goPdp(itemspartnersSimilar[i+1].id,itemspartnersSimilar[i+1].name,itemspartnersSimilar[i+1].img,itemspartnersSimilar[i+1].img,'','similar link',itemspartnersSimilar[i+1].final_price,itemspartnersSimilar[i+1].normal_price,itemspartnersSimilar[i+1].special_price, 'similar_product')">
+                      <div class="item-images" *ngIf="itemspartnersSimilar[i+1] && itemspartnersSimilar[i+1].img">
+                        <img src="{{itemspartnersSimilar[i+1].img}}" *ngIf="itemspartnersSimilar[i+1].img" />
+                        <span class="item-discount-persent" *ngIf="itemspartnersSimilar[i+1] && itemspartnersSimilar[i+1].special_price != 0">({{itemspartnersSimilar[i+1].special_price}} % OFF)</span>
+                      </div>
+                      <div class="item-descriptions">
+                        <p class="item-name" *ngIf="itemspartnersSimilar[i+1] && itemspartnersSimilar[i+1].name">{{itemspartnersSimilar[i+1].name | wordbreak :40}}</p>
+                        <p class="item-price">
+                          <span class="item-price-current" *ngIf="itemspartnersSimilar[i+1] && itemspartnersSimilar[i+1].final_price >=10000">{{'Currency' | translate}}{{itemspartnersSimilar[i+1].final_price|number}}</span>
+                          <span class="item-price-current" *ngIf="itemspartnersSimilar[i+1] && itemspartnersSimilar[i+1].final_price <10000">{{'Currency' | translate}}{{itemspartnersSimilar[i+1].final_price}}</span>
+                          <span class="item-price-discount" *ngIf="itemspartnersSimilar[i+1] &&  itemspartnersSimilar[i+1].normal_price != 0">{{'Currency' | translate}}{{itemspartnersSimilar[i+1].normal_price}}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </ion-grid>
+          </div>
+          <div class="ps-spinner" *ngIf="SimilarImagechk == 0">
+              <ion-spinner name="circles" class="spin"></ion-spinner>
+          </div>
+      </ion-row>
+
+ </div>
+      <ion-row class="jp-socials" #tooMuch>
+        <div class="title">We all need that trusted opinion</div>
+        <div class="contant" (click)="shareInfo()"> 
+          <button ion-button outline item-end icon-left>
+            <img src="assets/icon/04-PDP/Share.svg" />
+            CLICK TO SHARE
+          </button>
+        </div>
+
+
+      </ion-row>
+
+      <ion-row class="complete-look" *ngIf="CompleteThelookchk !=2 && itemForCompleteThelook">
+        <div class="heading">COMPLETE THE LOOK</div>
+        <div *ngIf="CompleteThelookchk ==1">
+          <ion-row class="carousel2 carousel-box" *ngFor="let item of itemForCompleteThelook">
+            <div class="title">{{item.group}}</div>
+            <div class="contant">
+              <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 253px">
+                <div class="ion-scroll-item" *ngFor="let item2 of item.products.result">
+                  <div class="carousel-content" (click)="goPdp(item2.id,item2.name,item2.gallery.zoom,item2.gallery.zoom,'','COMPLETE THE LOOK',item2.final_price,'','','complete_the_look')">
+                    <div class="slide-item-image">
+                      <img src="{{item2.gallery.zoom}}" />
+                      <span class="item-discount-persent" *ngIf="item2.special_price != 0">({{item2.special_price}} % OFF)</span>
+                    </div>
+                    <div class="slide-item-descriptions">
+                      <p class="item-name">{{item2.name | wordbreak : 18 }}</p>
+                      <span class="item-price" *ngIf="item2.final_price >=10000">{{'Currency' | translate}}{{item2.final_price|number}}</span>
+                      <span class="item-price" *ngIf="item2.final_price <10000">{{'Currency' | translate}}{{item2.final_price}}</span>
+                      <span class="item-price-discount" *ngIf="item2.normal_price != 0">{{'Currency' | translate}} {{item2.normal_price}}</span>
+                    </div>
+                  </div>
+                </div>
+              </ion-scroll>
+            </div>
+          </ion-row>
+        </div>
+        <div class="contant" *ngIf="CompleteThelookchk == 0">
+          <!-- <ion-spinner [ngClass]="{'center':true}" *ngIf="!loaded"></ion-spinner> -->
+        </div>
+      </ion-row>
+
+
+
+
+      <ion-row class="jp-experiences" *ngIf="EventImagechk != 2 && itemspartnersEvent && itemspartnersEvent.event_title">
+        <div class="title" *ngIf="itemspartnersEvent && EventImagechk == 1">{{itemspartnersEvent.event_title }}</div>
+        <div class="contant" *ngIf="itemspartnersEvent && EventImagechk == 1">
+          <div class="experience-image" *ngIf="this.itemspartnersEvent.event_banner !=0">
+            <img [src]="itemspartnersEvent.event_banner[0].banner" />
+          </div>
+          <p class= 'maxheight'  [innerHtml]="itemspartnersEvent.event_story" *ngIf="itemspartnersEvent.event_story"></p>
+          <!-- <button ion-button clear (click)="readmore()" *ngIf="itemspartnersEvent.event_story !=''">{{isfull ? "Read More":"Hide"}}</button> -->
+ 
+        </div>
+        <div class="contant" *ngIf="EventImagechk == 0">
+          <!-- <ion-spinner [ngClass]="{'center':true}" *ngIf="!loaded"></ion-spinner> -->
+        </div>
+      </ion-row>
+
+      <ion-row class="carousel-box" *ngIf="EventImagechk != 2 && itemspartnersEvent && itemspartnersEvent.event_title && checkEvent"  >
+        <div class="title"  *ngIf="itemspartnersEvent && EventImagechk == 1">MORE FROM {{itemspartnersEvent.event_title}}</div>
+        <div class="contant" *ngIf="itemspartnersEvent && EventImagechk == 1">
+
+          <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 253px">
+            <div class="ion-scroll-item" *ngFor="let item of itemspartnersEvent.result">
+              <div class="carousel-content" (click)="goPdp(item.id,item.name,item.gallery.thumbnail,item.gallery.thumbnail,'',itemspartnersEvent.event_title,item.final_price,'','','slider')">
+                <div class="slide-item-image">
+                  <img [src]="item.gallery.thumbnail" />
+                </div>
+                <div class="slide-item-descriptions">
+                  <p class="item-name">{{item.name | wordbreak : 18}}</p>
+                  <p class="item-price" *ngIf="item.final_price>=10000" >{{'Currency' | translate}}{{item.final_price|number}}</p>
+                  <p class="item-price" *ngIf="item.final_price<10000">{{'Currency' | translate}}{{item.final_price}}</p>
+                </div>
+              </div>
+            </div>
+          </ion-scroll>
+
+        </div>
+        <div class="contant" *ngIf="EventImagechk == 0">
+          <!-- <ion-spinner [ngClass]="{'center':true}" *ngIf="!loaded"></ion-spinner> -->
+        </div>
+      </ion-row>
+
+      <ion-row class="looking-more" *ngIf="Tagkeywordchk != 2 && itemspartnersTag">
+        <div class="title">LOOKING FOR MORE?</div>
+        <div class="contant" *ngIf="Tagkeywordchk == 1 && itemspartnersTag">
+          <ion-badge *ngFor="let item of itemspartnersTag">
+            <div (click)="golist(item)">{{ item }}</div>
+          </ion-badge>
+        </div>
+        <div class="ps-spinner" *ngIf="Tagkeywordchk == 0">
+            <ion-spinner name="circles" class="spin"></ion-spinner>
+        </div>
+      </ion-row>
+
+
+      <ion-row class="carousel-box" *ngIf="crossSellImgChk !=2">
+        <div class="title">Pair It With</div>
+        <div class="contant" *ngIf="crossSellImgChk == 1 && crossSellImages">
+          <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 253px">
+            <div class="ion-scroll-item" *ngFor="let item of crossSellImages">
+              <div (click)="goPdp(item.id,item.name,item.img,item.img,'','CROSS SELLING',getCrossSellingPrice(item.special_price_in, item.general_price_in), '','','slider')">
+                <div class="slide-item-image">
+                  <img src="{{imageBaseUrl}}{{item.image}}" />
+                </div>
+                <div class="slide-item-descriptions">
+                  <p class="item-name">{{item.name | wordbreak: 18}}</p>
+                  <p class="item-price" *ngIf="getCrossSellingPrice(item.special_price_in, item.general_price_in) >=10000">{{'Currency' | translate}}{{getCrossSellingPrice(item.special_price_in, item.general_price_in)|number}}</p>
+                  <p class="item-price" *ngIf="getCrossSellingPrice(item.special_price_in, item.general_price_in) < 10000">{{'Currency' | translate}}{{getCrossSellingPrice(item.special_price_in, item.general_price_in)}}</p>
+                </div>
+              </div>
+            </div>
+          </ion-scroll>
+
+        </div>
+        <div class="ps-spinner" *ngIf="crossSellImgChk == 0">
+          <ion-spinner name="circles" class="spin"></ion-spinner>
+        </div>
+      </ion-row>
+
+      <!-- <ion-row class="carousel-box" *ngIf="NewImagechk !=2 && itemspartnersNew"> -->
+      <ion-row class="carousel-box" *ngIf="NewImagechk !=2">
+        <div class="title">NEW ARRIVALS</div>
+        <div class="contant" *ngIf="NewImagechk == 1 && itemspartnersNew">
+          <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 253px">
+            <div class="ion-scroll-item" *ngFor="let item of itemspartnersNew">
+              <div (click)="goPdp(item.id,item.name,item.img,item.img,'','NEW ARRIVALS',item.price, '','','slider')">
+                <div class="slide-item-image">
+                  <img [src]="item.img" />
+                </div>
+                <div class="slide-item-descriptions">
+                  <p class="item-name">{{item.name | wordbreak: 18}}</p>
+                  <p class="item-price" *ngIf="item.price >=10000">{{'Currency' | translate}}{{item.price|number}}</p>
+                  <p class="item-price" *ngIf="item.price <10000">{{'Currency' | translate}}{{item.price}}</p>
+                </div>
+              </div>
+            </div>
+          </ion-scroll>
+
+        </div>
+        <div class="ps-spinner" *ngIf="NewImagechk == 0">
+          <ion-spinner name="circles" class="spin"></ion-spinner>
+        </div>
+      </ion-row>       
+
+      <!--<ion-row class="carousel-box" *ngIf="PopularImagechk != 2 " style="display: none;">-->
+      <!-- Comment added by Mahesh for performance issue  Don't Remove the code -->
+      <!--<ion-row class="carousel-box" *ngIf="PopularImagechk != 2 ">
+        <div class="title">MOST POPULAR</div>
+        <div class="contant" *ngIf="PopularImagechk == 1 && itemspartnersPopular">
+          <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 253px">
+            <div class="ion-scroll-item" *ngFor="let item of itemspartnersPopular">
+              <div (click)="goPdp(item.id,item.name,item.img,item.img,'','MOST POPULAR',item.price)">
+                <div class="slide-item-image">
+                  <img [src]="item.img" />
+                </div>
+                <div class="slide-item-descriptions">
+                  <p class="item-name">{{item.name | wordbreak: 18}}</p>
+                  <p class="item-price" *ngIf="item.price >=10000">{{'Currency' | translate}}{{item.price|number}}</p>
+                  <p class="item-price" *ngIf="item.price <10000" >{{'Currency' | translate}}{{item.price}}</p>
+                </div>
+              </div>
+            </div>
+          </ion-scroll>
+
+        </div>
+        <div class="ps-spinner" *ngIf="PopularImagechk == 0">
+          <ion-spinner name="circles" class="spin"></ion-spinner>
+        </div>
+      </ion-row>-->
+      <!-- Comment added by Mahesh for performance issue  Don't Remove the code -->
+ 
+      <ion-row class="carousel-box all-events" *ngIf="ShopAllImagechk !=2 ">
+        <div class="title">SHOP ALL EVENTS</div>
+        <div class="contant" *ngIf="ShopAllImagechk ==1 && itemspartnersShopall">
+          <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 253px">
+            <div class="ion-scroll-item" *ngFor="let item of itemspartnersShopall">
+              <div class="carousel-content" (click)="golist(item.id,'event',item.description, item.title)">
+                <div class="slide-item-image">
+                  <img src="{{item.image}}" />
+                </div>
+                <div class="slide-item-descriptions events-details">
+                  <p class="item-name">{{item.title | wordbreak : 18}}</p>
+                  <p class="item-description">{{item.description | wordbreak : 18 }}</p>
+                  <!-- <button (click)="golist(item.id,'event')">EXPLORE</button> -->
+                </div>
+              </div>
+            </div>
+          </ion-scroll>
+        </div>
+        <div class="ps-spinner" *ngIf="ShopAllImagechk == 0">
+            <ion-spinner name="circles" class="spin"></ion-spinner>
+          </div>
+      </ion-row>
+
+  <ion-row class="footer jpCard">
+    <div class="f-logo">
+      <img src="assets/icon/01-Login-Signup/jaypore_logo_retina.png" />
+     </div>
+    <!-- <div class="p-small">You have reached the end of the page.</div> -->
+    <div class="p-title">“In a world full of trends, I want to remain in a classic”</div>
+  </ion-row>
+    </div>
+  </div>
+</ion-content>
+
+<!-- <div class="bottom-58" >
+    <ion-fab right bottom class="right-bottom search">
+        <button ion-fab  (click)="search()">
+          <img src="assets/icon/10-Universal-Icons/Search-Button.svg">
+        </button>
+      </ion-fab>
+  </div> -->
+
+<ion-footer *ngIf="pdpSpinner">
+
+  <div class="addCart">
+    <button ion-button full (click)="addToBag()" [disabled]="soldoutchk == 0">ADD TO BAG</button>
+  </div>
+</ion-footer>

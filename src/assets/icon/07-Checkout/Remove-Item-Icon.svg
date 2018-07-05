@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.-Your-Bag---Landing" transform="translate(-320.000000, -122.000000)">
+            <g id="Group-15" transform="translate(16.000000, 122.000000)">
+                <g id="Group-5" transform="translate(304.000000, 0.000000)">
+                    <path d="M0,0 L20,0 L20,0 C22.209139,-4.05812251e-16 24,1.790861 24,4 L24,24 L0,24 L0,0 Z" id="Rectangle-21-Copy" fill="#D4D4D4" opacity="0.300000012"></path>
+                    <g id="Group-10-Copy" transform="translate(5.000000, 5.000000)" fill="#757575">
+                        <polygon id="Shape" points="14 1.41 12.59 0 7 5.59 1.41 0 0 1.41 5.59 7 0 12.59 1.41 14 7 8.41 12.59 14 14 12.59 8.41 7"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

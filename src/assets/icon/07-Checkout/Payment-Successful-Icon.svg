@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Payment-Success" transform="translate(-158.000000, -119.000000)">
+            <g id="Group" transform="translate(159.000000, 120.000000)">
+                <circle id="Oval" stroke="#88C343" stroke-width="2" cx="21.5" cy="21.5" r="21.5"></circle>
+                <g id="Group-9" transform="translate(11.148148, 13.537037)" fill="#88C343">
+                    <rect id="Rectangle-4" transform="translate(13.405044, 8.218628) rotate(45.000000) translate(-13.405044, -8.218628) " x="12.4050438" y="-1.77165871" width="2" height="19.9805736"></rect>
+                    <rect id="Rectangle-4-Copy" transform="translate(4.185185, 11.944444) scale(-1, 1) rotate(45.000000) translate(-4.185185, -11.944444) " x="3.18518519" y="7.16666667" width="2" height="9.55555556"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

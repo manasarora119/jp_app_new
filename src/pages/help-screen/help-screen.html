@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <div class="content">
+        <div class="detail">
+            <div>
+               <span class="title">Have a question?</span>
+               <span class="value">Want to leave us some food for thought? Or even if you just want to say 'hello', our customer care team is super helpful.</span>
+            </div>
+          </div>
+        <div class="return-via">
+            <span class="return-title">Connect via call</span>
+            <button class="return-call" ion-button block>
+                <img src="assets/icon/10-Universal-Icons/calling-icon.svg"/> 
+                <span class="btn-txt"><a ion-button href="tel:+011 65 297 673" >011 65 297 673</a></span>
+            </button>
+            <span class="return-title">Connect via email</span>
+            <button class="return-call" ion-button block >
+                <img src="assets/icon/10-Universal-Icons/mailing-icon.svg"/> 
+                <span class="btn-txt" (click)="mailto('hello@jaypore.com')">hello@jaypore.com</span>
+            </button>
+          </div>
+    </div>
+</ion-content>

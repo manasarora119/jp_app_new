@@ -1,0 +1,147 @@
+<ion-menu [content]="content" class="side-menu">
+    <ion-header>
+      <ion-navbar>
+        <div *ngIf="level == 1" class="level1-banner">
+  
+          <button tappable class="close-mene" menuClose="left"><ion-icon name="ios-close"></ion-icon></button>
+          <!-- <button class="bell-icon" >
+            <img float-right src="{{bellIcon ? 'assets/icon/02-Menu/FilledBell.svg' : 'assets/icon/02-Menu/EmptyBell.svg' }}" />
+          </button> -->
+          <ion-row class="login-cover">
+              <div class="cover-picture">
+                <img src="{{homeimageurl}}" onerror="this.src='assets/icon/02-Menu/coverimage.jpg'" >
+              </div>
+              <div class="cover-overlay">
+                <ion-row class="account-img-row">
+                  <div class="account-image">
+                    <img src="assets/icon/02-Menu/j-icon.svg" (click)="goToHome()" alt="Profile Image">
+                  </div>
+                  <!-- {{user.first_name}}  -->
+                  <p *ngIf="!user">Hi, User
+                  </p>
+                  <p *ngIf="user">
+                    Hi,
+                    <span>{{user.first_name}}</span>
+                    <span>{{user.last_name}}</span>
+                  </p>
+                </ion-row>
+              </div>
+            </ion-row>
+        </div>
+  
+  
+        <div class="menu-list-title" *ngIf="level == 2">
+          <button (click)="goToFirstLevel()" ion-button full class="cat-heading">
+               <img class="back-btn" src="assets/icon/10-Universal-Icons/Back-Icon.svg"/>
+              <div> {{levelTitle}}</div>
+            </button>
+        </div>
+  
+        <div class="menu-list-title" *ngIf="level == 3">
+          <button (click)="goToSecond()" full clear ion-button full class="cat-heading">
+                 <img class="back-btn" src="assets/icon/10-Universal-Icons/Back-Icon.svg"/>
+                <div> {{thirdLevelTitle}}</div>
+                </button>
+        </div>
+  
+        <div class="menu-list-title" *ngIf="level == 4">
+          <button (click)="goToFirstLevel()" full clear ion-button full class="cat-heading">
+                   <img class="back-btn" src="assets/icon/10-Universal-Icons/Back-Icon.svg"/>
+                   <div>{{levelTitle}}</div>
+                  </button>
+        </div>
+  
+      </ion-navbar>
+    </ion-header>
+  
+  
+    <ion-content>
+      <!--<div class="level1" *ngIf="level == 1" [ngStyle]="{'margin-top' : (this.isIos) ? '196px' : '172px' }">-->
+      <div class="level1" *ngIf="level == 1">
+  
+      <ion-grid>
+          <ion-row class="catogery-thumb card-background-page" *ngIf="Blocks">
+            <ion-col align-item-center class="cat-menu-col" col-6 *ngFor="let catList of Blocks" (click)="gotocomponent(catList.title,catList.cms_id)">
+              <div class="cat-menu-box">
+                <img src="{{catList.image_url}}">
+                <div class="cat-menu-overlay">
+                  <span>{{catList.title}}</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  
+        <ion-list class="menu-list">
+          <button  [ngClass]="{'sale': (p.title == 'SALE!')}" [ngStyle]="{'font-weight': (p.title == 'Trending' ? 'bold' : '')}" ion-item icon-right *ngFor="let p of pages"  (click)="goToSecondLevel(p)">
+      
+             {{(p.type != 'login' ) ? p.title : (!user) ? p.title : 'My Account'}}
+            
+          <!-- <ion-icon name="ios-arrow-forward"></ion-icon> -->
+          <img class ="chevron" src="assets/icon/10-Universal-Icons/chevron-right.svg"/>
+  
+        </button>
+        </ion-list>
+  
+        <!-- <div class="menu-footer">
+          <div style="display:inline-block;">
+            <span class="mf" (click)="gotoContactUs()">contact us</span> | <span class="mf" (click)="gotoTermsPage()">T & C</span>
+          </div>
+          </div>
+      </div> -->
+
+        <div class="menu-footer">		
+        <div style="display:inline-block;">		
+        <span   *ngFor="let item of info let i=index">
+        <span class="mf" (click)="gotoinfo(item)" tappable  >{{item.title}}</span> <span *ngIf="i < info.length -1">|</span>
+        </span>
+        </div>		
+        </div>		
+        </div>
+	
+
+
+  
+  
+  
+      <!-- <div class="level2" *ngIf="level == 2" [ngStyle]="{'margin-top' : (this.isIos) ? '76px' : '52px' }"> -->
+      <div class="level2" *ngIf="level == 2" >
+        <ion-list class="menu-list">
+          <button ion-item icon-right *ngFor="let p of pages_cat" tappable (click)="goToThirdLevel(p, p.title)">
+            {{p.title}}
+            <!-- <ion-icon name="arrow-forward"></ion-icon> -->
+          </button>
+        </ion-list>
+  
+      </div>
+  
+      <!-- <div class="level3" *ngIf="level == 3" [ngStyle]="{'margin-top' : (this.isIos) ? '76px' : '52px' }"> -->
+       <div class="level3" *ngIf="level == 3" >
+        <ion-list class="menu-list" >
+          <button  ion-item icon-right *ngFor="let p of pages_sub" tappable (click)="goToOpenPage(p, p.name)">
+            {{p.name}}
+            <!-- <ion-icon name="arrow-forward"></ion-icon> -->
+          </button>
+        </ion-list>
+      </div>
+  
+      <!-- <div class="level4" *ngIf="level == 4" [ngStyle]="{'margin-top' : (this.isIos) ? '76px' : '52px' }"> -->
+      <div class="level4" *ngIf="level == 4" >
+            <ion-list class="menu-list">
+          <button menuClose ion-item icon-right *ngFor="let p of initialBrands" tappable (click)="goToOpenPage(p,p.title)">
+            {{p.title}}
+            <!-- <ion-icon name="arrow-forward"></ion-icon> -->
+          </button>
+        </ion-list>
+      </div>
+  
+      <!-- <ion-infinite-scroll *ngIf="level == 4 && maxbrandlength !=initialBrands.length" threshold="40%" (ionInfinite)="doInfinite($event)" >
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll> -->
+    </ion-content>
+  
+  </ion-menu>
+  
+  <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

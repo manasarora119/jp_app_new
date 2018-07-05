@@ -1,0 +1,54 @@
+<ion-header>
+  <div class="zoom-header">
+    <button ion-button (click)="closeModal()">
+      <img src="assets/icon/04-PDP/Back-Icon-White.svg" alt="loading..."/>
+    </button>
+  </div>
+</ion-header>
+
+
+
+<ion-content>
+  
+  <!-- <button class="image-prev" (click)="onPrevSlide()"><img src="assets/icon/04-PDP/slide-icon-left.svg" alt=""></button> -->
+   <!-- <ion-slides #Slides scrollbar-y="false" scrollbar-x="false" zoom="true" >
+      <ion-slide *ngFor="let item of zoomUrl">
+        <div class="swiper-zoom-container">
+          <img class="img-responsive" [src]="item.zoom" alt="loading..."  slide-lazy/>
+        </div>
+      </ion-slide>
+  </ion-slides>  -->
+
+  <!-- <div class="zoom-container" #Slides scrollbar-y="false" scrollbar-x="false" zoom="true">
+    <img class="img-responsive" (click)="imageClick($event)" [src]="zoomUrl" alt="loading..."/>
+  </div>  -->
+
+  <div class="zoom-container">
+    <img class="img-responsive" [src]="zoomUrl" alt="loading..."/>
+  </div> 
+
+  <!-- <ion-slides #Slides scrollbar-y="false" scrollbar-x="false" zoom="true" >
+      <ion-slide>
+        <div class="swiper-zoom-container">
+          <img class="img-responsive" [src]="zoomUrl" alt="loading..."  slide-lazy/>
+        </div>
+      </ion-slide>
+  </ion-slides> -->
+
+
+<!--   <ion-slides #Slides >
+    <ion-slide *ngFor="let item of zoomUrl">
+      <ion-scroll [zoom]="true" maxZoom="20" class="swiper-zoom-container">
+        <img class="img-responsive" [src]="item.zoom" slide-lazy/>
+      </ion-scroll>
+       
+    </ion-slide>
+  </ion-slides> -->
+
+  <!--<ion-scroll scrollX="true" scrollY="true" zoom="true" overflow-scroll="false" class="scroll-view" min-zoom="2" maxZoom="10">
+    <div>
+    <img class="img-responsive" [src]="zoomUrl[0].zoom" />
+    </div>
+  </ion-scroll>-->
+  <!-- <button class="image-next" (click)="onNextSlide()"><img src="assets/icon/04-PDP/slide-icon-right.svg" alt=""></button> -->
+</ion-content>

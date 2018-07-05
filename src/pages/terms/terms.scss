@@ -1,0 +1,45 @@
+page-terms {
+ ion-header{
+        ion-navbar{
+            height: 42px;
+            
+            .toolbar-background{
+                background: $jp-color-white !important;
+            }
+            .back-button{
+                display: none !important;
+            }
+            ion-title{
+                // padding-left: 54px !important;
+                .toolbar-title{
+                    @include fontStyles($font-Regular,$jp-color-black,16px);
+                    text-align: left;
+                    font-weight: normal;
+                }
+            }
+            .closeBtn{
+                margin: 0;
+                padding: 16px !important;
+                @include borderRadius(0px);
+                img{
+                    width: 14px;
+                    height :14px;
+                }
+            }
+        }
+        ion-buttons{
+            -webkit-order: 1 !important;
+            -ms-flex-order: 1 !important;
+            order: 1 !important;
+        }
+    }
+    ul{
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left:0px;
+        padding-right: 0px; 
+    }
+    li{
+        list-style: none;
+    }
+}

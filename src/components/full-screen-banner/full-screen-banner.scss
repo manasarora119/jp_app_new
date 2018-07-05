@@ -1,0 +1,36 @@
+full-screen-banner {
+
+}
+
+.full-screen-banner{
+    border-bottom: solid 8px $jp-color-gray-devider;
+    ion-slides{
+        ion-slide{
+            height: 100%;
+            .slide-zoom{
+                height: 100%;
+            }
+            img{
+                vertical-align: middle;
+                width: 100%;
+                height: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+            }
+            
+        }
+        .swiper-container{
+            text-align: center;
+            .swiper-pagination{
+                button{
+                    background: $jp-color-white;
+                    opacity: 0.5;
+                    &.swiper-pagination-bullet-active{
+                        background: $jp-color-white;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}

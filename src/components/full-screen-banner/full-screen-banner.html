@@ -1,0 +1,16 @@
+  <div class="full-screen-banner" *ngIf="fullScreenBanner  && fullScreenBanner.component_data.length > 1" >
+  <ion-slides autoplay="{{autoload}}" loop="true" speed="1000" pager>
+    <ion-slide *ngFor="let item of fullScreenBanner.component_data" (click)="goToAction(item.type_id,item.type,item.myfilter,item.description);">
+      <img [src]="item.image" [alt]="item.description">
+    </ion-slide>
+  </ion-slides>
+</div>
+
+<div class="full-screen-banner" *ngIf="fullScreenBanner && fullScreenBanner.component_data.length == 1" >
+  <div (click)="goToAction(fullScreenBanner.component_data[0].type_id,fullScreenBanner.component_data[0].type,fullScreenBanner.component_data[0].myfilter);">
+    <img [src]="fullScreenBanner.component_data[0].image" [alt]="fullScreenBanner.component_data[0].description">
+  </div>
+</div>
+
+
+   

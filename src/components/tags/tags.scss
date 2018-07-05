@@ -1,0 +1,40 @@
+.all-tags{
+    padding: 16px;
+    background: $jp-color-white;
+    text-align: center;
+    border-bottom: solid 8px $jp-color-gray-devider;
+    h4{
+        @include fontStyles($font-Bold, $jp-color-black, 18px);
+        letter-spacing: 0.25px;
+        margin-bottom: 8px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+   
+    p{
+        @include fontStyles($font-Regular, $jp-color-black, 14px);
+        letter-spacing: 0.5px;
+        line-height: 18px;
+    }
+    .tag-items{
+        padding-top:12px;
+        button{
+            @include fontStyles($font-Regular, $jp-color-darker-grey, 14px);
+            text-align: center;
+            background: $jp-color-white;
+            border: solid 1px $jp-color-gray-devider;
+            @include borderRadius(20px);
+            padding: 8px 12px;
+            margin: 2px;
+            /* &:nth-child(2n+1){
+                color: $jp-color-white;
+                border-color: $jp-color-white;
+                background: $jp-color-light-red;
+                background: -moz-linear-gradient(-45deg, $jp-color-light-red 0%, $jp-color-dark-red 100%);
+                background: -webkit-linear-gradient(-45deg, $jp-color-light-red 0%,$jp-color-dark-red 100%);
+                background: linear-gradient(135deg, $jp-color-light-red 0%,$jp-color-dark-red 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$jp-color-light-red', endColorstr='$jp-color-dark-red',GradientType=1 );
+            } */
+        } 
+    }
+}

@@ -1,0 +1,45 @@
+<ion-header class="jp-header">
+  <ion-navbar>
+    <button class="menutoggleBtn" ion-button menuToggle (click)="loadmenudata()">
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><img src="assets/icon/10-Universal-Icons/jaypore-logo-white.svg" alt="Logo"></ion-title>
+    <!-- <ion-buttons class="cartBtn" end [ngStyle]="{'margin-top' : (this.isIos) ? '24px' : '0px' }" > -->
+
+    <ion-buttons class="cartBtn" end>
+      <button (click)="gotoWishlist()" tappable class="wishlist-icon">
+        <img src="assets/icon/03-Header/wishlist-icon.svg"/>
+      </button>
+      <button (click)="gotoCart()" ion-button class="bag-icon">
+      <img src="assets/icon/10-Universal-Icons/cart-white.png" tappable alt="Cart">
+          <ion-badge item-end *ngIf="isLoggedIn && bagcount != 0">{{bagcount}}</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="showdata">
+      
+    <microsite [textmg]="this.compchk"></microsite>
+
+  </div>
+  <ion-fab right bottom class="right-bottom qrcode">
+    <button ion-fab (click)="qrCode()">
+        <!-- <img src="assets/icon/10-Universal-Icons/Search-Button.svg"> -->
+    </button>
+  </ion-fab>
+  <ion-fab right bottom class="right-bottom search">
+    <button ion-fab (click)="search()">
+        <!-- <img src="assets/icon/10-Universal-Icons/Search-Button.svg"> -->
+    </button>
+  </ion-fab>
+
+</ion-content>

@@ -1,0 +1,25 @@
+<!-- Generated template for the MicrositeComponent component -->
+ <div *ngIf="compinfo && !compinfo.error " > 
+   <div *ngFor="let iteam of compinfo; let i=index;">
+          <full-screen-banner [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'full_screen_banners'"></full-screen-banner>
+      <most-popular [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Home_slider'"></most-popular>
+        <image-text-banner [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'banner_with_text'"></image-text-banner> 
+      <narrow-carousel [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'narrow_carousel_small'"></narrow-carousel>
+      <navigation-menu [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Home_Nav'"></navigation-menu>
+      <narrow-carousel-big [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Narrow_carousel_big'"></narrow-carousel-big>
+         <product-slider [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'vertical_scroll_slider_narrow'"></product-slider>  
+      <tags [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'tag_cloud'"></tags>
+      <tiles [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'tiles'"></tiles>
+      <tiles-witoutheader [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Tiles_without_header'"></tiles-witoutheader>
+      <vertical-banner [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Vertical_Banner_Big'"></vertical-banner>
+      
+      <!-- <image-banner [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'banner_with_text'"></image-banner>-->
+   <banner-with-carousels  [textmg]="compinfo[i].component_name"   [textmsg]="compinfo[i].component_detail.name" *ngIf="compinfo[i] && compinfo[i].component_name == 'wishlist' "></banner-with-carousels>
+   <banner-with-carousels [textmg]="compinfo[i].component_name"   [textmsg]="compinfo[i].component_detail.name"*ngIf="compinfo[i] && compinfo[i].component_name == 'recent_view'"></banner-with-carousels>
+  <banner-with-carousels [textmg]="compinfo[i].component_name"   [textmsg]="compinfo[i].component_detail.name"*ngIf="compinfo[i] && compinfo[i].component_name == 'cross_selling'"></banner-with-carousels>
+  <banner-with-carousels [textmg]="compinfo[i].component_name"   [textmsg]="compinfo[i].component_detail.name" *ngIf="compinfo[i] && compinfo[i].component_name == 'super_event'"></banner-with-carousels>
+
+</div> 
+<div>
+ 
+</div>  

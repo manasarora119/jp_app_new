@@ -1,0 +1,37 @@
+/* {
+  "rules": {
+    "no-duplicate-variable": true,
+    "no-unused-variable": [
+      true
+    ]
+  },
+  "rulesDirectory": [
+    "node_modules/tslint-eslint-rules/dist/rules"
+  ]
+} */
+
+ {
+"rules": {
+"no-duplicate-variable": true,
+"no-unused-variable": [
+true
+],
+//"no-consecutive-blank-lines": true,
+"no-conditional-assignment": true,
+"no-unused-expression": true,
+"no-use-before-declare": true,
+"no-void-expression": false,
+"eofline": false,
+//"indent": [true, "spaces"],
+"linebreak-style": [true, "LF"],
+"max-classes-per-file": [true, 1],
+"max-file-line-count": [true, 1000],
+"max-line-length": [true, 500],
+"no-duplicate-imports": true,
+"no-irregular-whitespace": true
+},
+"rulesDirectory": [
+"node_modules/tslint-eslint-rules/dist/rules"
+]
+} 
+

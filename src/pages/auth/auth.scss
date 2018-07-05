@@ -1,0 +1,178 @@
+page-auth {
+    // ion-content{
+    //     margin-top: 24px;
+    // }
+    ion-tabs{
+        .tabbar{
+            // top: 16px !important;
+            border : none !important;
+            a{
+                height: 56px !important;
+                background-color: #ebeaea;
+                span{
+                    @include fontStyles($font-Regular, $jp-color-red, 14px);
+                    letter-spacing: 0.22px; 
+                }
+                &.tab-button{
+                    background: -webkit-linear-gradient(#fff, #ebeaea);
+                    background:  -moz-linear-gradient(#fff, #ebeaea);
+                    background : -o-linear-gradient(#fff, #ebeaea);
+                    background : linear-gradient(#fff, #ebeaea);
+                }
+                &.tab-button[aria-selected=true]{
+                    background: #fff;
+                     span{
+                        @include fontStyles($font-SBold, $jp-color-red, 14px);
+                        letter-spacing: 0.22px; 
+                    }
+                    
+                }
+                &:first-child{
+                    @include borderRadius(0px 0px 4px 0px);
+                }
+                &:nth-child(2){
+                    @include borderRadius(0px 0px 0px 4px);
+                }
+            }
+            &::after{
+                background: none !important;
+            }
+        }
+        
+    }
+
+// common css for all auth pages
+}
+.auth-container{
+        max-width : 360px;
+        margin : auto;
+        padding: 0 24px 24px;
+        .logo{
+            text-align: center;
+            img{
+                width: 168px;
+                max-height: none;
+                margin-top: 36px;
+            }
+        }
+        .join-now{
+            @include fontStyles($font-Regular, $jp-color-red, 16px);
+            margin-top: 16px;
+            text-align : center;
+            line-height: 22px;
+        }
+
+        ion-list{
+            margin : 0;
+            margin-top : 10px;
+              .err-msg{
+                    padding-top: 4px;
+                    // margin: 7px 0px -14px 0px;
+                    @include fontStyles($font-Regular, $jp-color-gray, 12px);        
+                    min-height: 16px;            
+                    
+                }
+            ion-item{
+                // margin-top: 12px;
+                padding:  0px !important;
+                border: none !important;   
+                box-shadow: none !important;  
+                border-bottom: 1px solid $jp-color-lighter-gray !important;
+                min-height: 35px;
+                .item-inner{
+                    border: none !important;
+                    box-shadow: none !important;   
+                }
+                 &:last-child .item-inner{
+                    border: none !important;
+                    box-shadow: none !important;   
+                }
+                &.input-has-focus{
+                    border-bottom: 1px solid $jp-color-red !important;
+                }
+                ion-input{
+                    input{
+                        margin : 12px 0px;
+                        @include fontStyles($font-Regular, $jp-color-black, 16px);
+                        &::-webkit-input-placeholder {
+                            @include fontStyles($font-Regular, $jp-color-black, 14px);
+                        }
+
+                        &:-moz-placeholder   {
+                            @include fontStyles($font-Regular, $jp-color-black, 14px);
+                        }
+
+                        &::-moz-placeholder {
+                            @include fontStyles($font-Regular, $jp-color-black, 14px);
+                        }
+
+                        &:-ms-input-placeholder {
+                            @include fontStyles($font-Regular, $jp-color-black, 14px);
+                        }
+                    }
+
+                    .nameInput{
+                        input{
+                            text-transform: capitalize;
+                        }
+                    }
+
+                    input[type="password"]{
+                        font-size: 20px;
+                    }
+                   
+                }
+            }
+        }
+        .action-btn{
+            border-radius: 100px;
+            background-color: $jp-color-red;
+            height: 52px;
+            box-shadow: none;
+            margin: 0;
+            span{
+                @include fontStyles($font-SBold, $jp-color-white, 16px);
+                letter-spacing : 0.25px;
+            }
+            
+            &:disabled{
+                border-radius: 100px;
+                background-color: $jp-color-white-gray;
+                height: 52px;
+                box-shadow: none;
+                span{
+                    @include fontStyles($font-SBold, $jp-color-gray, 16px);
+                    letter-spacing : 0.25px;
+                }
+            }
+             
+        }
+        .back-btn{
+             @include fontStyles($font-SBold, $jp-color-lightblue, 12px);
+                letter-spacing : 0.25px;
+                //margin-top: 16px;
+                margin-top: 6px;
+        }
+        .show-btn{
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 13px 0;
+            span{
+                   @include fontStyles($font-Regular, $jp-color-gray, 12px);   
+                    letter-spacing: 0.21px;     
+            }        
+        }
+        
+}
+
+
+ @media #{$smallDevice} {
+        .auth-container{
+            .logo{
+                img{
+                    width: 190px !important;
+                }
+            }
+        }
+    }

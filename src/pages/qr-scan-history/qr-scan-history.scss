@@ -1,0 +1,147 @@
+page-qr-scan-history {
+    background: $jp-color-light-gray;
+    .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+     img{
+        width: 14px;
+        margin: 0 34px 0 16px;
+        display: inline-block;
+        }
+    ion-label{
+        @include fontStyles($font-Regular,$jp-color-black,16px);
+        @include borderRadius(4px);
+        letter-spacing: normal;
+        text-align: left;
+        margin: 14px 0;
+        text-transform: none;
+        }
+    }
+    .content{
+        .empty-cart{
+			text-align: center;
+			.empty-img{
+				margin: 40px 0 24px 0;
+				text-align : center;
+				img{
+					height  : 147px;
+					width  : 147px;
+				}
+			}
+			.title{
+				@include fontStyles($font-SBold, $jp-color-black, 20px);
+				line-height: 20px;
+				text-align: center;
+			}
+			.subTitle{
+				@include fontStyles($font-Regular, $jp-color-gray, 14px);
+				line-height: 20px;
+				padding-top: 8px;
+				text-align: center;
+			}
+			.btn-red{
+				@include fontStyles($font-SBold, $jp-color-white, 16px);
+				line-height: 20px;
+				background-color: $jp-color-red;
+				margin-top: 32px;
+				letter-spacing: 0.25px;
+			    width: 154px;
+                height: 48px;
+				border-radius: 4px;
+                text-align: center;
+                text-transform: capitalize;
+                box-shadow: none;
+			}
+			.btn-clear{
+				@include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+				line-height: 20px;
+				letter-spacing: 0.25px;
+				margin-top: 24px;
+				text-align: center;
+
+			}
+        }  
+        padding: 16px;
+        .product{
+            border: 1px solid $jp-color-lighter-gray;
+            padding: 4px;
+            @include borderRadius(2px);
+            position: relative;
+            margin-bottom: 16px;
+            .share-btn{
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                background: none;
+                width: 32px;
+                padding: 6px 8px;
+                z-index: 9;
+            }
+            ion-col{
+                padding: 4px;
+            }
+            .name{
+                @include fontStyles($font-SBold,$jp-color-black,16px);
+                width: 80%;
+                line-height: 20px;
+            }
+            .prices{
+                @include fontStyles($font-SBold,$jp-color-black,16px);
+                padding: 8px 0;
+            }
+            .scan-detail{
+                .s-date{
+                    @include fontStyles($font-SBold,$jp-color-dark-gray,12px);
+                    letter-spacing: 0.86px;
+                    float: left;
+                    line-height: 20px;
+                }
+                .soldout{
+                    background: $jp-color-lite-red;
+                    @include fontStyles($font-SBold,$jp-color-white,12px);
+                    width: 58px;
+                    height: 20px;
+                    @include borderRadius(2px); 
+                    float: left; 
+                    line-height: 20px;
+                    text-align: center;
+                    margin-left: 8px;                  
+                }
+            }
+            .btn-wrapper{
+                width: 100%;
+                clear: both;
+                border-top: solid 2px $jp-color-lighter-gray;
+                padding-top: 8px;
+                margin: 4px;
+                button{
+                    height: 42px;
+                    // margin:4px;
+                    @include boxShadow(none);
+                    width: calc(50% - 4px);
+                    @include fontStyles($font-SBold,$jp-color-white,16px);  
+                    @include borderRadius(4px); 
+                    float: left;                    
+                }
+                .toWishlist{
+                    background:$jp-color-white !important;
+                    border: solid 1px $jp-color-red;
+                    color: $jp-color-gray !important;
+                   margin-right: 4px;
+                }
+                .toBag{
+                    background: $jp-color-red;
+                    font-family: "Proxima Nova Semibold" !important;
+                    color: #fff !important;
+                    margin-left: 4px;
+                }
+            }
+        }
+    }
+}

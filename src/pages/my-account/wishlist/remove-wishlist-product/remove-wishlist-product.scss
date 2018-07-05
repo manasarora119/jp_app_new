@@ -1,0 +1,129 @@
+
+
+
+.remove-product{
+      .modal-wrapper{
+                bottom: 0px !important;
+                top: 0px;
+                position: absolute;
+                left: 0px;
+                right: 0px;
+                height: 100%;
+                width: 100%;
+                @include borderRadius(0px);
+            }
+        ion-backdrop {
+            background-color: $jp-color-black;
+            opacity: 0.8 !important ;
+        }
+
+        // @media #{$device} {
+            ion-backdrop {
+                visibility: visible;
+                z-index: -2;
+            }
+      page-remove-wishlist-product {
+            ion-content{
+                bottom: 0px !important;
+                top: unset;
+                background: none;
+                position: absolute;
+                width: 100%;
+                bottom: 0px;
+                .scroll-content{
+                    // overflow-y: hidden;
+                    // padding: 0px !important;
+                    // height: 208px;
+                    position: absolute;
+                    overflow-y: auto;
+                    padding: 0px !important;
+                    height: 208px;
+                    top: unset;
+                    .cross-btn{
+                        width: 24px;
+                        height: 24px;
+                        padding: 5px;
+                        background: #ecebeb;
+                        display: flex;
+                        position: absolute;
+                        right: 0px;
+                        top: 0px;
+                        z-index: 99;
+                        img{
+                            width: 14px;
+                            height: 14px;
+                            opacity: 0.5;
+                        }
+                    }
+                    ion-row{
+                        padding: 16px;
+                        .product-item-image{
+                            padding: 0px;
+                            padding-right: 8px;
+                            height: 110px;
+                            position: relative;
+                            vertical-align: middle;
+                            width: 100%;
+                            text-align: center;
+                            img{
+                                vertical-align: middle;
+                                max-width: 100%;
+                                max-height: 100%;
+                                -o-object-fit: cover;
+                                object-fit: cover;
+                                -o-object-position: center;
+                                object-position: center;
+                            }
+                        }
+                        .product-item-descriptions{
+                            // padding:24px 16px 8px 0px;
+                                padding: 8px 0 8px;
+                            h5{
+                                @include fontStyles($font-SBold, $jp-color-black, 16px);
+                                margin-bottom: 8px;
+                                padding-right: 35px;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                overflow: hidden;
+                            }
+                            p{
+                                @include fontStyles($font-SBold, $jp-color-gray, 14px);
+                                line-height: 20px;
+                                margin: 0px;
+                            }
+                        }
+                    }
+                    .product-btn{
+                        padding: 8px;
+                        border-top:solid 1px $jp-color-lighter-gray;
+                        button{
+                            width: 100%;
+                            padding: 16px 0px;
+                            background: $jp-color-red;
+                            @include fontStyles($font-SBold, $jp-color-white, 14px);
+                            letter-spacing: 0.25px;
+                            @include borderRadius(2px);
+                        }
+                    }
+                }
+            }
+
+            // .modal-wrapper{
+            //     bottom: 0px !important;
+            //     top: unset;
+            //     min-height : 165px;
+            //     max-height: 198px;
+            //     position: absolute;
+            //     left: 0px;
+            //     width: 100%;
+            //     @include borderRadius(0px);
+            //     max-height: 206px;
+            // }
+        // }
+
+        .scroll-content{
+            background: $jp-color-white;
+        }
+
+    }
+}

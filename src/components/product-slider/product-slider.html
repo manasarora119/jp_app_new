@@ -1,0 +1,25 @@
+<!-- <div class="product-items-container">
+  <div class="product-items">
+    <h3>Vertical Banners</h3>
+
+    <ion-scroll scrollX="false" scrollY="true" style="width: 100vw; height: 832px">
+      <div class="ion-scroll-item" *ngFor="let item of productSlideItem.component_data" (click)="goToAction(item.id,item.type)">
+        <div class="product-item-img">
+            <img [src]="item.image" [alt]="item.name">
+        </div>
+      </div>
+    </ion-scroll>
+
+
+  </div>
+</div> -->
+<div class="product-items-vertical">
+  <div class="container">
+    <h3 class="titleinfo" [innerHTML]="productSlideItem.component_data[0].header"></h3>
+    <div class="product-items" *ngFor="let item of productSlideItem.component_data" (click)="goToAction(item.type_id,item.type,item.myfilter,item.name)">
+      <div class="product-item-img">
+        <img [src]="item.image" [alt]="item.name">
+      </div>
+    </div>
+  </div>
+</div>

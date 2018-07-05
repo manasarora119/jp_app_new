@@ -1,0 +1,147 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Payment Options</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="payment-summary">
+    <h4>Payment Summary</h4>
+    <ion-row class="payment-row paybal">
+      <ion-col col-8 align-items-start>
+        <p>Payable Amount</p>
+      </ion-col>
+      <ion-col col-4 align-items-start>
+        <p text-right *ngIf="cartData.grandTotal >=10000"><strong align-self-end>{{'Currency' | translate}}{{cartData.grandTotal|number}}</strong></p>
+        <p text-right *ngIf="cartData.grandTotal <10000"><strong align-self-end>{{'Currency' | translate}}{{cartData.grandTotal}}</strong></p>
+
+      </ion-col>
+    </ion-row>
+    <h4 class="title" *ngIf="cartData.grandTotal > 0">Payment Options</h4>
+    <div class="options">
+      <ion-row class="payment-row" *ngIf="cartData.grandTotal > 0 && paymentsFlagStatus" (click)="paymentsOption('pay_online')">
+        <ion-col col-2 class="left">
+          <input type="radio" name="paymentMode" value="pay_online" [(ngModel)]="paymentsFlag" />
+        </ion-col>
+        <ion-col col-7 class="mid cod-methord" align-items-start>
+          <div class="payment-row-text" for="cashOnDelivery">PayPal<br>
+            <span class="notAvailable"></span>
+          </div>
+        </ion-col>
+        <ion-col col-3 class="right">
+          &nbsp;
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="payment-row" *ngIf="cartData.grandTotal > 0 && !paymentsFlagStatus" (click)="paymentsOption('cod')">
+        <ion-col col-2 class="left">
+          <input type="radio" name="paymentMode" value="cod" [(ngModel)]="paymentsFlag" />
+        </ion-col>
+        <ion-col col-7 class="mid cod-methord" align-items-start>
+          <div class="payment-row-text" for="cod">
+            Cash on Delivery <br>
+            <!-- <span class="notAvailable">Not available on this purchase</span> -->
+          </div>
+        </ion-col>
+        <ion-col col-3 class="right">
+          &nbsp;
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="payment-row" *ngIf="cartData.grandTotal > 0 && !paymentsFlagStatus" (click)="paymentsOption('card')">
+        <ion-col col-2 class="left">
+          <input type="radio" name="paymentMode" value="card" [(ngModel)]="paymentsFlag">
+        </ion-col>
+        <ion-col col-7 class="mid cod-methord" align-items-start>
+          <div class="payment-row-text" for="card">
+            Debit & Credit Cards
+          </div>
+        </ion-col>
+        <!-- <ion-col col-3 class="right" align-items-start text-right>
+       <button  [disabled]="!debitCardAddBtn"  (click) ="pay()">Add  </button>
+      </ion-col> -->
+      </ion-row>
+
+      <ion-row class="payment-row" *ngIf="cartData.grandTotal > 0 && !paymentsFlagStatus" (click)="paymentsOption('netbanking')">
+        <ion-col col-2 class="left">
+          <input type="radio" name="paymentMode" value="netbanking" [(ngModel)]="paymentsFlag">
+        </ion-col>
+        <ion-col col-7 class="mid cod-methord" align-items-start>
+          <div class="payment-row-text" for="netbanking">
+            Netbanking <br>
+            <!-- <span>SELECT BANK</span> -->
+          </div>
+        </ion-col>
+        <ion-col col-3 class="right" align-items-start text-right>
+          &nbsp;
+        </ion-col>
+      </ion-row>
+    </div>
+    <!-- <ion-row class="payment-row" *ngIf="cartData.grandTotal > 0 && !paymentsFlagStatus" (click)="paymentsOption('wallet')">
+      <ion-col col-2 class="left">
+        <input type="radio" name="paymentMode" value="wallet" [(ngModel)]="paymentsFlag">
+      </ion-col>
+      <ion-col col-7 class="mid cod-methord" align-items-start>
+        <div class="payment-row-text" for="wallet">
+          Wallet
+        </div>
+      </ion-col>
+      <ion-col col-3 class="right" align-items-start text-right>
+        &nbsp;
+      </ion-col>
+    </ion-row> -->
+
+  </div>
+  <div class="payment-note">
+    <img class="lock" src="assets/icon/07-Checkout/Lock.svg" alt="lock"> 
+    <span class="text">100% secured and PCI DSS Level 1 compliant payments</span>
+    <span class="card">
+      <img src="assets/icon/07-Checkout/card-icons.svg" alt="card">
+    </span>
+  </div>
+</ion-content>
+
+
+<ion-footer class="payment-footer" *ngIf="paymentsFlag">
+  <ion-row align-items-center>
+    <ion-col col-12>
+      <button *ngIf="cartData.grandTotal >0" (click)="pay()"> 
+        <div *ngIf=" paymentsFlag != 'cod' &&  paymentsFlag != 'netbanking' &&  cartData.grandTotal >=10000">
+              Pay {{'Currency' | translate}}{{cartData.grandTotal|number}} 
+              <span>ADD CARD DETAILS ON NEXT STEP</span>
+        </div>
+        <div *ngIf=" paymentsFlag != 'cod' &&  paymentsFlag != 'netbanking'  && cartData.grandTotal <10000">
+            Pay {{'Currency' | translate}}{{cartData.grandTotal}} 
+            <span>ADD CARD DETAILS ON NEXT STEP</span>
+      </div>
+
+        <div *ngIf=" paymentsFlag == 'cod' && cartData.grandTotal >=10000 ">
+          Pay {{'Currency' | translate}}{{cartData.grandTotal|number}}  on delivery
+          <span >TAP TO PLACE ORDER</span>
+        </div>
+
+        <div *ngIf=" paymentsFlag == 'cod' && cartData.grandTotal < 10000 ">
+            Pay {{'Currency' | translate}}{{cartData.grandTotal}} on delivery
+            <span >TAP TO PLACE ORDER</span>
+          </div>
+  
+
+        <div *ngIf=" paymentsFlag == 'netbanking' && cartData.grandTotal >=10000 ">
+          Pay {{'Currency' | translate}}{{cartData.grandTotal|number}}   
+          <span >SELECT BANK ON NEXT STEP</span>
+        </div>
+        <div *ngIf=" paymentsFlag == 'netbanking' && cartData.grandTotal <10000 ">
+            Pay {{'Currency' | translate}}{{cartData.grandTotal}}   
+            <span >SELECT BANK ON NEXT STEP</span>
+          </div>
+  
+        
+      </button>
+
+      <button *ngIf="cartData.grandTotal==0" (click)="pay()">
+       TAP TO PLACE ORDER
+     </button>
+
+    </ion-col>
+  </ion-row>
+</ion-footer>

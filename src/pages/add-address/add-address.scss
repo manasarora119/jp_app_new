@@ -1,0 +1,325 @@
+.popover-content{
+    max-height: 357px !important;
+    width: 232px !important;
+    // box-shadow: 0 0 16px 8px rgba(82,97,115,.18);
+    @include boxShadow(0 0 16p 8px rgba(82,97,115,.18));
+    .popover-viewport{
+        ng-component{
+            ion-list{
+                padding: 14px 32px;
+                ion-item{
+                    padding-left: 0px;
+                    .item-inner{
+                        @include fontStyles($font-Regular, $jp-color-darker-grey, 16px);
+                        line-height: 24px;
+                        .input-wrapper{
+                            ion-label{
+                                @include fontStyles($font-Regular, $jp-color-darker-grey, 16px);
+                            }
+                        }
+                        border-bottom: none;
+                        ion-radio{
+                            .radio-icon{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+page-add-address {
+
+
+
+
+    ion-header{
+        ion-navbar{
+          min-height: 55px !important;
+          padding: 0px !important;
+            @include fontStyles($font-Regular, $jp-color-black, 16px);
+            border : 1.2px solid $jp-color-lighter-gray ;
+            .back-button {
+                background: url(../assets/icon/10-Universal-Icons/Back-Icon.svg) no-repeat center center;
+            }
+        }
+        &::after{
+            background: none !important;
+        }
+      .toolbar-content{
+        ion-title{
+          min-height: 55px !important;
+          padding: 0px !important;
+          height: 55px !important;
+
+          .toolbar-title{
+            @include fontStyles($font-Regular, $jp-color-black, 16px);
+          }
+        }
+      }
+
+    }
+
+
+
+    ion-content{
+        padding : 16px;
+        background-color: $jp-color-light-gray !important;
+        .scroll-content{
+           padding-bottom: 0px !important;
+           margin-bottom: 0px !important;
+        }
+        .add-txt{
+            padding-bottom: 8px;
+            @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+            letter-spacing : 0.5px;
+        }
+        .form-container{
+            background-color: $jp-color-white;
+            min-height: 461px;
+            border: 1px solid $jp-color-lighter-gray;
+            @include borderRadius(4px);
+            padding-bottom: 1px;
+            ion-list{
+                margin : 0;
+                padding: 0 16px;
+                /* .err-msg{
+                        margin: 7px 0px -14px 15px;
+                        @include fontStyles($font-Regular, $jp-color-gray, 14px);
+                        min-height: 14px;
+                } */
+
+                ion-item{
+                    padding:  0px !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    border-bottom: 1px solid $jp-color-lighter-gray !important;
+                    min-height: 49px;
+                    .item-inner{
+                        border: none !important;
+                        box-shadow: none !important;
+                        padding:  0px !important;
+
+                    }
+
+                    &:last-child .item-inner{
+                        border: none !important;
+                        box-shadow: none !important;
+                    }
+                    &.input-has-focus{
+                        border-bottom: 1px solid $jp-color-red !important;
+                        ion-label{
+                            color : $jp-color-dark-gray !important;
+                        }
+                    }
+
+                    ion-input{
+                        input{
+                            margin: 16px 0px 0px 0px; 
+                            @include fontStyles($font-SBold, $jp-color-black, 14px);
+                            &::-webkit-input-placeholder {
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+
+                            &:-moz-placeholder   {
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+
+                            &::-moz-placeholder {
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+
+                            &:-ms-input-placeholder {
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+                        }
+
+                    }
+                    ion-select{
+                        max-width: 100% !important;
+                        width: 100% !important;
+                        padding: 0;
+                        padding-right: 5px !important;
+                        .select-text{
+                            @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                        }
+                        .select-icon{
+                            .select-icon-inner{
+                                position: relative;
+                                margin: 0px;
+                                border: none;
+                                font-family: "Ionicons";
+                                font-weight: bold;
+                                -webkit-transform: rotate(90deg);
+                                transform: rotate(90deg);
+                                &::before{
+                                    content: "\f3d1";
+                                    position: absolute;
+
+                                }
+                            }
+                        }
+
+                    }
+
+                    ion-label{
+                        height: 47px;
+                        margin: 0;
+                        @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                        padding-top: 24px;
+                        padding-bottom: 8px;
+
+                    }
+
+
+
+
+                    ion-textarea{
+                        min-height: 100px !important;
+                        border-radius: 2px;
+                        resize: vertical;
+                        //padding: 12px 8px;
+
+                        textarea{
+                            min-height: 100px !important;
+                            margin: 0 !important;
+                            width: 100% !important;
+                            padding: 12px 8px;
+                            border: 1px solid $jp-color-lighter-gray;
+                            @include borderRadius(2px);
+                            position: relative;
+                            &.text-input{
+                              resize: vertical;
+                              @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                              line-height: 17px;
+                            }
+                            &:focus{
+                             border: 1px solid $jp-color-red !important;
+                             ion-label{
+                                 color : pink !important;
+                             }
+                            &::after{
+                                content: "";
+                                width: 24px;
+                                height: 24px;
+                                background: url(../images/resizer.svg);
+                                position: absolute;
+                                right: 0px;
+                                bottom: 0px;
+                            }
+                            }
+                        }
+                        &.input-has-focus textarea{
+                            border: 1px solid $jp-color-red !important;
+                        }
+
+                    }
+
+
+                }
+                .textarea{
+                    border: none !important;
+
+                    &.input-has-focus{
+                        border: none !important;
+                    }
+                }
+                .err-msg{
+                    padding-top: 4px;
+                    @include fontStyles($font-Regular, $jp-color-gray, 12px);
+                    min-height: 16px;
+                    position: relative;
+                    top: 7px;
+                    z-index: 2;
+                }
+            }
+         }
+    }
+    .same-checkbox{
+        @include fontStyles($font-Regular, $jp-color-black, 14px);
+        ion-checkbox.checkbox {
+            margin: 8px 8px 8px 2px !important;
+                .checkbox-icon {
+                border-radius: unset !important;
+                // width: 18px;
+                // height: 18px
+             }
+        }
+        .item-inner{
+            border:none !important;
+            ion-label{
+                @include fontStyles($font-Regular, $jp-color-black, 14px);
+                white-space: normal;
+                margin: 0px;
+            }
+        }
+    }
+    
+    .hide-m{
+        margin: 0px;
+    }
+    .show-m{
+        margin: 0px;
+    }
+    .address-footer{
+        background-color: $jp-color-white;
+        height: 64px;
+        
+
+        ion-row{
+            height: 100%;
+            ion-col{
+                padding: 8px !important;
+            }
+            .cancel-btn{
+                padding: 8px 4px 8px 8px !important;
+                button{
+                    @include fontStyles($font-SBold, $jp-color-red, 16px);
+                    letter-spacing: 0.25px;
+                    border: 1px solid  $jp-color-red !important;
+                    height: 48px;
+                    @include boxShadow(none);
+                    @include borderRadius(2px !important);
+                }
+
+            }
+            .save-btn{
+                padding: 8px 8px 8px 4px !important;
+                button{
+                    @include fontStyles($font-SBold, $jp-color-white, 16px);
+                    letter-spacing: 0.25px;
+                    background-color: $jp-color-red;
+                    height: 48px;
+                    @include boxShadow(none);
+                    @include borderRadius(2px);
+                }
+
+            }
+        }
+
+
+    }
+
+    .billing-address {
+        margin-top: 8px;
+        .add-txt{
+            padding: 0 16px;
+            height: 50px;
+            line-height: 50px;
+            @include fontStyles($font-SBold, $jp-color-black, 14px);
+            border-bottom : 1px solid $jp-color-lighter-gray ;
+            ion-icon{
+                float: right;
+                line-height: 50px;
+            }
+        }
+        ion-item{
+            &:last-child {
+                border: none !important;
+            }
+        }
+    }
+}

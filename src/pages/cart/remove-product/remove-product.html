@@ -1,0 +1,17 @@
+<ion-content padding class="cart-page">
+  <button (click)="closeRemoveModal()" class="cross-btn"><img src="assets/icon/10-Universal-Icons/Cross-Icon.svg" /></button>
+  <ion-row>
+    <ion-col col-3 class="product-item-image">
+        <img [src]="item.thumbnail_img" [alt]="item.name" />
+    </ion-col>
+    <ion-col col-9 class="product-item-descriptions">
+          <h5>Remove Item</h5>
+          <p>Are you sure you want to remove this item from your bag? You might want to move this item in your wishlist.</p>
+    </ion-col>
+  </ion-row>
+  <div class="product-btn">
+    <button class="remove-product-btn remove-item-btn" (click)="removeCartProduct(item)">REMOVE ITEM FROM BAG</button>
+     <button class="remove-product-btn move-wishlist-btn" (click)="moveToWishlist(item)">MOVE ITEM TO WISHLIST</button>
+
+  </div>
+</ion-content>

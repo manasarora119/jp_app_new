@@ -1,0 +1,119 @@
+page-auth-modals {
+    ion-content{
+        .scroll-content{
+            padding : 24px !important;
+        }
+    }
+}
+
+.action-modal{
+     
+    ion-backdrop { 
+        background-color: $jp-color-black;
+        opacity: 0.8 !important ;
+    }
+    // @media #{$device} {
+        ion-backdrop {
+            visibility: visible;
+            z-index: -2;
+        }
+
+        ion-content{
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate( -50%, -50%)  !important;
+            border-radius: 4px;
+            padding: 0px !important;
+        }
+        
+        .modal-wrapper{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            max-height: unset;
+            height: auto;
+            -webkit-transform: translate(-50%,-50%) !important;
+            -moz-transform: translate(-50%,-50%);
+            -ms-transform: translate(-50%,-50%);
+            -o-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%) !important;
+            z-index: 999999;
+            display: block;
+            contain: content;
+            page-auth-modals{
+                position: static;
+                contain: content;
+                ion-content{
+                    contain: content;
+                    position: static;
+                    max-height: unset;
+                    -webkit-transform: translate(0%, 0%) !important;
+                    transform: translate(0%, 0%) !important;
+                    .scroll-content{
+                        contain: content;
+                        position: static;
+                    }
+                }
+            }
+            .icon{
+                text-align: center;
+                margin-bottom: 16px;
+                img{
+                    width: 48px;
+                    height: 48px;
+                }
+            }
+           
+            .header{
+                @include fontStyles($font-SBold, $jp-color-black, 24px);
+                text-align: center;
+                margin-bottom: 8px;
+                
+            }
+            .help-text{
+                @include fontStyles($font-Regular, $jp-color-gray, 16px);
+                text-align: center;
+                margin-bottom: 16px;
+                line-height: 22px;
+                span{
+                    @include fontStyles($font-SBold, $jp-color-gray, 16px);
+                }
+            }
+            .action-button{
+                @include fontStyles($font-SBold, $jp-color-white, 16px);
+                background-color: $jp-color-red;
+                border-radius  : 100px;
+                height: 48px;
+                box-shadow: none !important;
+                letter-spacing: 0.25px;
+                margin-bottom: 5px;
+            }
+            .btn-support-text{
+                @include fontStyles($font-Regular, $jp-color-gray, 14px);
+                text-align: center;
+                margin-bottom: 17px;
+            }
+            .or{
+                 @include fontStyles($font-SBold, $jp-color-gray, 16px);
+                text-align: center;
+                margin-bottom: 16px;
+                line-height: 0.25px;
+            }
+            
+            .meta-button{
+                @include fontStyles($font-SBold, $jp-color-lightblue, 16px);
+                box-shadow: none !important;
+                letter-spacing: 0.22px;
+                // height: 17px;
+            }
+        }
+    // }
+
+    ion-content,  .modal-wrapper{
+            max-width : 328px;
+            max-height : 387px;
+    }
+
+}

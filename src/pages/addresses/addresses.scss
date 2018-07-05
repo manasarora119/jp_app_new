@@ -1,0 +1,382 @@
+page-addresses {
+    background-color: $jp-color-light-gray !important;
+    ion-header{
+        ion-navbar{
+          min-height: 55px !important;
+          padding: 0px !important;
+            .toolbar-content{
+                ion-title{
+                  min-height: 55px !important;
+                  padding: 0px !important;
+                  height: 55px !important;
+                    .toolbar-title{
+                        @include fontStyles($font-Regular, $jp-color-black, 16px);
+                    }
+                }
+            }
+            .back-button {
+                background: url(../assets/icon/10-Universal-Icons/Back-Icon.svg) no-repeat center center;
+            }
+        }
+    }
+    ion-content{
+        background-color: $jp-color-light-gray !important;
+        bottom:46px;
+        height: unset !important;
+
+        .add-new-btn{
+            @include fontStyles($font-SBold, $jp-color-black, 14px);
+            letter-spacing: 0.25px;
+            text-align: left;
+            text-transform: none;
+            background-color: $jp-color-white;
+            height: 56px;
+            box-shadow: none;
+            margin: 0;
+            padding: 0 16px;
+            border: solid 1px $jp-color-lighter-gray;
+            @include borderRadius(4px);
+            span{
+                display: block;
+                line-height: 56px;
+                ion-icon{
+                    float: right;
+                    line-height: 56px;
+                    transform: rotate(90deg);
+                }
+            }
+        }
+        .address-section{
+            h5{
+                @include fontStyles($font-Regular, $jp-color-gray, 14px);
+                letter-spacing: 0.5px;
+                margin-top: 16px !important;
+            }
+            .address{
+                .address-item{
+                    background: $jp-color-white;
+                    border: 1px solid $jp-color-lighter-gray;
+                    border-bottom: none;
+                    @include borderRadius(4px);
+
+                    .item-box{
+                        padding: 16px;
+                        border-bottom: 2px solid $jp-color-lighter-gray;
+                    }
+                    .item-col{
+                        &:first-child {
+                            border-top: none;
+                            @include borderRadius(4px 4px 0 0);
+                        }
+                        &:last-child {
+                            @include borderRadius(0 0 4px 4px);
+                        }
+                            border-bottom: 1px solid $jp-color-lighter-gray;
+                            border-bottom: none;
+                                    h3{
+                                        margin-top:0px !important;
+                                        span{
+                                            width: 20px;
+                                            height: 20px;
+                                            border: solid 2px #616161;
+                                            display: block;
+                                            @include borderRadius(100px);
+                                            position: relative;
+                                            margin-right: 10px;
+                                            margin-top: 8px;
+                                            float: left;
+
+                                            &:after{
+                                                width: 10px;
+                                                height: 10px;
+                                                background: $jp-color-white;
+                                                position: absolute;
+                                                top: 0px;
+                                                left: 0px;
+                                                right: 0px;
+                                                bottom: 0px;
+                                                margin: auto;
+                                                content: '';
+                                                @include borderRadius(100px);
+                                            }
+                                        }
+                                        strong{
+                                            @include fontStyles($font-SBold, $jp-color-black, 14px);
+                                            line-height: 22px;
+                                            text-transform: capitalize;
+                                        }
+                                        p{
+                                            @include fontStyles($font-Regular, $jp-color-gray, 14px);
+                                            line-height: 20px;
+                                            clear: both;
+                                            margin-left: 30px;
+                                            margin-top: 8px;
+                                            white-space: normal;
+                                        }
+                                    }
+                                    h3.activeAddress{
+                                        span{
+                                            border-color: $jp-color-red;
+                                            &:after{
+                                                background: $jp-color-red;
+                                            }
+                                        }
+                                    }
+                                    .btn-edit-delete{
+                                        margin-top: 13px;
+                                        .delivery-here{
+                                            background: $jp-color-red;
+                                            @include fontStyles($font-SBold, $jp-color-white, 14px);
+                                            letter-spacing: 0.25px;
+                                            width: 100%;
+                                            padding: 16px 0px;
+                                            @include borderRadius(2px);
+                                        }
+                                        .delete-edit{
+                                            padding-top: 16px;
+                                            ion-col{
+                                                &.left{
+                                                    padding: 0px 8px 0px 0px;
+                                                }
+                                                &.right{
+                                                    padding: 0px 0px 0px 8px;
+                                                }
+                                                button{
+                                                    background: $jp-color-white;
+                                                    border: solid 1px $jp-color-lightGray;
+                                                    width: 100%;
+                                                    padding: 16px 0px;
+                                                    @include fontStyles($font-SBold, $jp-color-dark-gray, 14px);
+                                                    letter-spacing: 0.25px;
+                                                    text-transform: uppercase;
+                                                    @include borderRadius(2px);
+                                                }
+                                            }
+                                        }
+                                        .same-checkbox{
+                                            padding: 8px 0;
+                                            border: none;
+                                            ion-checkbox.checkbox {
+                                                margin: 8px 8px 8px 2px !important;
+                                                    .checkbox-icon {
+                                                    border-radius: unset !important;
+                                                    // width: 18px;
+                                                    // height: 18px
+                                                 }
+                                            }
+                                            .item-inner{
+                                                border:none !important;
+                                                ion-label{
+                                                    @include fontStyles($font-Regular, $jp-color-black, 14px);
+                                                    white-space: normal;
+                                                    margin: 0px;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                    }
+                }
+            }
+        }
+
+
+        .billing-address {
+            margin-top: 8px;
+            form{
+                border-top: 1px solid $jp-color-lighter-gray;
+            }
+            .form-container{
+                background-color: $jp-color-white;
+                // min-height: 461px;
+                border: 1px solid $jp-color-lighter-gray;
+                @include borderRadius(4px);
+                padding-bottom: 1px;
+                ion-list{
+                    margin : 0;
+                    padding: 0 16px;
+                    /* .err-msg{
+                            margin: 7px 0px -14px 15px;
+                            @include fontStyles($font-Regular, $jp-color-gray, 14px);
+                            min-height: 14px;
+                    } */
+
+                    ion-item{
+                         &:last-child {
+                            border: none !important;
+                        }
+                        padding:  0px !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        border-bottom: 1px solid $jp-color-lighter-gray !important;
+                        min-height: 49px;
+                        .item-inner{
+                            border: none !important;
+                            box-shadow: none !important;
+                            padding:  0px !important;
+
+                        }
+
+                        &:last-child .item-inner{
+                            border: none !important;
+                            box-shadow: none !important;
+                        }
+                        &.input-has-focus{
+                            border-bottom: 1px solid $jp-color-red !important;
+                            ion-label{
+                                color : $jp-color-dark-gray !important;
+                            }
+                        }
+
+                        ion-input{
+                            input{
+                                margin : 12px 0px;
+                                @include fontStyles($font-SBold, $jp-color-black, 14px);
+                                &::-webkit-input-placeholder {
+                                    @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                                }
+
+                                &:-moz-placeholder   {
+                                    @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                                }
+
+                                &::-moz-placeholder {
+                                    @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                                }
+
+                                &:-ms-input-placeholder {
+                                    @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                                }
+                            }
+
+                        }
+                        ion-select{
+                            max-width: 100% !important;
+                            width: 100% !important;
+                            padding: 0;
+                            padding-right: 5px !important;
+                            .select-text{
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+
+                        }
+
+                        ion-label{
+                            height: 49px;
+                            margin: 0;
+                            @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            padding-top: 24px;
+                            padding-bottom: 8px;
+
+                        }
+
+
+
+
+                        ion-textarea{
+                            min-height: 100px !important;
+                            border-radius: 2px;
+                            resize: vertical;
+                            //padding: 12px 8px;
+
+                            textarea{
+                                min-height: 100px !important;
+                                margin: 0 !important;
+                                width: 100% !important;
+                                padding: 12px 8px;
+                                border: 1px solid $jp-color-lighter-gray;
+                                @include borderRadius(2px);
+                                position: relative;
+                                &.text-input{
+                                  resize: vertical;
+                                  @include fontStyles($font-Regular, $jp-color-dark-gray, 13px);
+                                }
+                                &:focus{
+                                 border: 1px solid $jp-color-red !important;
+                                 ion-label{
+                                     color : pink !important;
+                                 }
+                                &::after{
+                                    content: "";
+                                    width: 24px;
+                                    height: 24px;
+                                    background: url(../images/resizer.svg);
+                                    position: absolute;
+                                    right: 0px;
+                                    bottom: 0px;
+                                }
+                                }
+                            }
+                            &.input-has-focus textarea{
+                                border: 1px solid $jp-color-red !important;
+                            }
+
+                        }
+
+
+                    }
+                    .textarea{
+                        border: none !important;
+
+                        &.input-has-focus{
+                            border: none !important;
+                        }
+                    }
+                    .err-msg{
+                        padding-top: 4px;
+                        @include fontStyles($font-Regular, $jp-color-gray, 12px);
+                        min-height: 16px;
+                    }
+                }
+            }
+            .add-txt{
+                padding: 0 16px;
+                height: 50px;
+                line-height: 50px;
+                @include fontStyles($font-SBold, $jp-color-black, 14px);
+                // border-bottom : 1px solid $jp-color-lighter-gray ;
+                ion-icon{
+                    float: right;
+                    line-height: 50px;
+                }
+            }
+            ion-item{
+                &:last-child {
+                    border: none !important;
+                }
+            }
+        }
+
+
+    }
+    .addAdd{
+    padding: 8px;
+    border-bottom: 1px solid $jp-color-lighter-gray;
+    background: $jp-color-light-gray;
+     button{
+        background: $jp-color-red !important;
+        @include borderRadius(2px);
+        @include fontStyles($font-SBold,$jp-color-white,16px);
+        @include boxShadow(none);
+        letter-spacing: 0.25px;
+        margin: 0px;
+        height: 48px;
+    }
+    }
+    ion-footer{
+        &:before{
+            background-image: none !important;
+        }
+        .delivery-here{
+            margin-top:16px;
+            background: $jp-color-red;
+            @include fontStyles($font-SBold, $jp-color-white, 14px);
+            letter-spacing: 0.25px;
+            width: 100%;
+            padding: 16px 0px;
+            @include borderRadius(2px);
+        }
+    }
+
+
+}

@@ -1,0 +1,9 @@
+<div class="jp-text-image-banner" *ngIf="catogeryItems">
+  <div class="cat-images-text" (click)="goToAction(catogeryItems.component_data[0].type_id,catogeryItems.component_data[0].type,catogeryItems.component_data[0].myfilter,catogeryItems.component_data[0].header);">
+    <h3 [innerHTML]="catogeryItems.component_data[0].header"></h3>
+    <p  [innerHTML]="catogeryItems.component_data[0].sub_header"></p>
+    
+        <img [src]="catogeryItems.component_data[0].image" [alt]="catogeryItems.component_data[0].description">
+    
+  </div>
+</div>

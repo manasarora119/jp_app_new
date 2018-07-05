@@ -1,0 +1,22 @@
+<ion-content>
+  <div class="header">
+    <button ion-button outline clear (click)="goToMyAccount()">
+          <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+          <ion-label>Favourite Looks</ion-label>
+        </button>
+  </div>
+<div class="content">
+  <ion-row *ngFor="let item of favourite.items; let i=index;">
+    <ion-row  *ngIf="i==0 || i%3==0">
+    <ion-col col-4 (click)="zoomModal(favourite.items[i].imgName)"><img src="{{favourite.items[i].imgName}}"> </ion-col>
+    <ion-col col-4><img src="{{favourite.items[i+1].imgName}}"> </ion-col>
+    <ion-col col-4><img src="{{favourite.items[i+2].imgName}}"> </ion-col>
+    </ion-row>
+  </ion-row>
+
+
+  
+
+</div>
+
+</ion-content>

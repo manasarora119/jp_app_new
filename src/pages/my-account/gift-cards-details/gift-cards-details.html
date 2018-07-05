@@ -1,0 +1,141 @@
+<ion-content>
+  <div class="header">
+    <button ion-button outline clear (click)="goToMyAccount()">
+              <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+              <ion-label>Gift Cards</ion-label>
+            </button>
+  </div>
+  <div class="content">
+    <form class="gc-details" [formGroup]="giftForm" (ngSubmit)="giftCardSave()">
+      <div class="gift-details">
+            
+            <ion-item>
+              <ion-select 
+                placeholder="Recipient's currency" 
+                class="state-select"
+                formControlName="gift_currency"
+                onfocus="this.placeholder=''" 
+                interface="popover" name='gift_currency' (ngModelChange)='currencyChange()' >
+                <ion-option *ngFor="let currency_label of giftCurrencyData" [value]="currency_label.id">{{currency_label.label}}</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="giftForm.value.gift_currency=='INR'">
+                <ion-select 
+                  placeholder="Gift amount" 
+                  class="state-select"
+                  onfocus="this.placeholder=''" 
+                  formControlName="gift_amount"
+                  onblur="this.placeholder='Gift amount'" 
+                  interface="popover" name='gift_amount' *ngIf="giftAmountData" >
+                  <ion-option *ngFor="let amt of giftAmountData.inr" [value]="amt">{{amt}} INR</ion-option>
+                  </ion-select>
+            </ion-item>
+
+            <ion-item *ngIf="giftForm.value.gift_currency=='USD'">
+                <ion-select 
+                  placeholder="Gift amount" 
+                  class="state-select"
+                  onfocus="this.placeholder=''" 
+                  formControlName="gift_amount"
+                  onblur="this.placeholder='Gift amount'" 
+                  interface="popover" name='gift_amount' *ngIf="giftAmountData">
+                  <ion-option *ngFor="let amt of giftAmountData.usd">{{amt}} USD</ion-option>
+                  </ion-select>
+            </ion-item>
+
+            <div class="msg-text">Your personalised message will be printed on a card and sent with your gift.</div>
+            <div class="txt-label">Recipient's Email Address</div>
+
+            <div  class="err-msg"  *ngIf="giftForm.get('receiver_email').touched" [hidden]="(giftForm.get('receiver_email').valid )">
+                Email ID must have @,. and a valid domain (.com etc)
+            </div>
+            <ion-item class="borderAll">
+              <ion-input type="email" formControlName="receiver_email" required></ion-input>
+            </ion-item>
+
+                
+              <div class="txt-label">Recipient Name <span class="label-gray">(Max 60 charecters)</span></div>
+              <div class="err-msg" *ngIf="giftForm.get('fullname').touched" [hidden]="(giftForm.get('fullname').valid )">
+                  Only alphabets allowed
+              </div>
+              <ion-item class="borderAll">
+                  <ion-label color="primary" fixed>Dear</ion-label>
+                  <ion-input type="text" formControlName="fullname" placeholder="Recepient name" name='fullname'></ion-input>
+              </ion-item>
+
+            <div class="txt-label">Message <span class="label-gray">(Max 200 charecters)</span></div>
+            <ion-item class="textarea">                
+              <ion-textarea  type="text" formControlName="gift_message" placeholder="" name='gift_message'></ion-textarea >
+            </ion-item>
+
+            <div class="txt-label">Sender Name <span class="label-gray">(Max 60 charecters)</span></div>
+            <div class="err-msg" *ngIf="giftForm.get('senderName').touched" [hidden]="(giftForm.get('fullname').valid )">
+                Only alphabets allowed
+            </div>
+            <ion-item class="borderAll">
+                <ion-label color="primary" fixed>From</ion-label>
+            <ion-input  type="text" formControlName="senderName" placeholder="Sender name" ></ion-input>
+        </ion-item>
+    </div>
+
+    <div ion-button full icon-end class="add-new-btn"  type="button" (click)="addGiftBillingAddress()">
+      Enter Billing Address
+      <ion-icon name="ios-arrow-forward"></ion-icon>
+    </div>
+
+     <div *ngIf="giftAddress" class="gift-address-box">
+          <ion-list>
+            <div class="err-msg" *ngIf="giftForm.get('bill_Name').touched" [hidden]="(giftForm.get('bill_Name').valid )">
+              Only alphabets allowed
+            </div>
+            <ion-item>
+              <ion-input type="text" formControlName="bill_Name" placeholder="Full Name*" onblur="this.placeholder='Full Name*'" required  autofocus></ion-input>
+            </ion-item>
+            <div class="err-msg" *ngIf="giftForm.get('bill_Telephone').touched" [hidden]="(giftForm.get('bill_Telephone').valid )">
+              Number should be 10 digit
+            </div>
+            <ion-item>
+              <ion-input type="text" formControlName="bill_Telephone" placeholder="Mobile Number*" onblur="this.placeholder='Mobile Number*'"
+                required></ion-input>
+            </ion-item>
+  
+            <ion-item class="textarea">
+              <ion-label stacked>Address*</ion-label>
+              <ion-textarea type="text" formControlName="bill_Street" required></ion-textarea>
+            </ion-item>
+  
+            <ion-item>
+              <ion-input type="text" formControlName="bill_City" placeholder="City*" onfocus="this.placeholder='';" onblur="this.placeholder='City*'"
+                required></ion-input>
+            </ion-item>
+  
+            <ion-item>
+              <ion-input type="number" formControlName="bill_post_code" placeholder="Pin Code*" onfocus="this.placeholder=''" onblur="this.placeholder='Pin Code*'"
+                required></ion-input>
+            </ion-item>
+  
+            <ion-item>
+              <ion-select formControlName="bill_country_id" #selectedCountry placeholder="Country*" (ionChange)="getCountryStates(selectedCountry.value)"
+                onfocus="this.placeholder=''" onblur="this.placeholder='Country*'" interface="popover">
+                <ion-option value="IN">India</ion-option>
+              </ion-select>
+            </ion-item>
+  
+            <ion-item>
+              <ion-select [disabled]="!allStates" formControlName="bill_region_id" placeholder="State*" class="state-select" onfocus="this.placeholder=''" 
+                onblur="this.placeholder='State*'" interface="popover">
+                <ion-option [value]="state.region_id" *ngFor="let state of allStates">{{state.name}}</ion-option>
+              </ion-select>
+            </ion-item>
+        </ion-list>
+    </div> 
+
+      <div class="btn-card">
+        <button ion-button outline full [disabled]="!giftForm.valid" [ngClass]="{'active_btn':giftForm.valid}" type="submit">
+          <span class="button-inner">BUY GIFT CARD</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</ion-content>

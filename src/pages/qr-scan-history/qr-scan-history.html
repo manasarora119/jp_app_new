@@ -1,0 +1,71 @@
+<ion-content style="background: none transparent">
+  <div class="header">
+    <button ion-button outline clear (click)="closeScanhistory()">
+      <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg" />
+      <ion-label>Scan History</ion-label>
+    </button>
+  </div>
+  <div class="content">
+    <div *ngIf = 'blankhistoryData' class="empty-cart">
+    <div class="empty-img">
+        <img src="assets/icon/qr-code/QrHistory.png" />
+      </div>
+      <div class="title">No items in Scan History</div>
+      <div class="subTitle"> Your favourite items are just a tap away</div>
+      <button ion-button class="btn-red" (click)="goToHome()">Continue Shopping</button>
+      <!-- <button ion-button block clear class="btn-clear">MOVE FROM WISHLIST</button> -->
+      <div> </div>
+    </div>
+    <div class="scan-products" *ngIf="historyData && historyData.length>0 &&  !blankhistoryData">
+      <ion-row class="product" *ngFor="let item of historyData let i=index" >
+        <button class="share-btn" (click)="shareProduct(item)">
+          <img src="assets/icon/04-PDP/Share.svg" />
+        </button>
+        <ion-col col-3 class="product-item-image">
+            <img [src]="item.gallery" [alt]="item.name"  (click)="GoToPdp(item)" /> 
+          <!-- <img src="https://static.jaypore.com/tr:w-140,h-187/media/catalog/product/t/o/tosjwj60007115-1_3.jpg"   /> -->
+        </ion-col>
+        <ion-col col-9 class="product-item-descriptions">
+            <div class="name">{{item.name | wordbreak : 60}}</div>
+            <div class="prices"> 
+                <span class="price" *ngIf="item.final_price >=10000">{{'Currency' | translate}}{{item.final_price|number}}</span>
+                <span class="price" *ngIf="item.final_price < 10000">{{'Currency' | translate}}{{item.final_price}}</span>
+                <!-- <span class="price">Rs. 6,000</span> -->
+            </div>
+            <div class="scan-detail">
+              <span class="s-date">DATE: {{historyTime[i].time | date:'dd MMM yyyy HH:mm'}}</span>
+             
+              <span class="soldout" *ngIf="item.quantity == 0">Sold Out</span>
+            </div>
+        </ion-col>
+        <div class="btn-wrapper">
+            <button class="toWishlist"  (click)="addToWishlist(item.id, i)">Move to wishlist</button>
+            <button class="toBag" (click)="addToBag(item,i)">Add to bag</button>             
+          </div>
+      </ion-row>
+
+      <!-- <ion-row class="product">
+          <button class="share-btn" (click)="shareProduct(item)">
+            <img src="assets/icon/04-PDP/Share.svg" />
+          </button>
+          <ion-col col-3 class="product-item-image">
+            <img src="https://static.jaypore.com/tr:w-140,h-187/media/catalog/product/t/o/tosjwj60007115-1_3.jpg"   />
+          </ion-col>
+          <ion-col col-9 class="product-item-descriptions">
+              <div class="name">Blue Handloom Cotton Kurta</div>
+              <div class="prices">
+                  <span class="price">Rs. 6,000</span>
+              </div>
+              <div class="scan-detail">
+                <span class="s-date">DATE: 18 SEPT 2017</span>
+                <span class="soldout">Sold Out</span>
+              </div>
+          </ion-col>
+          <div class="btn-wrapper">
+              <button class="toWishlist" (click)="applyPCode()">Move to wishlist</button>
+              <button class="toBag" (click)="applyPCode()">Add to bag</button>             
+            </div>
+        </ion-row> -->
+  </div>
+</div>
+</ion-content>

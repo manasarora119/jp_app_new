@@ -1,0 +1,19 @@
+<div class="narrow-carousel" *ngIf="narrowItems && narrowItems.component_data.length > 1">
+    <div class="most-popular-items">     
+      <ion-slides slidesPerView="auto"  autoplay="2000" loop="true" speed="1000">
+        <ion-slide *ngFor="let item of narrowItems.component_data">
+            <div class="popular-image" (click)="goToAction(item.type_id,item.type,item.myfilter,'narrow_carousel')">
+              <img [src]="item.image" [alt]="item.description">
+            </div>
+        </ion-slide>
+    </ion-slides>
+ </div>
+</div>
+
+<div class="narrow-carousel" *ngIf="narrowItems && narrowItems.component_data.length == 1">
+  <div class="most-popular-items">
+    <div class="popular-image" (click)="goToAction(narrowItems.component_data[0].type_id,narrowItems.component_data[0].type,narrowItems.component_data[0].myfilter,'narrow_carousel')">
+      <img [src]="narrowItems.component_data[0].image" [alt]="narrowItems.component_data[0].description">
+    </div>
+  </div>
+</div>

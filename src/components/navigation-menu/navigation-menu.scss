@@ -1,0 +1,71 @@
+navigation-menu {
+
+}
+
+.all-categories{
+    background: $jp-color-white-gray;
+    border-bottom: solid 8px $jp-color-gray-devider;
+    .shop-by-cat{
+        padding: 16px;
+        background: $jp-color-white;
+        h3{
+            @include fontStyles($font-Bold, $jp-color-black, 16px);
+            letter-spacing: 0.25px;
+            text-align: center;
+            margin: 0px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        ion-list{
+            border: solid 1px $jp-color-lighter-gray;
+            @include borderRadius(2px);
+            margin: 0px;
+            button{
+                border-bottom: 1px solid $jp-color-lighter-gray;
+                height: 54px;
+                .catogery-icon{
+                    margin: 0px;
+                    float: left;
+                    margin-right: 16px;
+                    width: 25px;
+                    height: 25px;
+                    position: relative;
+                    top: 6px;
+                    img{
+                        width: 95%;
+                        position: static;
+                        float: none;
+                        max-height: 100%;
+                        max-width: 100%;
+                    }
+                }
+                &:last-child{
+                    border-bottom: none;
+                }
+                img{
+                    float: right;
+                    width: 8px;
+                    position: relative;
+                    top: 13px;
+                }
+                .item-inner{
+                    padding-left: 0px;
+                    border-bottom: none;
+                    background: none;
+                    padding-right: 16px;
+                    .input-wrapper{
+                        ion-label{
+                            @include fontStyles($font-Regular, $jp-color-black, 16px);
+                            margin: 0px;
+                            line-height: 40px;                            
+                            ion-icon{
+                                top: 2px;
+                                position: relative;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

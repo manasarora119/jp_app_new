@@ -1,0 +1,42 @@
+<ion-content  style="background: none transparent">
+  <div class="header">
+    <button ion-button outline clear (click)="closeQrPage()" class="white-bc">
+      <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg" />
+      <ion-label>Scan the product barcode or QR</ion-label>
+    </button>
+  </div>
+  <div class="content">
+
+    <div class="qrpage-btn">
+      <button [disabled]="disableStatus"  ion-button outline clear class="qrcode-btn {{keyboard==false?'active-tab':''}} " (click)="scanQrcode()">
+        <!-- <ion-label>Scan Code</ion-label> -->
+        <img class="dark" float-right src="assets/icon/qr-code/QR-Code-Dark.svg" />
+        <img class="light" float-right src="assets/icon/qr-code/QR-Code-Light.svg" />
+      </button>
+
+      <button  [disabled]="disableStatus" ion-button outline clear class="qrkeybord-btn {{keyboard==true?'active-tab':''}}" (click)="KeyboardOpen()">
+        <!-- <ion-label>Keyboard</ion-label> -->
+        <img class="dark" float-right src="assets/icon/qr-code/Bar-Code-Dark.svg" />
+        <img class="light" float-right src="assets/icon/qr-code/Bar-Code-Light.svg" />
+      </button>
+    </div>
+
+    <div *ngIf='keyboard'>
+      <div class="keybord-wrapper">
+        <div class="title">Enter Product Code</div>
+          <ion-input type="text" [(ngModel)]="skuInput" id='keyboard' placeholder="" required></ion-input>
+          <button  (click)="applyPCode()">APPLY</button>
+      </div>
+    </div>
+    <div class="history-container">
+      <div class="scan-history" (click)="gotoScanHistory()">
+        <span>
+          <img src="assets/icon/qr-code/ScanHistory.svg" class="icon-img" alt="Scan history" />
+        </span> Scan History
+        <!-- <ion-icon color="arrow-right" item-right></ion-icon> -->
+        <img class="chevron" src="assets/icon/10-Universal-Icons/chevron-right.svg">
+      </div>
+    </div>
+
+  </div>
+</ion-content>

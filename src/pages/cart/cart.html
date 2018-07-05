@@ -1,0 +1,315 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Your Bag</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content  class="cart-items">
+  <div padding *ngIf="cartData && cartData.items && cartData.items.length > 0" [ngStyle]="{'margin-bottom' : isKeyboardShown ?  '0px' : '64px' }">
+    <h4>ITEMS ({{cartData.items.length}})</h4>
+    <div class="cart-products">
+      <ion-row *ngFor="let item of cartData.items">
+        <button class="cross-btn" (click)="removeProduct(item)">
+          <img src="assets/icon/06-Search/close-search.png" />
+        </button>
+        <ion-col col-4 class="product-item-image">
+          <img [src]="item.thumbnail_img" [alt]="item.name"  (click)="gotoPdp(item)" /> 
+        <!-- <img [src]="item.thumbnail_img" [alt]="item.name"   /> -->
+       
+        </ion-col>
+        <ion-col col-8 class="product-item-descriptions">
+          <h5 *ngIf="item.name">{{item.name}}</h5>
+          <h6 *ngIf="item.brand_name">{{item.brand_name}}</h6>
+          <div class="size-quty">
+            <ion-item *ngIf="item.size_label">
+              <ion-label>Size:
+                <button (click)="changeSize(item)">
+                    {{item.size_label}}
+                 <span>
+                </span>
+              </button>
+              </ion-label>
+            </ion-item>
+            <ion-item class="qnty-select">
+              <ion-label>Qty: </ion-label>
+              <ion-select [(ngModel)]="item.quantity" (ionChange)="updateItem(item)" >
+                <ion-option *ngFor="let qnty of item.availQty" [value]="qnty">{{qnty}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </div>
+
+          <div class="prices">
+            <span class="price" *ngIf="item.final_price>=10000"> {{item.currency}} {{item.final_price|number}}</span>
+            <span class="price" *ngIf="item.final_price<10000"> {{item.currency}} {{item.final_price}}</span>
+            
+            <span class="price-discount" *ngIf=" item.normal_price != item.final_price">{{item.currency}} {{item.normal_price}}</span>
+            <!-- <span class="price-offer" *ngIf="item.special_price > 0"> -->
+            <span class="price-offer" *ngIf="item.final_price < item.normal_price">
+                ({{ getDiscount(item.normal_price, item.final_price) }} % off)</span>
+          </div>
+          <div class="dispatch-time" *ngIf="item.shipping_info">
+            Dispatched By: {{item.dispatchdate}} <br/>
+            {{item.shipping_info}}
+          </div>
+        </ion-col>
+        <!-- <div class="wishlist-box">
+          <button>MOVE TO WISHLIST</button>
+        </div> -->
+      </ion-row>
+    </div>
+    <div class="product-options">
+      <!--  <div class="more-from-wishlist">
+        <button>ADD MORE FROM WISHLIST</button>
+      </div> -->
+      <div class="options">
+        <h6>Options</h6>
+
+        <div class="coupon-options">
+          <ion-list>
+            <ion-item text-wrap>
+              <h3 #applyCoupon (click)="toggleGroup(1)" [ngClass]="{active: isGroupShown(1)}">
+                <span>
+                  <img [src]="isGroupShown(1) ? 'assets/icon/07-Checkout/apply-coupon-hover.svg' : 'assets/icon/07-Checkout/apply-coupon.svg' " class="icon-img" alt="Apply Coupon" />
+                </span> Apply Coupon
+                <ion-icon color="arrow-right" item-right [name]="isGroupShown(1) ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+              </h3>
+
+              <div class="descriptions" *ngIf="isGroupShown(1)">
+                <h6>Enter Coupon Code</h6>
+                <form>
+                  <div class="coupon-input">
+                    <input type="text" name="coupon" [(ngModel)]="coupon" 
+                    (focus)="this.hideFooter(); goToApplyCoupon(applyCoupon)"
+                    (focusout)="focusOutCall($event)"  (ngModelChange)="couponEdit($event)" maxlength="15" />
+
+                    <img class="status-icon" *ngIf="coupon && couponRes && !couponRes.error" [ngStyle]="{'left' : ( 20 + (this.coupon.length + 1) * 8) + 'px' }"
+                      src="assets/icon/07-Checkout/Credits-Applied-Icon.svg" />
+
+                    <img class="status-icon" *ngIf="coupon && couponRes && couponRes.error" [ngStyle]="{'left' : ( 20 +(this.coupon.length + 1) * 8) + 'px' }"
+                      src="assets/icon/07-Checkout/Invalid-Coupon-Icon.svg" />
+                  </div>
+
+                  <button *ngIf="!cartData.applied_promo" [disabled]="applyCartCouponmsg ==1" (click)="applyCartCoupon()">APPLY</button>
+
+                  <button *ngIf="cartData.applied_promo || (coupon && couponRes && couponRes.error)" (click)="removeCartCoupon()">Remove</button>
+
+                  <p class="error" *ngIf="couponRes" [ngClass]="{'success-coupon':!(couponRes.error)}" [ngStyle]="{'color' : (couponRes.error) ? '#bb4225' : '#4caf50' }">
+                    {{couponRes.message || couponRes.data.applied_coupon.message}}
+                  </p>
+
+                </form>
+              </div>
+            </ion-item>
+
+            <ion-item text-wrap>
+                <h3 #applyGift (click)="toggleGroup(2)" [ngClass]="{active: isGroupShown(2)}">
+                  <span>
+                    <img [src]="isGroupShown(2) ? 'assets/icon/07-Checkout/apply-coupon-hover.svg' : 'assets/icon/07-Checkout/apply-coupon.svg' " class="icon-img" alt="Redeem E-gift Card" />
+                  </span> Redeem E-gift Card
+                  <ion-icon color="arrow-right" item-right [name]="isGroupShown(2) ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+                </h3>
+  
+                <div class="descriptions" *ngIf="isGroupShown(2)">
+                  <form>
+                    <div class="coupon-input">
+                      <input type="text" name="giftCard" [(ngModel)]="giftCard" 
+                      (focus)="this.hideFooter(); goToGiftCart(applyGift)"
+                       maxlength="15" />
+                      <!-- <img class="status-icon" *ngIf="giftCard && giftCardRes && !giftCardRes.error" [ngStyle]="{'left' : ( 20 + (this.coupon.length + 1) * 8) + 'px' }"
+                        src="assets/icon/07-Checkout/Credits-Applied-Icon.svg" />
+  
+                      <img class="status-icon" *ngIf="giftCard && giftCardRes && giftCardRes.error" [ngStyle]="{'left' : ( 20 +(this.coupon.length + 1) * 8) + 'px' }"
+                        src="assets/icon/07-Checkout/Invalid-Coupon-Icon.svg" /> -->
+                    </div>
+  
+                    <button [disabled]="!giftCard" (click)="redeemGiftCard()">APPLY</button>
+                 
+                    <p class="error" *ngIf="giftCardResMessage!=0" [ngStyle]="{'color' : (giftCardRes.error) ? '#bb4225' : '#4caf50' }">
+                      {{giftCardResMessage}}
+                    </p>
+  
+                  </form>
+                </div>
+              </ion-item>
+  
+
+            <ion-item>
+              <h3 #credits (click)="toggleGroup(3)" [ngClass]="{active: isGroupShown(3)}">
+                <span><img [src]="isGroupShown(3) ? 'assets/icon/07-Checkout/apply-credits-hover.svg' : 'assets/icon/07-Checkout/apply-credits.svg' " alt="Apply Credits" /></span>                Apply Credits
+                <ion-icon color="arrow-right" item-right [name]="isGroupShown(3) ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+              </h3>
+              <div class="descriptions creadit-container" *ngIf="isGroupShown(3)">
+                <!-- <ion-label *ngIf="cartData.creditAvailable > 0">
+                  <ion-checkbox color="dark" [(ngModel)]="useAllCredits" (ionChange)="applyAllCredits(useAllCredits)"></ion-checkbox>
+                  Use all available credits <strong>({{cartData.creditAvailable}})</strong>
+                </ion-label> -->
+                <form [formGroup]="msgForm" *ngIf="cartData.creditAvailable > 0">
+                  <!-- <input type="number" name="use_credits" [disabled]="creditApplied === true" (focus)="this.hideFooter(); goToAppliedCredits(credits)"  [(ngModel)]="use_credits"
+                    (input)="checkCredits($event)" /> -->
+                    <input type="text" pattern="[0-9]*"
+                    maxlength="10" formControlName="use_credits" onblur="this.placeholder=''" 
+                    placeholder="" (input)="creditEntered(msgForm.get('use_credits').value)" clearOnEdit="false" onfocus="this.placeholder=''" required [(ngModel)]="use_credits" >
+                    <button *ngIf="!cartData.rewardpoint_discount || cartData.rewardpoint_discount == 0" 
+                    [disabled]="!use_credits || use_credits <= 0 || use_credits>cartData.creditAvailable 
+                      || use_credits>(cartData.subTotal+cartData.shipping_price-this.cartData.total_discount) || !isValidAmt" (click)="applyCredits(use_credits)">Apply</button>
+                    <!-- || !msgForm.valid -->
+                    <!--  -->
+                  <button *ngIf="cartData.rewardpoint_discount > 0" (click)="removeCredits()">REMOVE</button>
+                </form>
+                <p *ngIf="cartData.creditAvailable > 0">Available Credit Balance: <strong>{{'Currency' | translate}}{{cartData.creditAvailable - cartData.rewardpoint_discount }}</strong></p>
+                <div class="error-withBg" *ngIf="cartData.creditAvailable <= 0">You have {{'Currency' | translate}}{{cartData.creditAvailable}} credits in your account</div>
+              </div>
+            </ion-item>
+
+            <!--
+              Gift Section
+              <ion-item>
+              <h3 (click)="toggleGroup(3)" [ngClass]="{active: isGroupShown(3)}">
+                <span><img [src]="isGroupShown(3) ? 'assets/icon/07-Checkout/gift-wrap-hover.svg' : 'assets/icon/07-Checkout/gift-wrap.svg' " alt="Gift Wrap for Rs.50" /></span>
+                  Gift Wrap for Rs.50
+                <ion-icon
+                  color="arrow-right"
+                  item-right
+                  [name]="isGroupShown(3) ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
+              </h3>
+              <div class="descriptions gift-container" *ngIf="isGroupShown(3)">
+                <p>
+                  Your personalised message will be printed on a card and sent with your gift.
+                </p>
+                <form>
+                  <div class="form-row">
+                    <label><strong>Recepient Name</strong> (Max 60 charecters)</label>
+                    <span>Dear</span>
+                    <input type="text" value="" placeholder="Recepient name">
+                  </div>
+
+                  <div class="form-row">
+                    <label><strong>Message</strong> (Max 200 charecters)</label>
+                    <textarea cols="30" placeholder="Gift Message" rows="10"></textarea>
+                  </div>
+
+                  <div class="form-row">
+                    <label><strong>Sender Name</strong> (Max 60 charecters)</label>
+                    <span>From</span>
+                    <input type="text" value="" placeholder="Sender name">
+                  </div>
+                </form>
+              </div>
+            </ion-item> -->
+
+          </ion-list>
+        </div>
+
+        <h6>Price Details</h6>
+        <div class="price-details">
+          <ion-row>
+            <ion-col col-6 class="left">Sub - Total</ion-col>
+            <ion-col col-6 class="right" *ngIf="cartData.subTotal >=10000"><strong>{{'Currency' | translate}} {{cartData.subTotal|number}} </strong></ion-col>
+            <ion-col col-6 class="right" *ngIf="cartData.subTotal <10000"><strong>{{'Currency' | translate}} {{cartData.subTotal}} </strong></ion-col>
+            
+          </ion-row>
+          <ion-row>
+            <ion-col col-6 class="left">Coupon Discount</ion-col>
+            <ion-col col-6 class="right">
+              <button *ngIf="!cartData.coupon_discount" (click)="goToApplyCoupon(applyCoupon)">
+                APPLY COUPON
+              </button>
+              <button class="free" *ngIf="cartData.coupon_discount" (click)="goToApplyCoupon(applyCoupon)">
+                      {{'Currency' | translate}}{{cartData.coupon_discount}} 
+                </button>
+
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="cartData.rewardpoint_discount">
+            <ion-col col-6 class="left">Credits Applied</ion-col>
+            <ion-col col-6 class="right">
+              <button class="free" (click)="goToAppliedCredits(credits)">
+                    {{'Currency' | translate}}{{cartData.rewardpoint_discount}}
+              </button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6 class="left">Shipping Charges</ion-col>
+            <ion-col col-6 *ngIf="cartData.shipping_price == 0" class="free right">Free</ion-col>
+            <ion-col col-6 *ngIf="cartData.shipping_price > 0" class="free right">
+              {{'Currency' | translate}}{{cartData.shipping_price}}
+            </ion-col>
+
+
+          </ion-row>
+          <ion-row>
+            <ion-col col-6 class="left">Payable Amount</ion-col>
+            <ion-col col-6 class="right" *ngIf="cartData.grandTotal >=10000"><strong>{{'Currency' | translate}}{{cartData.grandTotal|number}}</strong></ion-col>
+            <ion-col col-6 class="right" *ngIf="cartData.grandTotal <10000" ><strong>{{'Currency' | translate}}{{cartData.grandTotal}}</strong></ion-col>
+            
+          </ion-row>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Empty Bag -->
+  <div padding *ngIf="(!cartData ||  !cartData.items.length > 0) && !wait" class="empty-cart">
+    <div class="empty-img">
+      <img src="assets/icon/07-Checkout/emptyCart.svg" />
+    </div>
+    <div class="title">Your shopping bag is empty!</div>
+    <div class="subTitle"> Fill it with some handcrafted finds </div>
+    <button ion-button class="btn-red" (click)="goToHome()">CONTINUE SHOPPING</button>
+    <!-- <button ion-button block clear class="btn-clear">MOVE FROM WISHLIST</button> -->
+    <div> </div>
+
+  </div>
+
+  <!-- Error True -->
+  <div padding *ngIf="errorTrue" class="empty-cart">
+      <!-- <div class="empty-img">
+        <img src="assets/icon/07-Checkout/emptyCart.svg" />
+      </div>
+      <div class="title">Unexpected error found. <br />Please Try later</div> -->
+      <!-- <div class="subTitle"> Fill it with some handcrafted finds </div> -->
+      <!-- <button ion-button class="btn-red" (click)="goToHome()">Retry</button> -->
+      <!-- <button ion-button block clear class="btn-clear">MOVE FROM WISHLIST</button> -->
+
+      <div class="banner" text-center>
+          <img class="b-img" src="assets/icon/07-Checkout/Payment-Failed-Icon.svg" />
+          <div class="title"> Unexpected error found. <br>Please Try later</div>
+          </div>
+          <div class="action">   
+          <button ion-button outline class="Retry retry-btn" (click)="retryCart()">Retry</button>
+          <button ion-button full class="Retry cshopping-btn" (click)="goToHome()">CONTINUE SHOPPING</button>
+        </div>
+
+    </div>
+
+ <!--  <div class="cart-footer" *ngIf="cartData &&  cartData.items.length > 0 && showFooter && KeyboardStatus==0">
+    <ion-row align-items-center>
+      <ion-col col-4 align-items-center class="left">
+        <p>Payable Amount</p>
+        <h6>{{'Currency' | translate}} {{cartData.grandTotal}}</h6>
+      </ion-col>
+      <ion-col col-8 class="right">
+        <button (click)="goToAddress()">PLACE ORDER</button>
+      </ion-col>
+    </ion-row>
+  </div> -->
+
+</ion-content>
+
+
+<ion-footer class="hide-on-keyboard-open" *ngIf="cartData &&  cartData.items.length > 0 && !isKeyboardShown">
+  <ion-toolbar>
+  <ion-row align-items-center>
+    <ion-col col-4 align-items-center class="left">
+      <p>Total Amount</p>
+      <h6 *ngIf="cartData.grandTotal>=10000">{{'Currency' | translate}} {{cartData.grandTotal|number}}</h6>
+      <h6 *ngIf="cartData.grandTotal <10000" >{{'Currency' | translate}} {{cartData.grandTotal}}</h6>
+      
+    </ion-col>
+    <ion-col col-8 class="right">
+      <button (click)="goToAddress()">PLACE ORDER</button>
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,399 @@
+page-filter-modal {
+    ion-header{
+        &::after{
+            background-image: none !important;
+            
+        }
+        ion-navbar{
+            height: 42px;
+            
+            .toolbar-background{
+                background: $jp-color-whitish !important;
+            }
+            .back-button{
+                display: none !important;
+            }
+            ion-title{
+                // padding-left: 54px !important;
+                .toolbar-title{
+                    @include fontStyles($font-SBold,$jp-color-gray,14px);
+                    letter-spacing: 0.5px;
+                    text-align: left;
+                }
+            }
+            .closeBtn{
+                margin: 0;
+                padding: 16px !important;
+                @include borderRadius(0px);
+                img{
+                    width: 14px;
+                    height :14px;
+                }
+            }
+        }
+        ion-buttons{
+            -webkit-order: 1 !important;
+            -ms-flex-order: 1 !important;
+            order: 1 !important;
+        }
+    }
+    
+    .cat{
+        max-width: 144px;
+        width: 40%;
+        padding: 0px;
+        border: 1px solid $jp-color-lighter-gray;
+        border-bottom: 0px;
+        max-height: 100vh; 
+        height: calc(100vh - 82px); 
+        ion-list{
+            margin: 0px;
+            height: 52px;               
+            button{
+                height: 52px;
+                border-top: 0px !important;
+                border-bottom: 1px solid $jp-color-lighter-gray !important;
+                background: #f7f8fa; 
+                .item-inner{
+                    padding: 0px !important;
+                }
+                ion-label{
+                    @include fontStyles($font-Regular,$jp-color-black,16px);
+                    .dot{
+                        width: 6px;
+                        height: 6px;
+                        background: $jp-color-red;
+                        display: inline-block;
+                        border-radius: 50%;
+                        margin-left: 8px;
+                    }
+                    .dot.active{
+                        background: $jp-color-white;
+                    }
+                }           
+            }
+            button > div{
+                background-image: none !important;
+            }
+            button.active{
+                background: $jp-color-red;
+                color: #fff;
+                ion-label{
+                    @include fontStyles($font-SBold,$jp-color-white,16px);
+                }
+            }
+        }
+    }
+    
+    .subCat{
+        padding: 0;
+        border: 1px solid $jp-color-lighter-gray;
+        border-left: none;
+        max-height: calc(100vh - 105px);
+        overflow: auto;
+        border-bottom: 0px;
+        ion-checkbox {
+            margin: 10px 10px !important;
+        }
+        ion-item{
+            padding: 0px;        
+            @include fontStyles($font-Regular,$jp-color-black,14px);
+            // letter-spacing: 0.22px;
+            // margin: 12px 8px 11px 0;
+            // line-height: 20px;      
+        }
+        ion-label{
+            padding: 0px;        
+            @include fontStyles($font-Regular,$jp-color-black,14px);
+            letter-spacing: 0.22px;
+            margin: 12px 8px 12px 0;
+            line-height: 20px;      
+        }
+        
+        button{
+            padding: 0px;
+            border-bottom: 1px solid $jp-color-lighter-gray !important;
+        }
+        ion-checkbox > div{
+            @include borderRadius(2px !important);
+            border:2px solid $jp-color-white-gray !important;
+        }
+        .checkbox-icon {
+            width: 20px !important;
+            height: 20px !important;
+            border-color: $jp-color-white-gray !important;
+        }
+        ion-checkbox .checkbox-checked{
+            border-color:$jp-color-red !important;
+            background: $jp-color-red;
+            color:#fff;
+            
+            .checkbox-inner{
+                left: 6px;
+                top: 2px;
+                position: absolute;
+                width: 5px;
+                height: 11px;
+                border-width: 1.5px;
+                border-top-width: 0;
+                border-left-width: 0;
+                border-style: solid;
+                border-color: #fff;
+            }   
+        }
+        .colorBg{
+            width: 40px;
+            height: 20px;
+            @include borderRadius(2px);
+            background:red;
+            margin-right: 8px;
+            float: left;
+        }
+        .colorBg.Beige{background: Beige;}
+        .colorBg.Black{background: Black;}
+        .colorBg.Blue{background: Blue;}
+        .colorBg.Brown{background: Brown;}
+        .colorBg.Green{background: Green;}
+        .colorBg.Grey{background: Grey;}
+        .colorBg.Multi-color{background: Green;}
+        .colorBg.Orange{background: Orange;}
+        .colorBg.Pink{background: Pink;}
+        .colorBg.Purple{background: Purple;}
+        .colorBg.Red{background: Red;}
+        .colorBg.White{background: White;border:1px solid #979797;}
+        .colorBg.Yellow{background: Yellow;}
+        
+        ion-searchbar.brand-search{
+            height: 44px;
+            background: #ebeff1;
+            padding: 4px;
+            border: none;
+            input[type=search]{
+                height:36px !important;
+                padding-left: 9px;
+                @include borderRadius(3px);
+                border: 1px solid #bdbdbd;
+                @include fontStyles($font-Regular,$jp-color-black,14px);
+                letter-spacing: 0.25px;    
+            }
+            input[type=search]::-webkit-input-placeholder { 
+                @include fontStyles($font-Regular,$jp-color-gray,12px);
+                letter-spacing: 0.25px;
+            }
+            input[type=search]::-moz-placeholder { 
+                @include fontStyles($font-Regular,$jp-color-gray,12px);
+                letter-spacing: 0.25px;
+            }
+            input[type=search]:-ms-input-placeholder { 
+                @include fontStyles($font-Regular,$jp-color-gray,12px);
+                letter-spacing: 0.25px;
+            }
+            input[type=search]:-moz-placeholder { 
+                @include fontStyles($font-Regular,$jp-color-gray,12px);
+                letter-spacing: 0.25px;
+            }
+            
+            .searchbar-clear-icon{
+                display: none !important;
+            }
+            .searchbar-search-icon{
+                top: 9px;
+                left: auto;
+                right: 10px;
+                width: 20px;
+                height: 20px;
+                background-size: 18px;
+            }
+        }
+        .searchbar-has-value, .searchbar-has-focus{
+            .searchbar-search-icon{
+                background-image: none !important;
+            }
+        } 
+        
+        .shipping{
+            @include fontStyles($font-Regular,$jp-color-black,14px);
+            letter-spacing: 0.22px;
+            ion-label{
+                margin: 13px 0px 13px 8px;
+            }
+            .item-inner{
+                padding-right: 16px;
+                border-bottom: 0.55px solid $jp-color-lighter-gray;
+            }
+            ion-toggle{
+                width: 36px;
+                height: 20px;
+                padding: 0px;
+                .toggle-inner{
+                    width: 11px;
+                    height: 11px;
+                    left: 2px;
+                    top: 2px;
+                    background: #bdbdbd;
+                    -webkit-box-shadow: none;
+                    -moz-box-shadow: none;
+                    box-shadow: none;
+                }
+                button{
+                    border: none !important;
+                }
+                .toggle-icon{
+                    background: #fff;
+                    border:2px solid #bdbdbd;
+                    box-shadow: none;
+                    // margin:2px;
+                }
+            }
+            .toggle-ios.toggle-checked .toggle-inner{
+                left: -2px;
+            }
+            .toggle-checked{
+                .toggle-inner{
+                    background:$jp-color-red;
+                    // left: -2px;
+                    
+                }
+                .toggle-icon{
+                    border:2px solid $jp-color-red;
+                }
+            }
+            
+            // ion-toggle {
+                //     zoom: 0.7;
+                //   }
+            }
+        .sec-top{
+            clear: both;
+            border-bottom: 1px solid $jp-color-lighter-gray;
+            float: left;
+            width: 100%;
+            .set-title{
+                padding: 13px 8px;
+                background :$jp-color-whitish;
+                @include fontStyles($font-SBold,$jp-color-gray,14px);
+            }
+            .price-wrapper{
+                padding: 0 8px;
+                .rw{
+                    ion-item{
+                        .item-inner{
+                            box-shadow: none !important;
+                            border: none !important;
+                        }
+                    }
+                    
+                    ion-label{
+                        @include fontStyles($font-SBold,$jp-color-darker-grey,14px);
+                        margin: 8px 0 4px;
+                    }
+                    ion-input{
+                        border: 1px solid #bdbdbd;
+                        @include borderRadius(4px);
+                        height: 42px;
+                        .text-input{
+                            margin: 11px 8px !important;                            
+                        }
+                    }
+                }
+                .clear{
+                    padding: 4px !important;
+                    display: inline-block;
+                    background: none;
+                    border: none !important;
+                    margin: 8px 0;
+                    float: right;
+                    @include fontStyles($font-SBold,$jp-color-lightblue,14px);
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                    &:disabled{
+                        color:$jp-color-white-gray !important;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .sec-bot{
+            clear: both;
+            padding-bottom: 24px;
+            .set-title{
+                padding: 13px 8px;
+                background :$jp-color-whitish;
+                @include fontStyles($font-SBold,$jp-color-gray,14px);
+            }
+            .checkbox-icon{            
+                border-radius: 50% !important;
+            }
+        }
+        }
+        .modal-btn-sec{
+            padding: 8px;
+            margin: 0px;
+            background: $jp-color-white !important;
+            border: 1px solid $jp-color-lighter-gray;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100% !important;
+            z-index: 99;
+            button{
+                
+                @include borderRadius(2px);
+                @include fontStyles($font-SBold,$jp-color-white,16px);
+                letter-spacing: 0.25px;
+                margin: 0px;
+                height: 42px;
+                width: calc(50% - 4px);
+                float: left;
+                box-shadow: none;
+            }
+            .btn-reset{
+                margin-right: 8px;
+                width: 132px;
+                background-color: $jp-color-white;
+                border:1px solid  $jp-color-red;   
+                letter-spacing  :0.25px;
+                border-radius: 2px;
+                height: 48px;
+                @include fontStyles($font-SBold, $jp-color-red, 16px);
+                &:disabled{
+                    background-color: $jp-color-white;
+                    box-shadow: none;
+                    border-color : $jp-color-gray;   
+                    opacity: 1 !important;
+                    span{
+                        @include fontStyles($font-SBold, $jp-color-gray, 16px);
+                        letter-spacing : 0.25px;
+                    }
+                }        
+            }
+            .btn-applay{
+                background-color: $jp-color-red;
+                width: calc(100% - 140px);
+                @include fontStyles($font-SBold, $jp-color-white, 16px);
+                letter-spacing  :0.25px;
+                border-radius: 2px;
+                height: 48px;
+                
+                &:disabled{
+                    background-color: $jp-color-white-gray;
+                    box-shadow: none;
+                    opacity: 1 !important;
+                    span{
+                        @include fontStyles($font-SBold, $jp-color-gray, 16px);
+                        letter-spacing : 0.25px;
+                    }
+                }
+            }
+            /* .btn-reset.active{
+                color: $jp-color-red;
+                border-color:$jp-color-red;
+            }
+            .btn-applay.active{
+                background: $jp-color-red;
+                color:#fff;
+            } */
+        }
+        
+    }
+    

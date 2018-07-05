@@ -1,0 +1,140 @@
+<ion-header>
+    <ion-navbar hideBackButton="true">
+        <ion-buttons start>
+            <button ion-button outline clear (click)="dismiss(0)" class="closeBtn">
+                <img class="iconShare" src="assets/icon/10-Universal-Icons/Cross-Icon.svg" />
+            </button>
+        </ion-buttons>
+        <ion-title>REFINE RESULTS BY</ion-title>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-row style="clear:both" *ngIf="filterData">
+        <ion-col class="cat" *ngIf="filterData.error != true">
+            <span *ngFor="let i of filterData.data.filters" (click)="showSubCat(i, goTosearchTop)">
+                <ion-list *ngIf="i.title && i.options.length">
+                    <button ion-item [ngClass]="(i.id == active) ? 'active' : 'nonActive'" menuClose *ngIf="i.title">{{i.title}}
+                        <span class="dot" *ngIf="(dotArray.indexOf(i.id) >= 0 ? true:false) && i.id != active"></span>
+                        <span class="dot active" *ngIf="(dotArray.indexOf(i.id) >= 0 ? true:false) && i.id == active"></span>
+                    </button>
+                </ion-list>
+            </span>
+        </ion-col>
+        <ion-col class="subCat">
+            <div #goTosearchTop></div>
+            <div *ngIf="category=='color'">
+                <ion-item *ngFor="let i of options">
+                    <ion-label>
+                        <span class="colorBg {{ i.value}}"></span> {{ i.label }}</ion-label>
+                    <!-- <ion-label>{{i.value}}</ion-label> -->
+                    <ion-checkbox [checked]="filterCheckedData[category].indexOf(i.value) >= 0 ? true:false" (click)="checkboxClick(category,i.value)"></ion-checkbox>
+                </ion-item>
+            </div>
+            <div *ngIf="category =='brands'">
+                <div>
+                    <ion-searchbar class="brand-search" (ionInput)="filterItems($event)">
+                    </ion-searchbar>
+                </div>
+                <ion-item *ngFor="let i of options">
+                    <ion-label> {{ i.label }}</ion-label>
+                    <ion-checkbox [checked]="filterCheckedData[category].indexOf(i.brand_id) >= 0 ? true:false" (click)="checkboxClick(category,i.brand_id)"></ion-checkbox>
+                </ion-item>
+            </div>
+            <div *ngIf="category =='category'">
+                <ion-item *ngFor="let i of options">
+                    <ion-label> {{ i.label }}</ion-label>
+                    <ion-checkbox [checked]="filterCheckedData[category].indexOf(i.category_id) >= 0 ? true:false" (click)="checkboxClick(category,i.category_id)"></ion-checkbox>
+                </ion-item>
+            </div>
+            <div *ngIf="category =='size'">
+                <ion-item *ngFor="let i of options">
+                    <ion-label> {{ i.label }}</ion-label>
+                    <ion-checkbox [checked]="filterCheckedData[category].indexOf(i.value) >= 0 ? true:false" (click)="checkboxClick(category,i.value)"></ion-checkbox>
+                </ion-item>
+            </div>
+            <div *ngIf="category =='material'">
+                <ion-item *ngFor="let i of options">
+                    <ion-label> {{ i.label }}</ion-label>
+                    <ion-checkbox [checked]="filterCheckedData[category].indexOf(i.value) >= 0 ? true:false" (click)="checkboxClick(category,i.value)"></ion-checkbox>
+                </ion-item>
+            </div>
+            <div *ngIf="category =='price'">
+                <div class="sec-top">
+                    <!-- {{fromAmt}} {{toAmt}} -->
+                    <div class="set-title">TELL US YOUR BUDGET</div>
+                    <form [formGroup]="priceRange">
+                        <div class="price-wrapper"> 
+                            <div class="rw">
+                                <ion-label>From</ion-label>
+                                <ion-item>
+                                    <ion-input type="tel" maxlength="10" [(ngModel)]="fromAmt" formControlName="fromAmt" placeholder="Rs." (blur)="priceFilter('from',$event.target.value)"></ion-input>
+ 
+                                    <div class="err-msg" style="margin-top:4px;">
+                                        <div *ngIf="priceRange.get('fromAmt').dirty" [hidden]="priceRange.get('fromAmt').valid">Decimal not allow.</div>
+                                    </div>
+                                </ion-item>
+                            </div>
+
+                            <div class="rw">
+                                <ion-label>To</ion-label>
+                                <ion-item>
+                                    <ion-input type="tel" maxlength="10"  [(ngModel)]="toAmt" formControlName="toAmt" placeholder="Rs." (blur)="priceFilter('to',$event.target.value)"></ion-input>
+
+                                    <div class="err-msg" style="margin-top:4px;">
+                                        <div *ngIf="priceRange.get('toAmt').dirty" [hidden]="priceRange.get('toAmt').valid">Decimal not allow.</div>
+                                    </div>
+                                </ion-item>
+                                <!-- <ion-input type="number" onkeypress="return String.fromCharCode(event.charCode).match(/[0-9 ]/g) != null" placeholder="Rs."
+                                [(ngModel)]="toAmt" (blur)="priceFilter2('to',$event.target.value)"></ion-input> -->
+                            </div>
+                            <button class="clear" [disabled]="priceClear" (click)="reSetInput()">CLEAR</button>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="sec-bot">
+                    <div class="set-title">OR CHOOSE A PRICE RANGE</div>
+                    <ion-item *ngFor="let i of options">
+                        <!-- <ion-label> {{ i.minPrice+'-'+i.maxPrice }}</ion-label> -->
+                        <ion-label *ngIf="i.minPrice>=10000 &&i.maxPrice >=10000"> {{i.minPrice|number}} - {{i.maxPrice|number}}</ion-label>
+                        <ion-label *ngIf="i.minPrice<10000 &&i.maxPrice <10000"> {{i.minPrice}} - {{i.maxPrice}}</ion-label>
+                        <ion-label *ngIf="i.minPrice>=10000 &&i.maxPrice <10000"> {{i.minPrice|number}} - {{i.maxPrice}}</ion-label>
+                        <ion-label *ngIf="i.minPrice<10000 &&i.maxPrice >=10000"> {{i.minPrice}} - {{i.maxPrice|number}}</ion-label>
+
+                        <ion-checkbox [disabled]="!priceClear" [checked]="filterCheckedData[category].indexOf(i.minPrice+'-'+i.maxPrice) >= 0 ? true:false"
+                            (click)="checkboxClick(category,i.minPrice+'-'+i.maxPrice)"></ion-checkbox>
+                    </ion-item>
+                </div>
+            </div>
+            <div *ngIf="category =='product_type'">
+                <ion-item *ngFor="let i of options">
+                    <ion-label> {{ i.label }}</ion-label>
+                    <ion-checkbox [checked]="filterCheckedData[category].indexOf(i.value) >= 0 ? true:false" (click)="checkboxClick(category,i.value)"></ion-checkbox>
+                </ion-item>
+            </div>
+        </ion-col>
+    </ion-row>
+
+
+</ion-content>
+<ion-footer>
+    <ion-card class="modal-btn-sec">
+        <div class="fixed-bottom">
+            <button class="disable-hover button button-ios button-default button-default-ios btn-reset" ng-reflect-full="" (click)="dismiss(1)">
+                <span class="button-inner">RESET</span>
+            </button>
+            <button [disabled]="(
+                (priceRange.get('fromAmt').valid != true) || 
+                (priceRange.get('toAmt').valid != true) || 
+                (IntegerParse(priceRange.get('fromAmt').value) >= IntegerParse(priceRange.get('toAmt').value)) ||
+                (checkFromToValue(priceRange.get('fromAmt').value, priceRange.get('toAmt').value)) 
+                )" class="disable-hover button button-ios button-default button-default-ios btn-applay"
+                ng-reflect-full="" (click)="dismiss(2)">
+                <span class="button-inner">APPLY</span>
+            </button>
+        </div>
+
+    </ion-card>
+</ion-footer>

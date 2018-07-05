@@ -1,0 +1,148 @@
+page-gift-cards {
+    .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+        img{
+            width: 14px;
+            margin: 0 34px 0 16px;
+            display: inline-block;
+        }
+        ion-label{
+            @include fontStyles($font-Regular,$jp-color-black,16px);
+            @include borderRadius(4px);
+            letter-spacing: 0.5px;
+            text-align: left;
+            margin: 14px 0;;        
+        }
+    }
+    .content {
+        .swiper-container{
+            padding-bottom: 29px;
+        }
+        .mastText{
+            clear: both;
+            padding: 8px 0;
+            text-align: center;
+            .title{
+                @include fontStyles($font-SBold,$jp-color-black,16px); 
+                padding: 0 16px 8px;
+            }
+            .t-text{
+                @include fontStyles($font-Regular,$jp-color-black,16px);
+                padding: 0 16px 8px;
+            }
+        }
+        padding: 16px 0;
+        background-color: $jp-color-white !important;
+        ion-card{
+            margin: 0px 16px 0;
+            width: calc(100% - 32px);
+            @include boxShadow(none);
+         .mastHead{
+             width: calc(100% - 0px);
+            ion-slide{
+                // margin: 2px;
+            .img{
+                img{
+                    display: block;
+                    @include borderRadius(4px 4px 0 0);
+                }
+            }
+            .slider-text{
+                // box-shadow: 0px 0px 1px 1px $jp-color-lighter-gray;
+                // @include boxShadow(0px 0px 4px 1px #e1e2e5);
+                @include borderRadius(0 0 4px 4px);
+                margin: 2px;
+                margin-top: 0;
+                height: 86px;
+                // border: 1px solid $jp-color-lighter-gray;
+                .slider-title{
+                    @include fontStyles($font-Regular,$jp-color-black,14px);
+                    padding: 12px 0 4px;
+                }
+                .slider-desc{
+                    @include fontStyles($font-Regular,$jp-color-gray,14px);
+                    height: 36px;
+                   
+                }
+            }
+        }
+    }
+        .swiper-pagination{
+            bottom: 0px;
+            height: 26px;
+            .swiper-pagination-bullet{
+                width: 4px;
+                height: 4px;
+                background: $jp-color-red;
+                margin: 0 3px;
+            }
+        }
+        }
+
+       .gift-btn{
+           padding: 16px;
+           float: left;
+           width: 100%;
+           button{
+            background: $jp-color-red;
+            @include borderRadius(2px);
+            @include fontStyles($font-SBold,$jp-color-white,16px);
+            letter-spacing: 0.25px;
+            margin: 0px;
+            height: 48px;
+            float: left;
+            @include boxShadow(none);
+           }
+       } 
+       .collection{
+           padding: 0 16px;
+           .title{
+            @include fontStyles($font-SBold,$jp-color-black,16px); 
+            padding: 8px 0;
+            text-align: center;
+           }
+           ion-row{
+            //    margin: 0 -4px;
+               ion-col{
+                //    &::after{
+                //        content: '';
+                //        position: absolute;
+                //        top: 4px;
+                //        left: 4px;
+                //        bottom: 4px;
+                //        right: 4px;
+                //        background: rgba(0,0,0,.5);
+                //        @include borderRadius(2px);
+                //    }
+                padding: 4px;
+                // margin: 4px;
+                img{
+                    border: 1px solid $jp-color-lighter-gray; 
+                    display: block;
+                    @include borderRadius(2px);
+                    width: 100%;
+                }
+                .text{
+                    position: absolute;
+                    top: 50%;
+                    // left: 50%; 
+                    transform: translate(0% , -50%);
+                    display: block;
+                    text-align: center;
+                    width: 100%;
+                    @include fontStyles($font-SBold,$jp-color-white,14px); 
+                    z-index: 9;
+                }
+               }
+
+           }
+       }
+    }
+}

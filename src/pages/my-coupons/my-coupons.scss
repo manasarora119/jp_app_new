@@ -1,0 +1,94 @@
+page-my-coupons {
+    ion-header{
+        ion-navbar{
+            height: 42px;
+            
+            .toolbar-background{
+                background: $jp-color-white !important;
+            }
+            .back-button{
+                display: none !important;
+            }
+            ion-title{
+                // padding-left: 54px !important;
+                .toolbar-title{
+                    @include fontStyles($font-Regular,$jp-color-black,16px);
+                    text-align: left;
+                    font-weight: normal;
+                }
+            }
+            .closeBtn{
+                margin: 0;
+                padding: 16px !important;
+                @include borderRadius(0px);
+                img{
+                    width: 14px;
+                    height :14px;
+                }
+            }
+        }
+        ion-buttons{
+            -webkit-order: 1 !important;
+            -ms-flex-order: 1 !important;
+            order: 1 !important;
+        }
+    }
+.container {
+    background: $jp-color-light-gray;
+    padding: 16px;
+    .title{
+        @include fontStyles($font-SBold,$jp-color-black,14px); 
+        margin-bottom: 8px;
+    }
+    .sub-title{
+        @include fontStyles($font-Regular,$jp-color-gray,14px);
+        padding: 16px 0 4px; 
+    }
+    .card{  
+        padding-bottom: 24px;
+        .card-inner{
+                padding: 0px 12px 16px;
+                background: $jp-color-white;
+                border: 1px solid $jp-color-lighter-gray;
+                @include borderRadius(4px);
+                .code-desc{
+                    border-bottom: 1px solid $jp-color-lighter-gray;
+                    position: relative;
+                    .coupon-code{
+                        @include fontStyles($font-SBold,$jp-color-red,20px); 
+                        padding: 8px 0 16px;
+                        text-transform: uppercase;
+                    }  
+                                .contant {
+                position: absolute;
+                top: 12px;
+                right: 0px;
+                button{
+                    margin: 0;
+                    border: 1px solid $jp-color-lighter-gray;
+                    // border:none;
+                    @include borderRadius(4px);
+                    @include linearGradient(#fdfcfc,#f6f6f6);
+                    // @include linearGradient(#fcfcfc,#eaeff7);
+                    @include boxShadow(0px 1px 1px #e0e0e0);
+                    @include fontStyles($font-Regular,$jp-color-gray,12px);
+                    
+                }
+            }
+                }      
+            }
+        .terms-condition{
+            ul{
+                padding: 0;
+                margin: 0 0 0 16px;
+                li{
+                @include fontStyles($font-Regular,$jp-color-darker-grey,14px);
+                line-height: 20px;
+                padding: 4px 0;
+                }
+            }
+        }
+    }
+}
+    
+}

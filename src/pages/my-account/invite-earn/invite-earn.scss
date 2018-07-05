@@ -1,0 +1,150 @@
+page-invite-earn {
+    .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+        img{
+            width: 14px;
+            margin: 0 34px 0 16px;
+            display: inline-block;
+        }
+        ion-label{
+            @include fontStyles($font-Regular,$jp-color-black,16px);
+            @include borderRadius(4px);
+            letter-spacing: 0.5px;
+            text-align: left;
+            margin: 14px 0;;        
+        }
+    }
+    .content {
+        padding: 0;
+        background-color: $jp-color-light-gray !important;
+        .scroll-content{
+            padding-top: 0px !important;
+        }
+        .banner{
+            background: $jp-color-white;
+            border-bottom: 1px solid $jp-color-lighter-gray;
+            .banner-inner {
+                padding: 16px;
+                text-align: center;
+                .invite{
+                    @include fontStyles($font-SBold,$jp-color-black,18px);
+                    letter-spacing: 0.5px;
+                    line-height: 22px;
+                }
+                .label{
+                    @include fontStyles($font-Regular,$jp-color-gray,14px);
+                    padding-top: 4px;
+                }
+                .code{
+                    @include fontStyles($font-SBold,$jp-color-red,14px);
+                    border: 1.2px dotted $jp-color-white-gray;
+                    letter-spacing: 0.5px;
+                    padding: 12px 8px;
+                    margin: 24px 0;
+                    height: auto;
+                    display: inline-block;
+                    text-transform: uppercase;
+                }
+                .code-desc{
+                    @include fontStyles($font-Regular,$jp-color-gray,14px);
+                    line-height: 20px;
+                    padding-bottom: 8px;
+                }
+            }
+        }
+        .social-icon{
+            button{
+                background: $jp-color-red;
+                @include fontStyles($font-SBold,$jp-color-white,16px);
+                letter-spacing: 0.25px;
+                width: 200px;
+                height: 48px;
+                border: none;
+                margin: 14px 0;
+                padding: 0;
+            }
+        }
+        .error-div{
+			text-align: center;
+			.empty-img{
+				margin: 40px 0 24px 0;
+				text-align : center;
+				img{
+					height  : 147px;
+					width  : 147px;
+				}
+			}
+			.title{
+				@include fontStyles($font-SBold, $jp-color-black, 20px);
+				line-height: 20px;
+				text-align: center;
+			}
+			.subTitle{
+				@include fontStyles($font-Regular, $jp-color-gray, 14px);
+				line-height: 20px;
+				padding-top: 8px;
+				text-align: center;
+			}
+			.btn-red{
+				@include fontStyles($font-SBold, $jp-color-white, 16px);
+				line-height: 20px;
+				background-color: $jp-color-red;
+				margin-top: 80px;
+				letter-spacing: 0.25px;
+				width: 206px;
+				height: 48px;
+				border-radius: 2px;
+				text-align: center;
+			}
+			.btn-clear{
+				@include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+				line-height: 20px;
+				letter-spacing: 0.25px;
+				margin-top: 24px;
+				text-align: center;
+
+			}
+        }   
+        .banner{
+            background: $jp-color-white;
+            padding: 16px;
+            @include borderRadius(2px);
+            border: 1px solid $jp-color-lighter-gray;
+				.b-img{
+					display: inline-block;
+					padding: 8px 0;
+					width: 45px;
+				}
+				.title{
+					@include fontStyles($font-SBold, $jp-color-black, 16px);
+					line-height: 22px;
+					text-align: center;
+					padding-bottom: 8px;
+				}
+			}
+    }
+    .terms-condition{
+        padding-bottom: 24px;
+        .title{
+            @include fontStyles($font-SBold,$jp-color-gray,14px); 
+            line-height: normal;
+            margin: 24px 16px 8px !important;
+        }
+        ul{
+            padding: 0 0 0 16px;
+            margin: 0 16px;
+            li{
+            @include fontStyles($font-Regular,$jp-color-gray,14px);
+            line-height: 22px;
+            padding: 8px 0;
+            }
+        }
+    }
+}

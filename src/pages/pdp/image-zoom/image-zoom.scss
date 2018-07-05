@@ -1,0 +1,95 @@
+page-image-zoom {
+    ion-header{
+        //background: $jp-color-white;
+        position: fixed;
+        &::after{
+            display: none;
+        }
+        .zoom-header{
+            width: 100%;
+            height: 56px;
+            @include linearGradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0));
+            .button-inner{
+
+            }
+            button{
+                background: none;
+                color: $jp-color-gray;
+                padding: 5px;
+                margin: 14px;
+                width: 28px;
+                height: 26px;
+                position: absolute;
+                left: -6px;
+                top: 0px;
+                z-index: 99;
+                @include boxShadow(none);
+                overflow-y: hidden;
+            }
+            .image-next{
+                top: 50%;
+                right: 0px;
+                left: auto;
+                width: 34px;
+                height: 34px;
+                padding: 0px;
+            }
+            .image-prev{
+                top: 50%;
+                left:0px;
+                width: 34px;
+                height: 34px;
+                padding: 0px;
+            }
+        }
+    }
+}
+
+.imageZoom{
+    position: static;
+    transform: translate3d(-50%,-50%,0) scale(2.5);
+}
+
+.zoom-modal{
+    .modal-wrapper{
+        page-image-zoom{
+            ion-content{
+                background-color: #000;
+                .scroll-content{
+                    margin-top: 0px !important;
+                    .zoom-container{
+                        overflow: auto;
+                        height: 100%;
+                        img{
+                            max-width: inherit;
+                            transform-origin: 126.477px 236px 0px;
+                             transition: transform 0.3s ease-out;
+                             vertical-align: middle;
+                        }
+                    }
+                    
+                }
+                
+                ion-slides{
+                    .swiper-container{
+                        .swiper-wrapper{
+                            ion-slide{
+                                .slide-zoom{
+                                    .swiper-zoom-container{
+                                        background: #000;
+                                        img{
+                                            &:first-child{
+                                                //transform: translate3d(0px, 0px, 0px) scale(3);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}

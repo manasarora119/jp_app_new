@@ -1,0 +1,35 @@
+<ion-content>
+    <div class="header">
+      <button ion-button outline clear (click)="goToMyAccount()">
+            <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+            <ion-label>Jaypore Credits</ion-label>
+          </button>
+    </div>
+  <div class="content">
+    <div class="banner">
+      <div class="banner-inner">
+        <span class="label">Available Credits</span>
+        <div class="credit" *ngIf="userCredit">Rs. {{userCredit.available_credit.current}}</div>
+      </div>
+    </div>
+
+    <div class="main">
+        <div class="title">Frequently asked questions</div>
+        <ion-row>
+          <div class="fa-left">1</div>
+          <div class="fa-right">
+            <div class="fq">What can I do with Jaypore Credits? </div>
+            <div class="fa">Jaypore credits can be used as a mode of payment on orders placed on the App/Website. Each credit point is equal to Rupee 1. In case your order value is more than the credit points in your account, the balance amount can be paid via online or cash on delivery modes.</div>
+          </div>
+        </ion-row>
+        <ion-row>
+            <div class="fa-left">2</div>
+            <div class="fa-right">
+              <div class="fq">When are points credited to my account?</div>
+              <div class="fa">A) Any e-gift card bought on Jaypore, when redeemed, will convert to credit points of the equivalent value of the gift card</div>
+              <div class="fa">B) In the unfortunate case, you return or cancel an order that has been paid for, Jaypore will offer to refund the amount as credit points</div>
+            </div>
+          </ion-row>
+    </div>
+  </div>
+</ion-content>

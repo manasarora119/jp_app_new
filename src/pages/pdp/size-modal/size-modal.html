@@ -1,0 +1,46 @@
+<ion-content>
+  <div class="size-container" [ngClass]="{'sizeSelected':sizeClass}">
+    <div *ngIf="!gotoshop">
+        <button ion-button outline clear (click)="dismiss()" class="closeBtn">
+            <img class="iconShare" src="assets/icon/10-Universal-Icons/Cross-Icon.svg" />
+        </button>
+      <div class="size-and-chart-required" *ngIf="itemspartners == 0">
+        <span class="title">SELECT SIZE</span>
+        <button 
+          ion-button 
+          clear 
+          float-right (click)="sizeChart()">
+          SIZE CHART
+        </button>
+      </div>
+      <div class="sizes-required" *ngIf="itemspartners == 0">
+        <button ion-button class="not-availabel" clear *ngFor="let noSize of this.noSizep;">{{noSize}}</button>
+        <button 
+          outline 
+          ion-button 
+          *ngFor="let size of sizeList; let i = index" 
+          [ngClass]="{'select-size':(isSelected == size ), 'selected-size':(isSelected == i )}"
+          (click)="selectSize(i)" 
+          [ngStyle]="{ 'border-color' : (isSelected == i ) ? '#bb4225' : '#757575', 'color':(isSelected == i ) ? '#ffffff' : '#757575', 'background-color':(isSelected == i ) ? '#bb4225' : '#ffffff'}">
+          {{size}}
+        </button>
+      </div>
+      <div class="size-not-available" *ngIf="referpage != 'wishlist' &&  referpage != 'bannerComponent' && referpage != 'QRCodeHistory'">
+        <p>Size not available? <button ion-button clear (click)="viewSimilar()">VIEW SIMILAR</button></p>
+      </div>
+    </div>
+      <div class="shop-now-buttons">
+        <button 
+          [disabled]="startCart" 
+          [ngClass]="{'notDone':startCart}"
+          *ngIf="!gotoshop"
+          (click)="addToBag()">
+          Done
+        </button>
+        <div class="bag-shopping" *ngIf="gotoshop">
+          <button class="continue-shop" icon-right (click)="continueShopping()">Continue Shopping</button>
+          <button class="go-to-bag" icon-left (click)="goToBag()">Go to Bag</button>
+        </div>
+    </div>
+  </div>
+</ion-content>

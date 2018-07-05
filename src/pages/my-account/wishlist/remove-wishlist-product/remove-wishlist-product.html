@@ -1,0 +1,15 @@
+<ion-content padding>
+  <button (click)="closeRemoveModal()" class="cross-btn"><img src="assets/icon/10-Universal-Icons/Cross-Icon.svg" /></button>
+  <ion-row>
+    <ion-col col-4 class="product-item-image">
+        <img [src]="item.gallery" [alt]="item.name" />
+    </ion-col>
+    <ion-col col-8 class="product-item-descriptions">
+          <h5>Remove Item</h5>
+          <p>Are you sure you want to remove this item from your wishlist?</p>
+    </ion-col>
+  </ion-row>
+  <div class="product-btn">
+    <button class="remove-product-btn" (click)="removeCartProduct(item)">REMOVE</button>
+  </div>
+</ion-content>

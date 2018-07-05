@@ -1,0 +1,63 @@
+
+<ion-content *ngIf="orderDetails && itemDetails">
+    <div class="header">
+        <button ion-button outline clear (click)="goToMyAccount()">
+          <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+          <ion-label>My Orders</ion-label> 
+        </button>
+      </div>
+      <div class="content">
+          <span class="title">Order Details</span>
+          <div class="detail">
+            <div>
+               <span class="property">Order Date</span>
+               <span class="value">{{orderDetails.orderDate}}</span>
+            </div>
+            <div>
+                <span class="property">Order Number</span>
+                <span class="value">{{orderDetails.orderId}}</span>
+             </div> 
+             <div>
+                <span class="property">Order Total</span>
+                <span class="value">{{'Currency' | translate}} {{orderDetails.subtotal | number}} <span class="item-count">({{orderDetails.items.length}} item)</span></span>
+             </div>  
+            </div>
+          <span class="title">Item details</span>
+          <div class="detail" *ngIf="itemDetails">
+            <!--<div class="para">Not yet dispatched</div>-->
+             <div class="para" *ngIf="itemDetails.item_status == 'Processing'">&nbsp;</div> 
+            <div class="para" *ngIf="itemDetails.item_status == 'Cancelled'">Cancelled</div>
+            <div class="para" *ngIf="itemDetails.item_status == 'Returned'">Returned</div>
+            <div class="para" *ngIf="itemDetails.item_status == 'Shipped'">&nbsp;</div>
+            <button ion-button clear class="o-cancel" *ngIf="itemDetails.item_status == 'Processing' && itemDetails.is_refundable" (click)="returnOrder('Cancel')">Cancel Item</button>
+            <button ion-button clear class="o-cancel" *ngIf="itemDetails.item_status == 'Shipped' && itemDetails.is_refundable" (click)="returnOrder('Return')">Return Item</button>
+          <ion-item>
+              <ion-thumbnail item-start>
+                <img src={{itemDetails.img}}>
+              </ion-thumbnail>
+              <div class="p-name">{{itemDetails.product_name}}</div>
+              <div class="p-desc">{{itemDetails.desctiption}}</div>
+              <div><span class="size" *ngIf="itemDetails.size">Size: <b>{{itemDetails.size}}</b></span><span class="quinty ">Qnty: <b>{{itemDetails.qty | number}}</b></span></div>
+              <div class="price">{{'Currency' | translate}} {{itemDetails.row_total | number}}</div>
+          </ion-item>
+          <!--<div class="not-returned" *ngIf="!itemDetails.is_refundable && itemDetails.item_status == 'Cancelled'">This item can not be returned now.</div>-->
+          </div>
+          <div style="width: 100%; float:left;"></div>
+          <div class="return-via" *ngIf="returnStat">
+            <span class="return-title">{{returnStat}} via call</span>
+            <button class="return-call" ion-button block>
+                <img src="assets/icon/10-Universal-Icons/calling-icon.svg"/> 
+                <span class="btn-txt"><a ion-button href="tel:+917305297673" >+917305297673</a></span>
+            </button>
+            <span class="return-title">{{returnStat}} via email</span>
+            <button class="return-call" ion-button block *ngIf="returnStat == 'Cancel'">
+                <img src="assets/icon/10-Universal-Icons/mailing-icon.svg"/> 
+                <span class="btn-txt" (click)="mailto('hello@jaypore.com')">hello@jaypore.com</span>
+            </button>
+            <button class="return-call" ion-button block *ngIf="returnStat == 'Return'">
+                <img src="assets/icon/10-Universal-Icons/mailing-icon.svg"/> 
+                <span class="btn-txt" (click)="mailto('hello@jaypore.com')">hello@jaypore.com</span>
+            </button>
+          </div>
+      </div>
+</ion-content>

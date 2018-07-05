@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Payment Options</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div class="payment-summary">
+    <h4>Payment Summary</h4>
+    <ion-row class="payment-row no-border paybal">
+      <ion-col col-8 align-items-start>
+        <p>Payable Amount</p>
+      </ion-col>
+      <ion-col col-4 align-items-start>
+        <p text-right><strong align-self-end>Rs {{giftCardData['gift_amount']}}</strong></p>
+      </ion-col>
+    </ion-row>
+    <h4>Payment Options</h4>
+    <ion-row class="payment-row" (click)="paymentsOption('card')">
+      <ion-col col-2 class="left">
+        <input type="radio" name="paymentMode" value="card" [(ngModel)]="paymentsFlag">
+      </ion-col>
+      <ion-col col-7 class="mid cod-methord" align-items-start>
+        <div class="payment-row-text" for="card">
+          Debit & Credit Cards
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="payment-row" (click)="paymentsOption('netbanking')">
+      <ion-col col-2 class="left">
+        <input type="radio" name="paymentMode" value="netbanking" [(ngModel)]="paymentsFlag">
+      </ion-col>
+      <ion-col col-7 class="mid cod-methord" align-items-start>
+        <div class="payment-row-text" for="netbanking">
+          Netbanking <br>
+        </div>
+      </ion-col>
+      <ion-col col-3 class="right" align-items-start text-right>
+        &nbsp;
+      </ion-col>
+    </ion-row>
+
+    
+    
+</div>    
+</ion-content>
+<ion-footer class="payment-footer" *ngIf="paymentsFlag">
+  <ion-row align-items-center>
+    <ion-col col-12>
+      <button (click) = "payByRazorPay()">
+        <div *ngIf="paymentsFlag != 'cod' &&  paymentsFlag != 'netbanking'">
+              Pay Rs {{giftCardData['gift_amount']}}   
+              <span>ADD CARD DETAILS ON NEXT STEP</span>
+        </div>
+        <div *ngIf=" paymentsFlag == 'netbanking'">
+          Pay Rs {{giftCardData['gift_amount']}} 
+          <span >SELECT BANK ON NEXT STEP</span>
+        </div>
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

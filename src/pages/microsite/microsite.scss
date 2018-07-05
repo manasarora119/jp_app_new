@@ -1,0 +1,151 @@
+page-microsite {
+
+ion-navbar{ .back-button {
+// position: absolute;
+left: 44px;
+z-index: 9999;
+}
+.menutoggleBtn{
+    left: -44px;
+  }
+}
+}
+/*.jp-header{
+    .default-header{
+        ion-navbar{
+            min-height: 48px;
+            .toolbar-background{
+                background:$jp-color-red;
+                ion-title{
+
+                }
+            }
+
+            ion-buttons {
+                background: none;
+                .bag-icon{
+                    margin-right: 10px;
+                    position: relative;
+                    background: none;
+                    ion-badge{
+                        @include borderRadius(100%);
+                        position: absolute;
+                        top: -10px;
+                        right: -9px;
+                        padding: 0px;
+                        width: 18px;
+                        height: 18px;
+                        line-height: 20px;
+                        background: $jp-color-white;
+                        @include fontStyles($font-Regular, $jp-color-black, 12px);
+                        letter-spacing: 1px;
+                    }
+                     img{
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+            }
+        }
+    }
+    ion-navbar{
+        min-height: 48px;
+        ion-buttons{
+            color: $jp-color-white;
+            padding: 0px 11px;
+            button{
+                background: none;
+                position: relative;
+                img{
+                width: 18px;
+                height: 18px;
+                }
+                ion-badge{
+                border-radius: 100%;
+                -webkit-border-radius: 100%;
+                -moz-border-radius: 100%;
+                -o-border-radius: 100%;
+                position: absolute;
+                top: -10px;
+                right: -9px;
+                padding: 0px;
+                width: 18px;
+                height: 18px;
+                line-height: 20px;
+                background: #fff;
+                font-family: "Proxima Nova Regular" !important;
+                color: #212121;
+                font-size: 12px !important;
+                letter-spacing: 1px;
+                }
+                }
+            .button-inner{
+                img{
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+
+        .toolbar-background{
+            background:$jp-color-red;
+        }
+        .menutoggleBtn{
+            color: $jp-color-white;
+            .button-inner{
+                ion-icon{
+                    font-size: 26px;
+                }
+            }
+        }
+
+        .toolbar-content{
+            text-align: center;
+            padding-top: 5px;
+            ion-title{
+                img{
+                    width: 132px;
+                    max-height: 22px;
+                    margin-top: 4px;
+                }
+            }
+        }
+    }
+}*/
+.right-bottom{
+    right: 0px !important;
+    bottom: 0px !important;
+    position: fixed;
+    button{
+        @include boxShadow(none);
+        background: transparent !important;
+        width: 78px;
+        height: 78px;
+        line-height: 78px;
+        border-radius: none;
+        ion-icon{
+            span{
+                ion-icon{
+                    font-size: 26px !important;
+                }
+            }
+        }
+        span{
+            img{
+                max-width: none;
+            }
+        }
+    }
+}
+.right-bottom.search{
+    background: #bc4226 url('../assets/icon/10-Universal-Icons/search-icon.png') 50% 50% / 24px no-repeat !important;
+    width: 50px;
+    height: 50px;
+    right: 8px !important;
+    bottom: 8px !important;
+    border-radius: 50px;
+    text-align: center;
+    z-index: 9999;
+    @include boxShadow(0 5px 18px 0px rgba(0,0,0,.5))
+}
+

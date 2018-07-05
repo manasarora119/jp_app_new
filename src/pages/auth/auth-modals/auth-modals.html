@@ -1,0 +1,32 @@
+<ion-content padding>
+  <div>
+    <div *ngIf="data.icon" class="icon">
+      <img [src]="data.icon" />
+    </div>
+
+    <div *ngIf="data.header" class="header">{{data.header}}</div>
+
+    <!--  <div *ngIf="data.description" class="help-text"
+     [ngStyle]="{color : data.description.color}" 
+     [innerHtml]="data.description.text">
+    </div> -->
+    <div *ngIf="data.description" class="help-text" [ngStyle]="{color : data.description.color}">
+      {{data.description.text}}
+      <div *ngIf="data.email"><b> {{data.email}} </b></div>
+    </div>
+
+
+    <button ion-button block *ngIf="data.actionBtn" class="action-button" (click)="go(data.actionBtn.action)">
+     {{data.actionBtn.text}}
+    </button>
+
+    <div class="btn-support-text" *ngIf="data.btnText">{{data.btnText}}</div>
+
+    <div class="or" *ngIf="data.isOR">OR</div>
+
+    <button ion-button block clear *ngIf="data.bottomButton" class="meta-button" (click)="go(data.bottomButton.action)">
+      {{data.bottomButton.text}}
+    </button>
+
+  </div>
+</ion-content>

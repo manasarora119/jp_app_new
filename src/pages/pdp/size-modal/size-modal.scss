@@ -1,0 +1,222 @@
+page-size-modal {
+
+}
+.size-modal{
+
+    ion-backdrop { 
+        background-color: $jp-color-black;
+        opacity: 0.8 !important ;
+    }
+    
+    // @media #{$device} {
+        ion-backdrop {
+            visibility: visible;
+            z-index: -2;
+        }
+    
+        ion-content{
+            bottom: 0px !important;
+            top: unset;
+            background: none;
+            position: absolute;
+            width: 100%;
+            bottom: 0px;
+            .scroll-content{
+                overflow-y: hidden;
+            }
+        }
+        
+        .modal-wrapper{
+            bottom: 0px !important;
+            top: unset;
+            min-height : 189px;
+            max-height: 320px;
+            position: absolute;
+            left: 0px;
+            width: 100%;
+            @include borderRadius(0px)
+        }
+    // }
+
+    .scroll-content{
+        .sizeSelected{
+            .shop-now-buttons{
+                button{
+                    background: $jp-color-red !important;
+                    color: $jp-color-white !important;
+                }
+                
+            }
+        }
+        .size-container{
+            position: absolute;
+            width: 100%;
+            bottom: 0px;
+            background: white;
+            .closeBtn {    
+                width: 24px;
+                height: 24px;
+                float: right;
+                margin: 0;
+                padding: 0;
+                background: $jp-color-white-gray;
+                box-shadow: none;
+                border-radius: 0 0 0 2px;
+            }
+        .size-and-chart-required{
+            clear: both;
+            padding: 16px 16px 8px;
+                .title{
+                    @extend .headingStyles;
+                    letter-spacing: 0.5px;
+                    @include fontStyles($font-SBold,$jp-color-black,14px);
+                }
+                button{
+                    display: block;
+                    @include fontStyles($font-SBold,$jp-color-lightblue,14px);
+                    height: auto;
+                    margin: 0;
+                    padding: 0;
+                    margin-top: 2px;
+                }
+        }
+        .sizes-required{
+            // display: flex;
+            // width: 100%;
+            // justify-content: left;
+            // padding: 0px 16px 16px 16px;
+            // button{
+            //     width: 44px;
+            //     height: 44px;
+            //     text-align: center;
+            //     line-height: 44px;
+            //     display: block;
+            //     border: solid 1px $jp-color-gray;
+            //     @include borderRadius(100px);
+            //     margin-right: 8px;
+            // }
+            display: flex;
+            width: 100%;
+            justify-content: left;
+            margin: 6px 0px;
+            overflow-x: scroll;
+            padding: 0px 16px;
+            button{
+                // min-width: 44px;
+                // height: 44px;
+                padding: 0px;
+                margin: 0px;
+                margin-right: 5px;
+                text-align: center;
+                display: block;
+                color: $jp-color-black;
+                // margin-right: 8px;
+                @include fontStyles($font-Regular,$jp-color-black,18px);
+                letter-spacing: 0.5px;
+                @include borderRadius(8px);
+                border: solid 1px $jp-color-lighter-gray;
+                height: 44px;
+                overflow: unset;
+                .button-inner{
+                    color: $jp-color-black;
+                    padding: 9px 10px;
+                    min-width: 44px;
+                    line-height: 44px;
+                }
+                .button-effect{
+                    height: 0px !important;
+                    display: none !important;
+                }
+            }
+            .selected-size{
+                border-color: #bb4225;
+                background: #bb4225;
+                .button-inner{
+                    color: $jp-color-white;
+                }
+            }
+            // .selected-size{
+            //     .button-inner{
+            //          color: #fff;
+            //     }
+            // }
+        }
+        .size-not-available{
+            padding: 0px 16px;
+            p{
+                @include fontStyles($font-SBold,$jp-color-black,14px);
+                letter-spacing: 0.5px;
+                button{
+                    padding: 0px;
+                    margin: 0px;
+                    height: auto;
+                    margin-top: -8px;
+                    @include fontStyles($font-SBold,$jp-color-lightblue,14px);
+                    letter-spacing: 0.5px;
+                }
+            }
+        }
+        .not-availabel{
+            background: $jp-color-white-gray;
+            color: rgba(33,33,33,.25);
+            border-color: $jp-color-white-gray;
+            
+            .button-inner{
+                // background: $jp-color-white-gray;
+                // position: relative;
+                // border-color: $jp-color-white-gray;                    
+                &::after{
+                    content: '';
+                    width: 100%;
+                    height: 1px;
+                    background: #bababa;
+                    border-color: #bababa;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    margin-top: -1px;
+                }
+            }
+        }
+        .shop-now-buttons{
+            height: 48px;
+            button{
+                width: 100%;
+                height: 48px;
+                text-transform: uppercase;
+                @include boxShadow(none);
+                opacity: 1;
+                @include fontStyles($font-SBold,$jp-color-white,14px);
+            }
+            button.notDone{
+                background: $jp-color-white-gray;
+                color: $jp-color-gray !important;
+            }
+            .bag-shopping{
+                .go-to-bag{
+                    width: 50%;
+                    float: left;
+                    background: $jp-color-red;
+                    letter-spacing: 1px;
+                    @include fontStyles($font-SBold,$jp-color-white,14px);
+                }
+                .continue-shop{
+                    width: 50%;
+                    float: left;
+                    background: $jp-color-white !important;
+                    border: solid 1px #bb4225;
+                    border-right: none;
+                    letter-spacing: 1px;
+                    @include fontStyles($font-SBold,null,14px);
+                    color: $jp-color-red !important;
+                }
+            }
+        }
+    }
+    }
+.not-availabel{
+background: $jp-color-gray;
+color: $jp-color-black;
+}
+
+}

@@ -1,0 +1,92 @@
+page-size-view {
+
+}
+$jp-color-size-chart-bg: #f4f3f3;
+.size-view{
+    p{
+        @include fontStyles($font-Regular,$jp-color-black,14px);
+        line-height: 22px;
+        letter-spacing: 0.25px;
+    }
+    .modal-wrapper{
+        page-size-view{
+            // ion-navbar{
+                .header button{
+                    margin: 0;
+                    padding: 0;
+                    @include borderRadius(0px);
+                    width: 100%;
+                    height: 52px;
+                    background: $jp-color-white;
+                    border-bottom: 1px solid $jp-color-lighter-gray;
+                    @include boxShadow(none);
+                    img{
+                        width: 14px;
+                        margin: 0 34px 0 16px;
+                        display: inline-block;
+                    }
+                    ion-label{
+                        @include fontStyles($font-Regular,$jp-color-black,16px);
+                        letter-spacing: 0.5px;
+                        text-align: left;
+                        margin: 14px 0;        
+                    }
+                }
+            // }
+             
+            .content {
+                padding: 16px;
+                border-bottom: 6px solid $jp-color-lighter-gray !important; 
+                .size-chart{
+                    border: 1px solid $jp-color-lighter-gray;
+                    .grid{
+                        padding: 0px;
+                        margin: 0px;
+                        ion-row{
+                            &:first-child{
+                                border: none;
+                            }
+                            border-top: 1px solid $jp-color-lighter-gray;
+                            &.r-title{
+                                background: $jp-color-size-chart-bg;
+                                height: 40px;
+                                @include fontStyles($font-SBold,$jp-color-gray,14px);
+                                line-height: 40px;
+                                padding-left: 10px;
+                                .value{
+                                    color: $jp-color-black;
+                                } 
+                            }
+                            &.r-header{
+                                height: 44px;
+                                line-height: 44px;
+                                ion-col{
+                                    &:first-child{
+                                        border-left: none;
+                                    }
+                                    @include fontStyles($font-SBold,$jp-color-black,13px);                            
+                                    padding: 0px;
+                                    text-align: center;
+                                    border-left: 1px solid $jp-color-lighter-gray;
+                                }
+                            } 
+                            &.r-value{
+                                height: 40px;
+                                line-height: 40px;
+                                ion-col{
+                                    &:first-child{
+                                        border-left: none;
+                                    }
+                                    @include fontStyles($font-SBold,$jp-color-gray,13px);                            
+                                    padding: 0px;
+                                    text-align: center;
+                                    border-left: 1px solid $jp-color-lighter-gray;
+                                }
+                            }                    
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

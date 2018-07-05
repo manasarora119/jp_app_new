@@ -1,0 +1,294 @@
+
+// @import "../../../node_modules/ionic2-auto-complete/auto-complete";
+
+page-search {
+
+}
+
+.fab-md-light{
+    background-color: transparent;
+}
+
+.header-search{
+    background: $jp-color-lighter-gray;
+    &::after{
+        background-image: none;
+    }
+    ion-navbar{
+        position: relative;
+        padding: 0px 8px;
+        min-height: 64px;
+        .toolbar-background{
+            border: none;
+            background: #ececec !important;
+        }
+       
+        .toolbar-content{
+            ion-searchbar{
+                padding: 0px;
+                border-bottom: none;
+                border-top: none;
+                position: absolute;
+                // width: calc(100% - 8px);
+                top: 0px;
+                left: 0px;
+                margin: auto;
+                padding: 8px;
+                .searchbar-input-container{
+                    input{
+                        height: 44px;
+                        background: $jp-color-white;
+                        padding:0 60px 0 42px;
+                        @include boxShadow(none);
+                        font-size: 13px;
+                    }
+                    .searchbar-clear-icon{
+                        background-image: none;
+                        width: 60px;
+                        .button-inner{
+                            &::before{
+                                position: absolute;
+                                content: "CLEAR";
+                                @include fontStyles( $font-SBold, $jp-color-lightblue, 12px );
+                                letter-spacing: 0.25px;
+                                width: 100%;
+                                height: 12px;
+                                z-index: 22;
+                                top: 17px;
+                                left: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .searchbar-search-icon{
+            background-image: none;
+        }
+        button{
+            background: none;
+            &.back-button{
+                min-width: auto;
+                width: 16px;
+                height: 16px;
+                background: url(../assets/icon/10-Universal-Icons/Back-Icon.svg) no-repeat center center;
+                margin-left: 16px;
+               /*  width: 36px;
+                height: 36px;
+                background: url(../assets/icon/10-Universal-Icons/Back-Icon.svg) no-repeat  50% 8px;
+                margin-left: 0px;
+                display: block !important;
+                z-index: 1; */
+                .button-inner{
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.search-result{
+    padding: 8px !important;
+    ion-col{
+        padding: 0px;
+    }
+    .scroll-content{
+        padding: 0px !important;
+        ion-col{
+            ion-auto-complete{
+                width: 100%;
+                padding: 6px;
+                background:$jp-color-lighter-gray;
+                ul{
+                    left: 0px;
+                    top: 13px;
+                    li{
+                        //border-bottom: solid 1px $jp-color-lighter-gray;
+                        border-bottom: none;
+                        padding: 9px 21px;
+                        height : 42px !important;
+                        display : flex;
+                        span{
+                            margin :auto 0;
+                            line-height : 24px;
+                            @include fontStyles( $font-Regular, $jp-color-darker-grey, 14px );
+                        }
+                    }
+                }
+            }
+            ion-searchbar{
+                background: #ededed;
+                padding: 8px;
+                .searchbar-input-container{
+                    .searchbar-search-icon{
+                        top: 15px;
+                        background: url(../assets/icon/06-Search/arrow-gray-left.png) no-repeat;
+                        background-size: 100%;
+                    }
+                    
+                    input{
+                        height: 43px;
+                        @include borderRadius(4px);
+                        @include boxShadow(none);
+                        @include fontStyles( $font-Regular, $jp-color-gray, 15px );
+                    }
+                    .searchbar-clear-icon{
+                        background: url(../assets/icon/06-Search/close-search.png) no-repeat;
+                        background-size: 100%;
+                        width: 14px;
+                        height: 14px;
+                        top: 15px;
+                        right: 15px;
+                    }
+                    .searchbar-clear-icon.searchbar-md{
+                        top: 12px;
+                    }
+                }
+            }
+            ion-searchbar.searchbar-md{
+                .searchbar-input-container{
+                    .searchbar-search-icon{
+                        width: 15px;
+                        height: 15px;
+                    }
+                    input{
+                        padding: 6px 45px;
+                    }
+                }
+            }
+        }
+
+        .recent-search{
+            margin: 0px;
+            .options-list{
+                
+            }
+            .recent-list{
+                h3{
+                    padding: 10px 16px;
+                    background: $jp-color-light-gray;
+                    @include fontStyles($font-SBold, $jp-color-dark-gray, 12px);
+                    letter-spacing: 0.5px;
+                }
+                ion-item{
+                    padding-left: 0px;
+                    min-height: auto;
+                    .item-inner{
+                        border-bottom: none;
+                        .input-wrapper{
+                            padding-left: 16px;
+                            ion-label{
+                                margin: 9px 0px;
+                                &:first-child{
+                                    margin-top: 0px;
+                                }
+                                .s-label{
+                                    @include fontStyles($font-Regular, $jp-color-darker-grey, 14px);
+                                    width: calc(100% - 30px);
+                                    text-overflow: ellipsis;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    display: inline-block;
+                                }
+                                button{
+                                    float: right;
+                                    margin: 0px;
+                                    width: 26px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+           
+        }
+
+        
+
+        .shop-by-search{
+            .shop-category{
+                background-color: $jp-color-light-gray;
+                padding: 16px;
+                h3{
+                    background: $jp-color-light-gray;
+                    @include fontStyles($font-SBold, $jp-color-dark-gray, 12px);
+                    letter-spacing: 0.5px;
+                }
+                .shop-by-cat-list{
+                    background: $jp-color-white;
+                    border: solid 1px $jp-color-lighter-gray;
+                    .cat-item{
+                        border-bottom: solid 1px $jp-color-lighter-gray;
+                        display: flex;
+                        height: 50px;
+                        line-height: 50px;
+                        position: relative;
+                        .catImg{
+                           float: left;
+                            width: 27px;
+                            height: 27px;
+                            text-align: center;
+                            line-height: 33px;
+                            position: relative;
+                            top: 12px;
+                            margin-left: 8px;
+                            margin-right: 16px;
+                        }
+                        .name{
+                            float: left;
+                            @include fontStyles($font-Regular, $jp-color-black, 12px);
+                        }
+                        .chevron{
+                            width: 8px;
+                            height: 12px;
+                            float: right;
+                            position: absolute;
+                            right: 16px;
+                            top: 18px;
+                        }
+                    }
+                }
+            
+            }
+        }
+
+
+        .category{
+            padding: 16px;
+            background: $jp-color-white;
+            h3{
+                @include fontStyles($font-Bold, $jp-color-black, 16px);
+                letter-spacing: 0.25px;
+                text-align: center;
+                margin: 0px;
+                margin-bottom: 8px;
+            }
+            ion-list{
+                border: solid 1px $jp-color-lighter-gray;
+                @include borderRadius(2px);
+                margin: 0px;
+                button{
+                    border-bottom: 1px solid $jp-color-lighter-gray;
+                    height: 54px;
+                    &:last-child{
+                        border-bottom: none;
+                    }
+                    .item-inner{
+                        padding-left: 0px;
+                        border-bottom: none;
+                        .input-wrapper{
+                            ion-label{
+                                @include fontStyles($font-Regular, $jp-color-black, 16px);
+                                ion-icon{
+                                    top: 2px;
+                                    position: relative;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}

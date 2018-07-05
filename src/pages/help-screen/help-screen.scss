@@ -1,0 +1,63 @@
+page-help-screen {
+    ion-navbar{
+        .back-button{
+            min-width: auto;
+            width: 16px;
+            height: 16px;
+            background: url(../assets/icon/10-Universal-Icons/Back-Icon.svg) no-repeat center center ;
+            margin-left: 16px;
+            display: block !important;
+            .button-inner{
+                display: none;
+            }
+        }
+    }
+.content{
+    padding: 16px;
+    .detail{
+        padding: 24px;
+        text-align: center;
+        @include boxShadow(0px 0px 1px 1px $jp-color-lighter-gray);
+        .title{
+            @include fontStyles($font-SBold,$jp-color-black,16px);
+            display: block;
+        }
+        .value{
+            @include fontStyles($font-Regular,$jp-color-gray,14px);
+            line-height: 20px;
+            display: block;
+            padding-top: 8px;
+        }
+    }
+    .return-via{
+        padding:8px 0 24px;
+        .return-title{
+            @include fontStyles($font-SBold,$jp-color-gray,14px);
+            padding: 16px 0 8px;
+            display: block;
+        }
+        button{
+            @include linearGradient(#fcfcfc,#eaeff7);
+            // @include boxShadow(0px 1px 1px #e0e0e0);
+            border: 1px solid $jp-color-lighter-gray;
+            margin: 0;
+            padding: 0 8px;
+            height: 48px;
+            .button-ios{
+                background: transparent;
+                color:$jp-color-gray;
+            }
+        }
+        .return-call {
+            .button-inner{
+            justify-content: left;
+            img{margin-right: 12px;}
+            .btn-txt{ 
+                @include fontStyles($font-Regular,$jp-color-gray,16px);
+                text-transform: lowercase;
+            }
+            }
+        }
+    }
+}
+}

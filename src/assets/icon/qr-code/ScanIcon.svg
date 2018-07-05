@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="78px" viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="30" cy="30" r="30"></circle>
+        <filter x="-24.2%" y="-20.8%" width="148.3%" height="148.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.-Scan-QR-Code-Floating-Button" transform="translate(-275.000000, -433.000000)">
+            <g id="Group" transform="translate(284.000000, 440.000000)">
+                <g id="Oval">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <path d="M18,41.25 L18,37.5 L18,37.5 C18,37.0857865 18.3357863,36.75 18.75,36.75 L18.75,36.75 C19.1642137,36.75 19.5,37.0857865 19.5,37.5 L19.5,40.5 L22.5,40.5 C22.9142137,40.5 23.25,40.8357865 23.25,41.25 L23.25,41.25 C23.25,41.6642135 22.9142137,42 22.5,42 L18.75,42 L18.75,42 C18.3357863,42 18,41.6642135 18,41.25 L18,41.25 Z M41.25,42 L37.5,42 L37.5,42 C37.0857863,42 36.75,41.6642135 36.75,41.25 C36.75,40.8357865 37.0857863,40.5 37.5,40.5 L40.5,40.5 L40.5,37.5 C40.5,37.0857865 40.8357863,36.75 41.25,36.75 C41.6642137,36.75 42,37.0857865 42,37.5 L42,41.25 C42,41.6642135 41.6642137,42 41.25,42 Z M42,18.75 L42,22.5 C42,22.9142135 41.6642137,23.25 41.25,23.25 L41.25,23.25 C40.8357863,23.25 40.5,22.9142135 40.5,22.5 L40.5,19.5 L37.5,19.5 L37.5,19.5 C37.0857863,19.5 36.75,19.1642136 36.75,18.75 L36.75,18.75 L36.75,18.75 C36.75,18.3357864 37.0857863,18 37.5,18 L41.25,18 L41.25,18 C41.6642137,18 42,18.3357864 42,18.75 L42,18.75 Z M18.75,18 L22.5,18 C22.9142137,18 23.25,18.3357864 23.25,18.75 L23.25,18.75 C23.25,19.1642136 22.9142137,19.5 22.5,19.5 L19.5,19.5 L19.5,22.5 C19.5,22.9142135 19.1642137,23.25 18.75,23.25 C18.3357863,23.25 18,22.9142135 18,22.5 L18,18.75 L18,18.75 C18,18.3357864 18.3357863,18 18.75,18 L18.75,18 Z M23.25,22.5 L36.75,22.5 C37.1642137,22.5 37.5,22.8357865 37.5,23.25 L37.5,36.75 C37.5,37.1642135 37.1642137,37.5 36.75,37.5 L23.25,37.5 C22.8357863,37.5 22.5,37.1642135 22.5,36.75 L22.5,23.25 C22.5,22.8357865 22.8357863,22.5 23.25,22.5 Z M24,24 L24,36 L36,36 L36,24 L24,24 Z M25.5,25.5 L34.5,25.5 L34.5,34.5 L25.5,34.5 L25.5,25.5 Z" id="Shape" fill="#8099AD"></path>
+            </g>
+        </g>
+    </g>
+</svg>

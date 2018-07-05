@@ -1,0 +1,39 @@
+.jp-text-image-banner{
+    border-bottom: solid 8px $jp-color-gray-devider;
+    .cat-images-text{
+        padding: 16px;
+        text-align: center;
+        ion-slides{
+            .swiper-container{
+                .swiper-pagination{
+                    button{
+                        background: none;
+                        border: solid 1px $jp-color-white;
+                        opacity: 1;
+                        &.swiper-pagination-bullet-active{
+                            background: $jp-color-white;
+                        }
+                    }
+                }
+            }
+        }
+        h3{
+            @include fontStyles($font-Bold, $jp-color-black, 18px);
+            letter-spacing: 0.25px;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 0px;
+            margin-bottom: 5px;
+        }
+        p{
+            @include fontStyles($font-Regular, $jp-color-gray, 14px);
+            line-height: 20px;
+            text-align: center;
+            margin: 0px;
+            margin-bottom: 8px;
+        }
+        img{
+            vertical-align: middle;
+        }
+    }
+}

@@ -1,0 +1,47 @@
+<div class="mostpopular-carousel" *ngIf="mostPopularItems">
+    
+   <div class="most-popular-items" *ngIf=" NewImagechk == 1">
+    <h4>New Arrivals</h4>      
+
+    <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 260px">
+      <div class="ion-scroll-item" *ngFor="let itemnew of itemspartnersNew">
+          <div class="popular-image" (click)="goToAction(itemnew.id,itemnew.name,itemnew.img,itemnew.img,itemnew.price)">
+            <img  *ngIf="itemnew.img" [src]="itemnew.img" [alt]="itemnew.name">
+          </div>
+          <div class="popular-description">
+            <h5>{{itemnew.name | wordbreak  : 20}}</h5>
+          </div>
+      </div>
+    </ion-scroll>
+
+  </div>
+
+   <div class="most-popular-items" *ngIf="RecentviewImagechk ==1">
+    <h4>Recent View</h4>      
+    <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 258px">
+    <div class="ion-scroll-item" *ngFor="let itemres of itemspartnersRecentview.data">
+          <div class="popular-image" (click)="goTolist(itemres.id)">
+            <img  *ngIf="itemres.gallery" [src]="itemres.gallery" [alt]="itemres.name">
+          </div>
+          <div class="popular-description">
+            <h5>{{itemres.name | wordbreak  : 20}}</h5>
+          </div>
+      </div>
+    </ion-scroll>
+  </div>
+
+   <div class="most-popular-items" *ngIf="PopularImagechk ==1">
+      <h4>More Collection</h4>      
+      <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 258px">
+        <div class="ion-scroll-item" *ngFor="let itempop of itemspartnersPopular">
+            <div class="popular-image" (click)="goToAction(itempop.id,itempop.name,itempop.img,itempop.img,itemnew.price)">
+              <img  *ngIf="itempop.img" [src]="itempop.img" [alt]="itempop.name">
+            </div>
+            <div class="popular-description">
+              <h5>{{itempop.name | wordbreak  : 20}}</h5>
+            </div>
+        </div>
+      </ion-scroll>
+  </div>
+
+</div>

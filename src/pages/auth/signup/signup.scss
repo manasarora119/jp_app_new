@@ -1,0 +1,31 @@
+
+.content-ios:not([no-bounce]) > .scroll-content::before {
+    bottom: 0px !important;
+}
+
+page-signup {
+    ion-content .scroll-content{
+        padding  : 0px !important;
+    }
+    .auth-container{
+        
+        .tnc-text{
+            @include fontStyles($font-Regular, $jp-color-gray, 13px);
+            margin : 16px 32px 12px 32px;
+            text-align: center;
+            line-height: 19px;
+            span {
+                @include fontStyles($font-SBold, $jp-color-gray, 13px);
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    @media #{$smallDevice} {
+        .auth-container{
+            .join-now{
+                margin-top: 10px;
+            }
+        }
+    }
+}

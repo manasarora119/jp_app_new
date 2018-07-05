@@ -1,0 +1,50 @@
+page-not-login {
+    .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+        img{
+            width: 14px;
+            margin: 0 34px 0 16px;
+            display: inline-block;
+        }
+        ion-label{
+            @include fontStyles($font-Regular,$jp-color-black,16px);
+            letter-spacing: 0.5px;
+            text-align: left;
+            margin: 14px 0;        
+        }
+    }
+    .content {
+        background-color: $jp-color-light-gray !important;
+        .banner{
+                text-align: center;
+                padding: 60px 0;
+                .title{
+                    @include fontStyles($font-SBold,$jp-color-black,20px);
+                    padding: 40px 0 8px;
+                    line-height: 20px;
+                }
+                .desc{
+                    @include fontStyles($font-Regular,$jp-color-gray,14px);
+                    line-height: 20px;
+                    padding-bottom: 32px;
+                }
+                button {
+                    background: $jp-color-red;
+                    @include borderRadius(2px);
+                    @include fontStyles($font-SBold,$jp-color-white,16px);
+                    @include boxShadow(none);
+                    letter-spacing: 0.25px;
+                    margin: 0px;
+                    height: 48px;
+                    width: 206px;
+                }
+            }
+    }
+}

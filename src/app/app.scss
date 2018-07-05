@@ -1,0 +1,368 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+%overlayStyle{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+.statusbar-padding{
+  padding:0px !important;
+}
+
+.fab-ios-light{
+    background-color: $jp-color-red;
+}
+.loading-wrapper{
+    background: none !important;
+    box-shadow: none !important;
+}
+.spinner-crescent circle {
+    stroke: #fff !important;
+}
+.menu-inner{
+    width: 290px;
+}
+.side-menu{
+
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before{
+        background: none;
+    }
+    ion-navbar{
+     padding: 0 !important;
+     min-height: 52px !important;
+     .back-button{
+         display: none !important;
+     }
+     .toolbar-background{
+         border: none !important;
+         background-color: $jp-color-white;
+     }
+     &::after{
+         background: none;
+     }
+    }
+    .scroll-content{
+        padding: 0px !important;
+        margin: 0 !important;
+    }
+    .level1-banner{
+        height: 172px;
+        position: relative;
+    }
+
+    .close-mene{
+        background: none;
+        position: absolute;
+        right: 4px;
+        z-index: 3;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        margin: 0;
+        top: 0;
+        ion-icon{
+            color: $jp-color-white;
+            font-size: 33px;
+            display: block;
+            margin: 0px;
+            line-height: 40px;
+            height: 100%;
+        }
+    }
+    .bell-icon {
+        position: absolute;
+        right: 7px;
+        width: 36px;
+        height: 36px;
+        z-index: 99999;
+        top: 47px;
+        padding: 7px 11px;
+        background: transparent;
+    }
+    ion-grid{
+        padding: 0px;
+
+    }
+    .level1{
+        margin-top: 172px;
+    }
+    .login-cover{
+        position: relative;
+        .cover-picture{
+            height: 172px;
+            width: 290px;
+            margin: auto;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .cover-overlay{
+            @extend %overlayStyle;
+            background: rgba(33,33,33,.3);
+
+            .account-img-row{
+            padding: 16px;
+            p{
+                width: 100%;
+                @include fontStyles($font-SBold, $jp-color-white, 18px);
+                color: $jp-color-white;
+                padding:16px 0;
+                margin: 0;
+                a{
+                    @include fontStyles($font-SBold, $jp-color-white, 18px);
+                    text-decoration: none;
+                }
+                span{
+                    text-transform: capitalize;
+                }
+            }
+            .account-image{
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+                background: $jp-color-red;
+                @include borderRadius(100px);
+                text-align: center;
+                img{
+                    width:20px;
+                    max-height: 50px;
+                    vertical-align: middle;
+                }
+            }
+
+            }
+
+        }
+    }
+
+    .catogery-thumb{
+        padding-right: 8px;
+        padding-bottom: 8px;
+        background: #f2f2f2;
+        .cat-menu-col{
+            padding: 0px;
+            padding-left: 8px;
+            padding-top: 8px;
+
+            .cat-menu-box{
+                position: relative;
+                height: 80px;
+                img{
+                    vertical-align: middle;
+                    @include borderRadius(4px);
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                .cat-menu-overlay{
+                    background: rgba(21,21,21,.5);
+                    @extend %overlayStyle;
+                    @include borderRadius(4px);
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+
+                    span{
+                        @include fontStyles($font-SBold, $jp-color-white, 16px);
+                        text-align: center;
+                        margin: auto;
+                        @include textShadow(0px 1px 3px #000);
+                        letter-spacing: 1px;
+                    }
+                }
+            }
+        }
+    }
+
+    .menu-list-title {
+        width: 100%;
+        float: left;
+        height: auto !important;
+        border-bottom: 1px solid #e0e0e0;
+        button{
+            background-color: $jp-color-white;
+            padding: 0 !important;
+            box-shadow: none;
+            .button-inner{
+                justify-content: flex-start !important;
+            }
+            img{
+                // width : 24px;
+                // height: 24px;
+                margin : auto 16px;
+            }
+            div{
+                @include fontStyles($font-SBold, $jp-color-black, 16px);
+                text-transform: capitalize;
+            }
+        }
+
+    }
+
+    .menu-list{
+        background:#fff;
+        margin: 0;
+        button{
+            @include fontStyles($font-Regular, $jp-color-black, 16px);
+            padding-left: 0px;
+            height: 52px;
+            .item-inner{
+                padding-left: 16px;
+                border-bottom-color: #e0e0e0;
+                background-image: none;
+                height: 51px;
+                ion-label{
+                    @include fontStyles($font-Regular, $jp-color-black, 16px);
+                }
+                .input-wrapper{
+                    ion-label{
+                        margin: 16px 8px 16px 0;
+                        font-size: 16px;
+                        .chevron{
+                            position: absolute;
+                            right: 24px;
+                           // color: #757575;
+                            width: 7.4px;
+                            height: 12px;
+                            opacity: 0.54;
+                        }
+                    }
+                }
+            }
+          .button-inner{
+              padding: 0px;
+              text-transform: capitalize;
+              .back-btn{
+              width: 24px;
+              height: 24px;
+              margin: 14px 16px 14px 11px !important ;
+              }
+          }
+        }
+        button.sale{
+            ion-label{
+            color: $jp-color-lite-red !important;
+            }
+        }
+        .active .item-inner{
+            ion-label{
+                @include fontStyles($font-SBold, $jp-color-black, 16px);
+                color: $jp-color-red !important;
+            }
+        }
+        .cat-heading{
+            width: 100%;
+            background: #fff;
+            border-bottom: solid 1px #eae7e7;
+            @include fontStyles($font-SBold, $jp-color-black, 16px);
+            margin: 0px;
+            padding: 16px 0px;
+            position: fixed;
+            top: 0px;
+            z-index: 99;
+            box-shadow: none;
+            span{
+                -webkit-justify-content: left;
+                -ms-flex-pack: left;
+                justify-content: left;
+                padding-left: 3px;
+            }
+
+                ion-icon{
+                    @include fontStyles(null, $jp-color-black, 36px);
+                    padding-right: 16px;
+                }
+
+        }
+    }
+    // .menu-list-second{
+    //     .cat-heading{
+    //         width: 100%;
+    //         background: none;
+    //         color: #000;
+    //         border-bottom: solid 2px #eae7e7;
+    //         @include fontStyles(null, $jp-color-black, 16px);
+    //         @include borderRadius(0px);
+    //         margin: 0px;
+    //         padding: 16px 0px;
+    //         height: auto;
+    //         span{
+    //             -webkit-justify-content: left;
+    //             -ms-flex-pack: left;
+    //             justify-content: left;
+    //             padding-left: 16px;
+    //         }
+    //         .button-inner{
+    //             @include fontStyles($font-SBold, null, null);
+    //             text-transform: none;
+    //             ion-icon{
+    //                  @include fontStyles(null, $jp-color-black, 34px);
+    //                 font-weight: bold;
+    //                 padding-right: 16px;
+    //             }
+    //         }
+    //     }
+    //     // .levelTwo-item{
+    //     //     padding-left: 16px;
+    //     //     border-bottom: none;
+    //     //     border-bottom: none;
+    //     //         .item-inner{
+    //     //             border-bottom: solid 1px #e0e0e0;
+    //     //             padding-right: 0px;
+    //     //             .input-wrapper{
+    //     //                 ion-label{
+    //     //                     @include fontStyles($font-Regular, $jp-color-black, 16px);
+    //     //                     ion-icon{
+    //     //                         display: none;
+    //     //                     }
+    //     //                 }
+    //     //             }
+    //     //         }
+    //     //     }
+    // }
+
+    .level2,.level3,.level4{
+        margin-top: 52px;     
+        .input-wrapper{
+            border-bottom: 1px solid #e0e0e0;
+        }
+     .menu-list button .item-inner{
+            border: none;
+            padding-right: 0;
+        }
+        .item-block:last-child{
+            border: none;
+        }
+    }
+
+    .menu-footer {
+        text-align: center;
+        padding: 24px 0 8px;
+        @include fontStyles($font-Regular, $jp-color-dark-gray, 12px);
+        .mf {
+            padding: 8px;
+            display: inline-block;
+            @include fontStyles($font-Regular, $jp-color-dark-gray, 12px);
+            text-transform: uppercase;
+        }
+    }
+}

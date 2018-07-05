@@ -1,0 +1,45 @@
+<ion-content class="login-page" overflow-scroll="false">
+  <div class="auth-container">
+    <div class="logo">
+      <img src="assets/icon/01-Login-Signup/jaypore_logo_retina.png" />
+    </div>
+    <div class="join-now">
+      Join now for exclusive access to India's most beautiful products
+    </div>
+    <button ion-button full icon-left class=" social-btn fb" (click)="login('facebook')" type="button">
+            <img src="assets/icon/01-Login-Signup/Facebook-Icons.svg"/> 
+            <span class="btn-txt">SIGN IN WITH FACEBOOK</span>
+    </button>
+    <button ion-button full class="social-btn gg " (click)="login('google')" type="button">
+            <img src="assets/icon/01-Login-Signup/Google-Icon.svg"/> 
+            <span class="btn-txt">SIGN IN WITH GOOGLE</span>
+    </button>
+    <div class="tnc-text" >
+      <!-- By Signing Up. You are agreeing to our<br/> -->
+      <!-- <span>Terms & Privacy Policy</span> -->
+      By Signing In, you are agreeing to our<br/>
+       <span (click)="openTnc()"><u>Terms</u></span> <span (click)="openPP()">& <u>Privacy Policy</u></span>
+  </div>
+    <div class="or">OR</div>
+
+    <ion-row class="auth-action">
+      <ion-col class="register" col-6>
+        <button ion-button type="buttton" block (click)="goToAuth('register')">
+        REGISTER
+      </button>
+      </ion-col>
+      <ion-col class="login" col-6>
+        <button ion-button type="buttton" block (click)="goToAuth('login')">
+        LOGIN
+     </button>
+      </ion-col>
+    </ion-row>
+    <div class="look-arround" *ngIf="!this.backinfo && !this.isDeepLink">
+      <button class="look-around" (click)="goToHome()">JUST LOOK AROUND</button>
+    </div>
+
+  </div>
+
+
+
+</ion-content>

@@ -1,0 +1,67 @@
+.narrow-carousel{
+    background: $jp-color-white;
+    border-bottom: solid 8px $jp-color-gray-devider;
+    h4{
+        @include fontStyles($font-SBold, $jp-color-gray, 14px);
+        margin: 0px;
+        margin-bottom: 8px;
+        padding-left: 3px;
+    }
+    .most-popular-items{
+        background: none;
+        ion-slides{
+            .swiper-container{
+                padding: 8px;
+            }
+            ion-slide{
+                width: 250px;
+                margin-right: 8px;
+                // @include boxShadow(0px 0px 3px 1px #e0e0e0);
+                .popular-image{
+                    // height: 200px;
+                    img{
+                        vertical-align: middle;
+                    }
+                }
+                .popular-description{
+                    padding: 16px;
+                    h5{
+                        @include fontStyles($font-Regular, $jp-color-black, 14px);
+                        text-align: center;
+                        margin: 0px;
+                        white-space: nowrap;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis;
+                    }
+                }
+            }
+        }
+        // ion-scroll{
+        //     white-space: nowrap;
+        //     .swiper-container{
+        //         padding: 16px;
+        //     }
+        //     .scroll-content{
+        //         .scroll-zoom-wrapper{
+        //             padding-left: 8px;
+        //         }
+        //     }
+        //     .ion-scroll-item{
+        //         width: 274px;
+        //         display: inline-block;
+        //         margin-right: 8px;
+        //         .popular-image{
+        //             padding: 6px;
+        //             background: $jp-color-lighter-gray;
+        //             height: 132px;
+        //             line-height: 118px;
+        //             text-align: center;
+        //             img{
+        //                 vertical-align: middle;
+        //                 max-height: 100%;
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}

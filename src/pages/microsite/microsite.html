@@ -1,0 +1,44 @@
+<ion-header class="jp-header">
+  <ion-navbar>
+    <button class="menutoggleBtn" ion-button menuToggle style="display:block !important" start (click)="loadmenudata()">
+      <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title><img src="assets/icon/10-Universal-Icons/jaypore-logo-white.svg" alt="Logo" (click)="gotohomepage()"></ion-title>
+    <ion-buttons class="cartBtn" end>
+      <button (click)="gotoWishlist()" tappable class="wishlist-icon">
+            <img src="assets/icon/03-Header/wishlist-icon.svg"/>
+          </button>
+      <button ion-button icon-only (click)="goToCart()" class="bag-icon">
+          <img src="assets/icon/10-Universal-Icons/cart-white.png" alt="Cart">
+          <ion-badge item-end *ngIf="isLoggedIn && bagcount != 0">{{bagcount}}</ion-badge>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <!-- Generated template for the MicrositeComponent component -->
+  <div *ngIf="compinfo && compinfo.data !='No Data found'">
+    <div *ngFor="let iteam of compinfo; let i=index;">
+      <full-screen-banner [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'full_screen_banners'"></full-screen-banner>
+      <most-popular [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Home_slider'"></most-popular>
+      <image-text-banner [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'banner_with_text'"></image-text-banner>
+      <narrow-carousel [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'narrow_carousel_small'"></narrow-carousel>
+      <navigation-menu [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Home_Nav'"></navigation-menu>
+      <narrow-carousel-big [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Narrow_carousel_big'"></narrow-carousel-big>
+      <product-slider [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'vertical_scroll_slider_narrow'"></product-slider>
+      <tags [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'tag_cloud'"></tags>
+      <tiles [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'tiles'"></tiles>
+      <tiles-witoutheader [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Tiles_without_header'"></tiles-witoutheader>
+      <vertical-banner [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'Vertical_Banner_Big'"></vertical-banner>
+      <!-- <image-banner [textmg]="compinfo[i]" *ngIf="compinfo[i] && compinfo[i].component_name == 'banner_with_text'"></image-banner>-->
+    </div>
+  </div>
+  <ion-fab right bottom class="right-bottom search">
+    <button ion-fab (click)="search()">
+        <!-- <img src="assets/icon/10-Universal-Icons/Search-Button.svg"> -->
+    </button>
+  </ion-fab>
+</ion-content>

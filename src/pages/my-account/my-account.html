@@ -1,0 +1,97 @@
+
+<ion-content>
+  <div class="header">
+    <button ion-button outline clear (click)="goToHome()">
+          <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+          <ion-label>My Account</ion-label>
+        </button>
+  </div>
+<div class="content">
+  <div class="orders">
+    <div class="title">Orders</div>
+      <button ion-item icon-right (click)="goToOrders()">My Orders</button>
+  </div>
+
+  <div class="orders">
+    <div class="title">Jaypore Delights</div>
+      <button ion-item icon-right (click)="goToCredits()">Jaypore Credits</button>
+      <button ion-item icon-right (click)="goToInviteEarn()">Refer & Earn</button>
+       <button ion-item icon-right (click)="goToGiftCard()">Gift Cards</button> 
+     <button ion-item icon-right (click)="goToMycoupon()">My Coupons</button>
+  </div>
+
+  <div class="orders">
+    <div class="title">My Info</div>
+      <button ion-item icon-right (click)="goToSavedCard()" *ngIf="false">Saved Cards</button>
+      <button ion-item icon-right (click)="goToSavedAddress()">Saved Address</button>
+
+      <!-- <button ion-item icon-right *ngIf="false">Messages</button> -->
+      <button ion-item icon-right (click)="logout()">Logout</button>
+
+  </div>
+
+  <div class="orders" *ngIf="false">
+    <div class="title">Personalization</div>
+      <button ion-item icon-right (click)="goToFavouriteLook()">Favourite Looks</button>
+  </div>
+<!--  
+  <div class="orders">
+    <div class="title">Communications</div>
+      <button ion-item icon-right *ngIf="false">Messages</button>
+      <button ion-item icon-right style="margin-top:8px;" (click)="logout()">Logout</button>
+  </div> -->
+</div> 
+
+</ion-content>
+
+
+
+<!-- <ion-content>
+  <div class="header">
+    <button ion-button (click)="dismiss(0)">
+          <img class="iconShare" float-right src="assets/icon/10/close-search.png"  />
+          <ion-label>My Account</ion-label>
+        </button>
+  </div>
+<div class="content">
+  <ion-row class="orders">
+    <h5 class="title">Brand Name</h5>
+    <ion-list>
+      <button ion-item icon-right>My Orders</button>
+    </ion-list>
+  </ion-row>
+
+  <ion-row class="orders">
+    <h5 class="title">Jaypore Delights</h5>
+    <ion-list>
+      <button ion-item icon-right>Jaypore Credits</button>
+      <button ion-item icon-right>Invite & Earn</button>
+      <button ion-item icon-right>Gift Cards</button>
+    </ion-list>
+  </ion-row>
+
+  <ion-row class="orders">
+    <h5 class="title">My Info</h5>
+    <ion-list>
+      <button ion-item icon-right>Saved Cards</button>
+      <button ion-item icon-right>Saved Address</button>
+    </ion-list>
+  </ion-row>
+
+  <ion-row class="orders">
+    <h5 class="title">Personalization</h5>
+    <ion-list>
+      <button ion-item icon-right>Favourite Looks</button>
+    </ion-list>
+  </ion-row>
+
+  <ion-row class="orders">
+    <h5 class="title">Communications</h5>
+    <ion-list>
+      <button ion-item icon-right>Messages</button>
+      <button ion-item icon-right>Logout</button>
+    </ion-list>
+  </ion-row>
+</div>
+
+</ion-content> -->

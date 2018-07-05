@@ -1,0 +1,18 @@
+<ion-content padding>
+  <button (click)="closeSizeModal()" class="cross-btn"><img src="assets/icon/10-Universal-Icons/Cross-Icon.svg" /></button>
+  <ion-row>
+    <ion-col col-4 class="product-item-image">
+      <figure>
+        <img [src]="item.thumbnail_img" [alt]="item.name" />
+      </figure>  
+      
+    </ion-col>
+    <ion-col col-8 class="product-item-descriptions">
+          <h5>Modify Size?</h5>
+          <p>You can select another size on the product page of this item</p>
+    </ion-col>
+  </ion-row>
+  <div class="product-btn">
+    <button class="goToProduct-btn" (click)="changeProductSize(item)">GO TO PRODUCT PAGE </button>
+  </div>
+</ion-content>  

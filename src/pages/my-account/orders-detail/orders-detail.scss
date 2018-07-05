@@ -1,0 +1,158 @@
+page-orders-detail {
+    .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+        img{
+            width: 14px;
+            margin: 0 34px 0 16px;
+            display: inline-block;
+        }
+        ion-label{
+            @include fontStyles($font-Regular,$jp-color-black,16px);
+            @include borderRadius(4px);
+            letter-spacing: 0.5px;
+            text-align: left;
+            margin: 14px 0;;        
+        }
+    }
+    .content {
+        padding: 0 16px;
+        background-color: $jp-color-light-gray !important;
+
+    }
+    .title{
+        @include fontStyles($font-SBold,$jp-color-gray,14px); 
+        line-height: normal;
+        margin: 24px 0 8px !important;
+        display: inline-block;
+    }
+    .detail{
+        padding: 16px 16px 8px !important;
+        @include fontStyles($font-Regular,$jp-color-gray,14px);
+        background: $jp-color-white;
+        border: 1px solid $jp-color-lighter-gray;
+        @include borderRadius(2px);
+        position: relative;
+        .property {
+            display: inline-block;
+            min-width: 114px;
+            margin-bottom: 8px;
+        }
+        .value {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: $jp-color-black;
+            .item-count{
+                color:$jp-color-gray;
+            }
+        }
+        .para{
+            @include fontStyles($font-SBold,$jp-color-yellow,14px);
+            line-height: 17px;
+            margin-bottom: 4px; 
+        }
+        .o-cancel{
+            @include fontStyles($font-SBold,$jp-color-lightblue,13px);
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            margin: 0;
+            padding: 6px 8px;
+            background:$jp-color-btn-bg;
+            height: 28px;
+            border: 1px solid $jp-color-lighter-gray;
+            box-shadow: none;
+        }
+        ion-item.item-block {
+            padding: 0px;
+            ion-thumbnail{
+                width: auto;
+                min-width: auto;
+                margin: 12px 8px 8px 0 !important;
+                border: 1px solid $jp-color-white-gray;
+                img{
+                    height: auto;
+                    width: auto;
+                    @include borderRadius(0);
+                }
+            }
+           .item-inner{
+                padding: 0px;
+                border: none;
+                ion-label{
+                    .p-name{
+                        @include fontStyles($font-Regular,$jp-color-black,14px);
+                        // line-height: 20px;
+                        margin-bottom: 8px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    .p-desc{
+                        @include fontStyles($font-SBold,$jp-color-gray,12px);
+                        // line-height: 20px;
+                        margin-bottom: 8px;
+                        letter-spacing: 0.86px;
+                        text-transform: uppercase;
+                    }
+                    .size, .quinty{
+                        @include fontStyles($font-SBold,$jp-color-gray,14px);
+                        // line-height: 20px;
+                        margin-bottom: 8px;
+                        display: inline-block;
+                        margin-right:24px;
+                        b{
+                            color: $jp-color-black;
+                        }
+                    }
+                    .price{
+                        @include fontStyles($font-SBold,$jp-color-darker-grey,14px);
+                        // line-height: 20px;
+                        margin-bottom: 8px;
+                    }
+                    
+                }
+            }
+        }
+        .not-returned{
+            @include fontStyles($font-Regular,$jp-color-yellow,13px);
+            line-height: 24px;
+            padding: 9px;
+            border: 1px solid $jp-color-yellow;
+            margin: 8px 0;
+            @include borderRadius(4px);
+            background:$jp-color-lite-orange;
+        }
+}
+.return-via{
+    padding:8px 0 24px;
+    .return-title{
+        @include fontStyles($font-SBold,$jp-color-gray,14px);
+        padding: 16px 0 8px;
+        display: block;
+    }
+    button{
+        @include linearGradient(#fcfcfc,#eaeff7);
+        box-shadow: 0px 0px 1px 1px #dde1eb;
+        margin: 0;
+        padding: 0 8px;
+        height: 48px;
+    }
+    .return-call {
+        .button-inner{
+        justify-content: left;
+        img{margin-right: 12px;}
+        .btn-txt{ 
+            @include fontStyles($font-Regular,$jp-color-gray,16px);
+            text-transform: lowercase;
+        }
+        }
+    }
+}
+}

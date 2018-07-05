@@ -1,0 +1,11 @@
+<div class="jp-image-banner" *ngIf="catogeryImages">
+  <div class="all-images">
+     <h3 [innerHTML]="catogeryImages.component_detail.Header_text"></h3>
+     <p  [innerHTML]="catogeryImages.component_detail.Sub_text"></p>
+     <ion-slides pager>
+      <ion-slide *ngFor="let item of catogeryImages.component_data" (click)="goToAction(item.type_id,item.type,item.myfilter,item.description)">
+        <img [src]="item.image" [alt]="item.description">
+      </ion-slide>
+    </ion-slides>
+  </div>
+</div>

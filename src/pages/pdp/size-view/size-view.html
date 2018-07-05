@@ -1,0 +1,34 @@
+<!-- <ion-header>
+    <ion-navbar>
+      <ion-title>Size Chart</ion-title>
+        <ion-buttons end >
+        <button ion-button outline clear (click)="closeModal()">
+            <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+           
+          </button>
+        </ion-buttons>
+    </ion-navbar>
+  </ion-header> -->
+  
+
+<ion-header>
+  <div class="header">
+    <button ion-button outline clear (click)="closeModal()">
+          <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+          <ion-label>Size Chart</ion-label>
+        </button>
+      </div>
+</ion-header>
+
+
+
+
+<ion-content>
+  
+<div class="content">
+  <p [innerHtml]="productSize">
+  </p>
+  
+
+</div>
+</ion-content>

@@ -1,0 +1,419 @@
+<ion-header class="jp-header" [ngClass]="{'searchHeader':search_key == 'searching'}">
+  <ion-navbar>
+    <ion-title *ngIf="search_key != 'searching'"><img src="assets/icon/10-Universal-Icons/jaypore-logo-white.svg" (click)="gotohomepage()" alt="Logo"></ion-title>
+    <!--<ion-buttons *ngIf="search_key != 'searching'" class="cartBtn" end [ngStyle]="{'top' : (this.isIos) ? '24px' : '0px' }">-->
+    <ion-buttons *ngIf="search_key != 'searching'" class="cartBtn" end >
+      <button (click)="gotoCart()" tappable ion-button class="bag-icon">
+        <img src="assets/icon/10-Universal-Icons/cart-white.png" alt="Cart">
+        <ion-badge item-end *ngIf="isLoggedIn && bagcount != 0">{{bagcount}}</ion-badge>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+  <ion-toolbar>
+    <img (click)="showOption()" src="{{gridOptions ? 'assets/icon/05-Listing/View2x2.svg' : 'assets/icon/05-Listing/View1x1.svg' }}"/>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header class="header-search" *ngIf="search_key == 'searching'">
+  <ion-navbar >
+    <ion-searchbar
+      [(ngModel)]="search_query"
+      class="brand-search search-searchbar"
+      (ionFocus)="checkFocus()"
+      (ionClear)="search('clear')"
+      placeholder="Search for brands and products"
+    >
+    </ion-searchbar>
+    <!-- <button no-margin no-padding class="search-clear" (click)="search('clear')">Clear</button> -->
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content class="listing-content" (ionScroll)="onScroll($event)" overflow-scroll="true">
+
+  <ion-card *ngIf="search_key == 'event_id'" class="event jpCard">
+    <div class="content" *ngIf="listingData">
+      <span *ngIf="listingData.data.event_banner[0]">
+      <img class="img-responsive" src="{{listingData.data.event_banner[0].banner}}" />
+      </span>
+      <div class="event-title">{{listingData.data.event_title}} </div>
+      <!--<div class="event-type">MEDHYA</div> -->
+      <div class="event-type">{{listingData.data.event_subtitle | uppercase}}</div>
+      <div class="event-desc" [innerHtml]="listingData.data.description"></div>
+      <div class="event-date">{{listingData.data.event_date_range}} </div>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="search_key == 'brand_id' && listingData" class="brand jpCard">
+    <div class="content" *ngIf="listingData">
+      <img class="img-responsive" *ngIf="listingData.data.banner_image" src="{{listingData.data.base_url+listingData.data.banner_image[0].image}}"
+      />
+      <div class="brand-title">{{filtername}}</div>
+      <div class="brand-desc" *ngIf="description" [innerHtml]="description"></div>
+    </div>
+  </ion-card>
+
+
+  <ion-card *ngIf="search_key == 'category_id' && listingData" class="brand jpCard">
+    <div class="content" *ngIf="listingData">
+      <div class="brand-title">{{filtername}}</div>
+      <div class="brand-desc" *ngIf="description" [innerHtml]="description"></div>
+    </div>
+  </ion-card>
+
+  <ion-card class="productItem jpCard" *ngIf="search_key != 'searching'">
+    <div class="contant {{listingType}}" *ngIf="listingData">
+      <ion-list *ngFor="let item of listingData.data.result; let i=index;">
+        <ion-list *ngIf="i==0 || i%2==0" class="two">
+          <span *ngIf="listingData.data.result[i]">
+          <ion-card class="item" (click)= "gotoPdp(listingData.data.result[i].id,listingData.data.result[i].name,listingData.data.result[i].gallery.zoom,listingData.data.result[i].gallery.thumbnail,listingData.data.result[i].brand_name,'listingData',listingData.data.result[i].final_price)">
+
+        <div class="item-img">
+            <img src="{{listingData.data.result[i].gallery.thumbnail}}"  />
+            <div class="size" *ngIf="listingData.data.result[i].child_products">
+              <span *ngFor="let size of listingData.data.result[i].child_products.collection;">{{size.label}}</span>
+            </div>
+            <div class="readyToShip" *ngIf="listingData.data.result[i].ready_to_ship">
+              <ion-buttons><img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg" /></ion-buttons>
+            </div>
+            <span *ngIf="listingData.data.result[i].qty == 0" class="soldout-product">SOLD OUT</span>
+            <span *ngIf="listingData.data.result[i].final_price != listingData.data.result[i].normal_price">
+              <span class="item-discount-persent">({{listingData.data.result[i].discnt}}% OFF)</span>
+            </span>
+        </div>
+
+        <div class="item-text">
+            <div class="p-title">{{(listingData.data.result[i].brand_name | wordbreak : 30) | uppercase}}</div>
+            <div class="p-desc">{{listingData.data.result[i].name.replace('by Jaypore','') | wordbreak : 50}}</div>
+            <div class="p-price" *ngIf="listingData.data.result[i].final_price == listingData.data.result[i].normal_price  &&  listingData.data.result[i].normal_price>=10000">{{'Currency' | translate}}{{listingData.data.result[i].final_price|number}}</div>
+            <div class="p-price" *ngIf="listingData.data.result[i].final_price == listingData.data.result[i].normal_price &&  listingData.data.result[i].normal_price <10000">{{'Currency' | translate}}{{listingData.data.result[i].final_price}}</div>
+            <div class="p-price" *ngIf="listingData.data.result[i].final_price != listingData.data.result[i].normal_price">
+              <span class="item-price" *ngIf="listingData.data.result[i].final_price >=10000">{{'Currency' | translate}}{{listingData.data.result[i].final_price|number}}</span>
+              <span class="item-price" *ngIf="listingData.data.result[i].final_price <10000">{{'Currency' | translate}}{{listingData.data.result[i].final_price}}</span>
+              <span class="item-price-discount">{{'Currency' | translate}}{{listingData.data.result[i].normal_price}}</span>
+            </div>
+        </div>
+
+  </ion-card>
+  </span>
+          <span *ngIf="listingData && listingData.data && listingData.data.result">
+          <span *ngIf="listingData.data.result[i+1]">
+          <ion-card class="item" (click)="gotoPdp(listingData.data.result[i+1].id,listingData.data.result[i+1].name,listingData.data.result[i+1].gallery.zoom,listingData.data.result[i+1].gallery.thumbnail,listingData.data.result[i+1].brand_name,'listingData',listingData.data.result[i].final_price)">
+            <div class="item-img">
+              <img src="{{listingData.data.result[i+1].gallery.thumbnail}}"  />
+              <div class="size" *ngIf="listingData.data.result[i+1].child_products">
+                <span *ngFor="let size of listingData.data.result[i+1].child_products.collection;">{{size.label}}</span>
+  </div>
+  <div class="readyToShip" *ngIf="listingData.data.result[i+1].ready_to_ship">
+    <ion-buttons><img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg" /></ion-buttons>
+  </div>
+
+  <span *ngIf="listingData.data.result[i+1].final_price != listingData.data.result[i+1].normal_price">
+                <span class="item-discount-persent">({{listingData.data.result[i+1].discnt}}% OFF)</span>
+  </span>
+  </div>
+  <div class="item-text">
+    <div class="p-title">{{(listingData.data.result[i+1].brand_name| wordbreak : 30) | uppercase}}</div>
+    <div class="p-desc">{{listingData.data.result[i+1].name.replace('by Jaypore','') | wordbreak : 50}}</div>
+    <div class="p-price" *ngIf="listingData.data.result[i+1].final_price == listingData.data.result[i+1].normal_price  && listingData.data.result[i+1].normal_price >=10000">{{'Currency' | translate}}{{listingData.data.result[i+1].final_price|number}}</div>
+    <div class="p-price" *ngIf="listingData.data.result[i+1].final_price == listingData.data.result[i+1].normal_price && listingData.data.result[i+1].normal_price <10000">{{'Currency' | translate}}{{listingData.data.result[i+1].final_price}}</div>
+
+    <div class="p-price" *ngIf="listingData.data.result[i+1].final_price != listingData.data.result[i+1].normal_price">
+      <span class="item-price" *ngIf="listingData.data.result[i+1].final_price >=10000">{{'Currency' | translate}}{{listingData.data.result[i+1].final_price|number}}</span>
+      <span class="item-price" *ngIf="listingData.data.result[i+1].final_price<10000">{{'Currency' | translate}}{{listingData.data.result[i+1].final_price}}</span>
+      <span class="item-price-discount">{{'Currency' | translate}}{{listingData.data.result[i+1].normal_price}}</span>
+    </div>
+  </div>
+  </ion-card>
+  </span>
+  </span>
+          <div *ngIf="bannerData">
+            <div *ngIf="bannerData[i]">
+              <div class="content" *ngIf="bannerData[i]">
+                <img class="img-responsive" src="{{bannerData[i].banner}}" />
+              </div>
+            </div>
+            <div *ngIf="bannerData[i+1]">
+              <div class="content" *ngIf="bannerData[i+1]">
+                <img class="img-responsive" src="{{bannerData[i+1].banner}}" />
+              </div>
+            </div>
+          </div>
+        </ion-list>
+      </ion-list>
+    </div>
+  </ion-card>
+
+  <ion-card class="productItem searchItems jpCard" *ngIf="search_key == 'searching'" style="padding-top:16px;">
+    <div class="contant {{listingType}}" *ngIf="searchingData">
+      <ion-list *ngFor="let item of searchingData.results; let i=index;">
+        <ion-list *ngIf="i==0 || i%2==0" class="two">
+            <span *ngIf="searchingData.results[i]">
+          <ion-card class="item" (click)= "gotoPdp(searchingData.results[i].id,searchingData.results[i].name,searchingData.results[i]._images[0],searchingData.results[i]._images[0],searchingData.results[i].manufacturer,'searchingData',searchingData.results[i].discounted_price)">
+            <div class="item-img">
+              <span *ngIf="searchingData.results[i]._images">
+              <img src="{{searchingData.results[i]._images[0]}}" />
+              </span>
+          <div class="size" *ngIf="searchingData.results[i].Size">
+            <span *ngFor="let size of searchingData.results[i].Size;">{{size}}</span>
+          </div>
+          <div class="readyToShip" *ngIf="searchingData.results[i].ready_to_ship">
+            <ion-buttons><img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg" /></ion-buttons>
+          </div>
+              <!-- <div class="wishlist" (click)="addToWishList(i)">
+                    <ion-buttons><img class="iconBL" src="assets/icon/10/{{searchingData.results[i].fave_flag ? 'Wishlist-filled.png' : 'Wishlist.png'}}"/></ion-buttons>
+                  </div> -->
+          <span *ngIf="searchingData.results[i].is_discount_available != 0">
+                <span class="item-discount-persent">({{searchingData.results[i].discount}}% OFF)</span>
+          </span>
+    </div>
+    <div class="item-text">
+      <div class="p-title" *ngIf="searchingData.results[i].manufacturer">{{searchingData.results[i].manufacturer | wordbreak : 30}}</div>
+      <div class="p-desc">{{searchingData.results[i].name}}</div>
+      <div class="p-price" *ngIf="searchingData.results[i].is_discount_available == 0 && searchingData.results[i].discounted_price >=10000">{{'Currency' | translate}}{{searchingData.results[i].discounted_price|number}}</div>
+      <div class="p-price" *ngIf="searchingData.results[i].is_discount_available == 0 && searchingData.results[i].discounted_price <10000">{{'Currency' | translate}}{{searchingData.results[i].discounted_price}}</div>
+
+      <div class="p-price" *ngIf="searchingData.results[i].is_discount_available != 0">
+        <span class="item-price" *ngIf="searchingData.results[i].discounted_price >=10000">{{'Currency' | translate}}{{searchingData.results[i].discounted_price|number}}</span>
+        <span class="item-price" *ngIf="searchingData.results[i].discounted_price <10000">{{'Currency' | translate}}{{searchingData.results[i].discounted_price}}</span>
+
+        <span class="item-price-discount">{{'Currency' | translate}}{{searchingData.results[i].price}}</span>
+        <!--<span class="item-discount-persent">({{listingData.data.result[i].discnt}}% OFF)</span>-->
+      </div>
+    </div>
+  </ion-card>
+  </span>
+          <span *ngIf="searchingData && searchingData.results && searchingData.results[i+1]">
+          <ion-card class="item" (click)="gotoPdp(searchingData.results[i+1].id,searchingData.results[i+1].name, searchingData.results[i+1]._images[0],searchingData.results[i+1]._images[0],searchingData.results[i+1].manufacturer,'searchingData',searchingData.results[i+1].discounted_price)">
+            <div class="item-img">
+              <span *ngIf="searchingData.results[i+1]._images">
+                <img src="{{searchingData.results[i+1]._images[0]}}" />
+              </span>
+  <div class="size" *ngIf="searchingData.results[i+1].Size">
+    <span *ngFor="let size of searchingData.results[i+1].Size">{{size}}</span>
+  </div>
+  <div class="readyToShip" *ngIf="searchingData.results[i+1].ready_to_ship">
+    <ion-buttons><img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg" /></ion-buttons>
+  </div>
+              <!-- <div class="wishlist" (click)="addToWishList(i+1)">
+                            <ion-buttons><img class="iconBL" src="assets/icon/05/{{searchingData.results[i+1].fave_flag ? 'Wishlist-filled.png' : 'Wishlist.png'}}"
+                              /></ion-buttons>
+                          </div>-->
+  <span *ngIf="searchingData.results[i+1].is_discount_available != 0">
+                <span class="item-discount-persent">({{searchingData.results[i+1].discount}}% OFF)</span>
+  </span>
+  </div>
+  <div class="item-text">
+    <div class="p-title" *ngIf="searchingData.results[i+1].manufacturer">{{searchingData.results[i+1].manufacturer | wordbreak : 30}}</div>
+    <div class="p-desc">{{searchingData.results[i+1].name}}</div>
+    <div class="p-price" *ngIf="searchingData.results[i+1].is_discount_available == 0 && searchingData.results[i+1].discounted_price >=10000">{{'Currency' | translate}}{{searchingData.results[i+1].discounted_price|number}}</div>
+    <div class="p-price" *ngIf="searchingData.results[i+1].is_discount_available == 0 && searchingData.results[i+1].discounted_price < 10000">{{'Currency' | translate}}{{searchingData.results[i+1].discounted_price}}</div>
+
+    <div class="p-price" *ngIf="searchingData.results[i+1].is_discount_available != 0">
+      <span class="item-price" *ngIf="searchingData.results[i+1].discounted_price>=10000">{{'Currency' | translate}}{{searchingData.results[i+1].discounted_price|number}}</span>
+      <span class="item-price" *ngIf="searchingData.results[i+1].discounted_price <10000">{{'Currency' | translate}}{{searchingData.results[i+1].discounted_price}}</span>
+
+      <span class="item-price-discount">{{'Currency' | translate}}{{searchingData.results[i+1].price}}</span>
+    </div>
+  </div>
+  </ion-card>
+  </span>
+        </ion-list>
+      </ion-list>
+    </div>
+  </ion-card>
+
+  <ion-infinite-scroll immediate-check="false" *ngIf="autoscrollflag == 1 && search_key != 'event_id'" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-card *ngIf="search_key == 'event_id' && newarrivalData" class="new-arrival jpCard">
+    <div class="title" *ngIf="newarrivalData.error != true">NEW ARRIVALS</div>
+    <div class="contant slider" *ngIf="newarrivalData.error != true">
+      <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 262px">
+        <div class="ion-scroll-item" *ngFor="let item of newarrivalData">
+          <div class="carousel-content" (click)="gotoPdp(item.id,item.name,item.img,item.img,'','newarrivalData',item.price)">
+            <div class="slide-item-image">
+              <img src="{{item.img}}" />
+            </div>
+            <div class="slide-item-descriptions">
+              <p class="b-name">{{item.name | wordbreak : 20}}</p>
+              <p class="b-price" *ngIf="item.price  >=10000">{{'Currency' | translate}}{{item.price|number}}</p>
+              <p class="b-price" *ngIf="item.price <10000">{{'Currency' | translate}}{{item.price}}</p>
+            </div>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="search_key == 'event_id' && popularData" class="most-popular jpCard">
+    <div class="title" *ngIf="popularData.error != true">MOST POPULAR</div>
+    <div class="contant slider" *ngIf="popularData.error != true">
+      <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 262px">
+        <div class="ion-scroll-item" *ngFor="let item of popularData">
+          <div class="carousel-content" (click)="gotoPdp(item.id,item.name,item.img,item.img,'','popularData',item.price)">
+            <div class="slide-item-image">
+              <img src="{{item.img}}" />
+            </div>
+            <div class="slide-item-descriptions">
+              <p class="b-name">{{item.name | wordbreak : 20}}</p>
+              <p class="b-price" *ngIf="item.price>=10000">{{'Currency' | translate}}{{item.price|number}}</p>
+              <p class="b-price" *ngIf="item.price <10000">{{'Currency' | translate}}{{item.price}}</p>
+            </div>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+  </ion-card>
+
+  <ion-card *ngIf="search_key == 'event_id' && ShopAllImagechk !=2 && itemspartnersShopall" class="most-popular jpCard">
+    <div class="title" *ngIf="itemspartnersShopall.error != true">SHOP ALL EVENTS</div>
+    <div class="contant slider" *ngIf="ShopAllImagechk ==1">
+      <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 262px">
+        <div class="ion-scroll-item" *ngFor="let item of itemspartnersShopall">
+          <div class="carousel-content" (click)="golist(item.id,'event')">
+            <div class="slide-item-image" *ngIf="item.image">
+              <img src="{{item.image}}" />
+            </div>
+            <div class="slide-item-descriptions">
+              <p class="b-name" *ngIf="item.title">{{item.title | wordbreak : 18}}</p>
+              <p class="item-description" *ngIf="item.description">{{item.description | wordbreak : 10 }}</p>
+            </div>
+          </div>
+        </div>
+      </ion-scroll>
+    </div>
+  </ion-card>
+  <ion-spinner name="circles" class="spin" *ngIf="search_key == 'event_id' && listingData && ShopAllImagechk == 0">
+  </ion-spinner>
+
+  <ion-card class="ls-footer jpCard" [ngClass]="{'endOfPage':search_key != 'searching' && search_key != 'event_id'}" *ngIf="searchingData || listingData">
+    <p class="f-text" *ngIf="searchFlagStatus ==1">Oops! No products found!</p>
+    <p class="f-text" *ngIf="searchFlagStatus == 0 && this.autoscrollflag ==0">You have reached the end of this page.</p>
+  </ion-card>
+
+  <div class="story" *ngIf="search_key == 'event_id' && StoryStatus==1 ">
+    <h2 class="jp-divider"><span>THE STORY</span></h2>
+    <div class="pd-sub" [innerHtml]="listingData.data.event_story"></div>
+  </div>
+
+</ion-content>
+
+
+<ion-footer *ngIf="search_key != 'searching' && search_key != 'event_id'">
+
+  <div class="bottom-58">
+    <ion-fab right bottom class="right-bottom search" *ngIf="search_key != 'searching'">
+      <button ion-fab color="light" (click)="searchFromListing()"></button>
+    </ion-fab>
+  </div>
+
+  <ion-card class="filter jpCard" *ngIf="search_key != 'searching' && search_key != 'event_id'">
+    <div class="addCart fixed-bottom">
+      <button full="" ion-button="" (click)="sortModalShow()" class="disable-hover button button-ios button-default button-default-ios"
+              ng-reflect-full="" [ngClass]="{'fullSort':search_key == 'event_id'}">
+        <span class="button-inner">SORT</span>
+      </button>
+      <button full="" ion-button="" (click)="filterModalShow()" class="disable-hover button button-ios button-default button-default-ios"
+              ng-reflect-full="">
+        <span class="button-inner">REFINE RESULTS</span>
+      </button>
+    </div>
+  </ion-card>
+
+</ion-footer>
+
+
+<div class="productItem searchItems jpCard" *ngIf="search_key == 'searching'" style="padding-top:16px;">
+  <div class="contant {{listingType}}" *ngIf="searchingData">
+    <ion-list *ngFor="let item of searchingData.results; let i=index;">
+      <ion-list *ngIf="i==0 || i%2==0" class="two">
+            <span *ngIf="searchingData.results[i]">
+          <ion-card class="item"
+                    (click)="gotoPdp(searchingData.results[i].id,searchingData.results[i].name,searchingData.results[i]._images[0],searchingData.results[i]._images[0],searchingData.results[i].manufacturer,'searchingData',searchingData.results[i].discounted_price)">
+            <div class="item-img">
+              <span *ngIf="searchingData.results[i]._images">
+              <img src="{{searchingData.results[i]._images[0]}}"/>
+              </span>
+          <div class="size" *ngIf="searchingData.results[i].Size">
+            <span *ngFor="let size of searchingData.results[i].Size;">{{size}}</span>
+          </div>
+          <div class="readyToShip" *ngIf="searchingData.results[i].ready_to_ship">
+            <ion-buttons><img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg"/></ion-buttons>
+          </div>
+              <!-- <div class="wishlist" (click)="addToWishList(i)">
+                    <ion-buttons><img class="iconBL" src="assets/icon/10/{{searchingData.results[i].fave_flag ? 'Wishlist-filled.png' : 'Wishlist.png'}}"/></ion-buttons>
+                  </div> -->
+          <span *ngIf="searchingData.results[i].is_discount_available != 0">
+                <span class="item-discount-persent">({{searchingData.results[i].discount}}% OFF)</span>
+          </span>
+    </div>
+    <div class="item-text">
+      <div class="p-title" *ngIf="searchingData.results[i].manufacturer">{{searchingData.results[i].manufacturer | wordbreak : 30}}</div>
+      <div class="p-desc">{{searchingData.results[i].name}}</div>
+      <div class="p-price"
+           *ngIf="searchingData.results[i].is_discount_available == 0 && searchingData.results[i].discounted_price >=10000">{{'Currency' | translate}}{{searchingData.results[i].discounted_price|number}}</div>
+      <div class="p-price"
+           *ngIf="searchingData.results[i].is_discount_available == 0 && searchingData.results[i].discounted_price <10000">{{'Currency' | translate}}{{searchingData.results[i].discounted_price}}</div>
+
+      <div class="p-price" *ngIf="searchingData.results[i].is_discount_available != 0">
+        <span class="item-price" *ngIf="searchingData.results[i].discounted_price >=10000">{{'Currency' | translate}}{{searchingData.results[i].discounted_price|number}}</span>
+        <span class="item-price" *ngIf="searchingData.results[i].discounted_price <10000">{{'Currency' | translate}}{{searchingData.results[i].discounted_price}}</span>
+
+        <span class="item-price-discount">{{'Currency' | translate}}{{searchingData.results[i].price}}</span>
+        <!--<span class="item-discount-persent">({{listingData.data.result[i].discnt}}% OFF)</span>-->
+      </div>
+    </div>
+  </ion-card>
+  </span>
+        <span *ngIf="searchingData && searchingData.results && searchingData.results[i+1]">
+          <ion-card class="item"
+                    (click)="gotoPdp(searchingData.results[i+1].id,
+                    searchingData.results[i+1].name,
+                     searchingData.results[i+1]._images[0],
+                     searchingData.results[i+1]._images[0],searchingData.results[i+1].manufacturer,'searchingData',searchingData.results[i+1].discounted_price)">
+            <div class="item-img">
+              <span *ngIf="searchingData.results[i+1]._images">
+                <img src="{{searchingData.results[i+1]._images[0]}}"/>
+              </span>
+  <div class="size" *ngIf="searchingData.results[i+1].Size">
+    <span *ngFor="let size of searchingData.results[i+1].Size">{{size}}</span>
+  </div>
+  <div class="readyToShip" *ngIf="searchingData.results[i+1].ready_to_ship">
+    <ion-buttons><img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg"/></ion-buttons>
+  </div>
+              <!-- <div class="wishlist" (click)="addToWishList(i+1)">
+                            <ion-buttons><img class="iconBL" src="assets/icon/05/{{searchingData.results[i+1].fave_flag ? 'Wishlist-filled.png' : 'Wishlist.png'}}"
+                              /></ion-buttons>
+                          </div>-->
+  <span *ngIf="searchingData.results[i+1].is_discount_available != 0">
+                <span class="item-discount-persent">({{searchingData.results[i+1].discount}}% OFF)</span>
+  </span>
+  </div>
+  <div class="item-text">
+    <div class="p-title" *ngIf="searchingData.results[i+1].manufacturer">{{searchingData.results[i+1].manufacturer | wordbreak : 30}}</div>
+    <div class="p-desc">{{searchingData.results[i+1].name}}</div>
+    <div class="p-price"
+         *ngIf="searchingData.results[i+1].is_discount_available == 0 && searchingData.results[i+1].discounted_price >=10000">{{'Currency' | translate}}{{searchingData.results[i+1].discounted_price|number}}</div>
+    <div class="p-price"
+         *ngIf="searchingData.results[i+1].is_discount_available == 0 && searchingData.results[i+1].discounted_price < 10000">{{'Currency' | translate}}{{searchingData.results[i+1].discounted_price}}</div>
+
+    <div class="p-price" *ngIf="searchingData.results[i+1].is_discount_available != 0">
+      <span class="item-price" *ngIf="searchingData.results[i+1].discounted_price>=10000">{{'Currency' | translate}}{{searchingData.results[i+1].discounted_price|number}}</span>
+      <span class="item-price" *ngIf="searchingData.results[i+1].discounted_price <10000">{{'Currency' | translate}}{{searchingData.results[i+1].discounted_price}}</span>
+
+      <span class="item-price-discount">{{'Currency' | translate}}{{searchingData.results[i+1].price}}</span>
+    </div>
+  </div>
+  </ion-card>
+  </span>
+      </ion-list>
+    </ion-list>
+  </div>
+</div>
+
+

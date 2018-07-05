@@ -1,0 +1,15 @@
+<div class="mostpopular-carousel" *ngIf="narrowItems">
+    <div class="most-popular-items">
+    <h4 [innerHTML]="narrowItems.component_data[0].header"></h4>      
+      <ion-slides slidesPerView="auto">
+        <ion-slide *ngFor="let item of narrowItems.component_data" (click)="goToAction(item.type_id,item.type,item.myfilter,item.description)">
+            <div class="popular-image">
+              <img [src]="item.image" [alt]="item.description">
+            </div>
+            <div class="popular-description">
+              <h5  [innerHTML]="item.description"></h5>
+            </div>
+        </ion-slide>
+    </ion-slides>
+  </div>
+</div>

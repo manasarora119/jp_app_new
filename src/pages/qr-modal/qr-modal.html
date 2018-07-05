@@ -1,0 +1,49 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Send product to device</ion-title>
+        <button class="close-modal" (click)=" dismiss()">
+            <ion-icon name="close"></ion-icon>
+        </button>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="wrapper">
+        <ion-grid>
+            <div class="qr-code-wrapp">
+
+                <ion-row>
+                    <ion-col col-12>
+                        <p>You can scan the
+                            <b>QR Code</b> from your app to send this product to your device</p>
+                        <figure>
+                            <img src="assets/images/madal-qr.png" alt="qr-code">
+                        </figure>
+                        <p>Or enter your
+                            <b>mobile number</b> to receive the product link via sms</p>
+                        <form [formGroup]="msgForm" (ngSubmit)="sendMessage($event)">
+                            <div class="form-group">
+                                 <!-- <div class="err-msg" *ngIf="msgForm.get('mobile_number').touched" [hidden]="(msgForm.get('mobile_number').valid )">
+                                    Number should be 10 digit
+                                </div> -->
+                                <span class="country-code">+91</span>
+                                <ion-item>
+                                    <ion-input type="number" pattern="[0-9]*"
+                                    maxlength="10" formControlName="mobile_number" onblur="this.placeholder='Mobile Number*'" 
+                                    placeholder="Mobile Number"                       clearOnEdit="false" onfocus="this.placeholder=''" required ></ion-input>
+                                </ion-item>
+                                <button ion-button color="dark" [disabled]="!msgForm.valid">Enter</button>
+                            </div>
+                        </form>
+
+                    </ion-col>
+                </ion-row>
+
+            </div>
+        </ion-grid>
+    </div>
+
+</ion-content>

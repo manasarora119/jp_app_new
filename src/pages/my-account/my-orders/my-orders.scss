@@ -1,0 +1,153 @@
+page-my-orders {
+    .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+        img{
+            width: 14px;
+            margin: 0 34px 0 16px;
+            display: inline-block;
+        }
+        ion-label{
+            @include fontStyles($font-Regular,$jp-color-black,16px);
+            @include borderRadius(4px);
+            letter-spacing: 0.5px;
+            text-align: left;
+            margin: 14px 0;;        
+        }
+    }
+    .content {
+        padding: 16px 0;
+        background-color: $jp-color-light-gray !important;
+        .search{
+            .searchbar-has-focus{
+                .searchbar-search-icon{
+                    display: none;
+                }
+                input[type=search]{ 
+                    border: 1px solid $jp-color-red !important;
+                }
+            }
+            ion-searchbar.orders-search{
+                height: 36px;
+                min-height: auto;
+                background: $jp-color-light-gray;
+                padding:0 16px;
+                border: none;
+                input[type=search]{
+                    height:36px !important;
+                    padding-left: 9px;
+                    border: 1px solid $jp-color-white-gray;
+                    @include borderRadius(4px);
+                    @include fontStyles($font-Regular,$jp-color-black,14px);
+                    letter-spacing: 0.25px;  
+                    @include boxShadow(none);  
+                }
+                .searchbar-clear-icon{
+                    display: none !important;
+                }
+                .searchbar-search-icon{
+                    top: 9px;
+                    left: auto;
+                    right: 10px;
+                    width: 20px;
+                    height: 20px;
+                    background-size: 16px;
+                }
+            }
+        }
+        .order-cancel {
+            @include fontStyles($font-Regular,$jp-color-green,13px);
+            line-height: 24px;
+            padding: 9px;
+            border: 1px solid $jp-color-green;
+            margin: 0 16px 16px;
+            @include borderRadius(4px);
+            background: $jp-color-liter-orange;
+        }
+        .title{
+            @include fontStyles($font-SBold,$jp-color-gray,14px); 
+            line-height: normal;
+            margin: 24px 16px 8px !important;
+            display: inline-block;
+        }
+        ion-item{
+            padding: 16px;
+            border-top: 1px solid $jp-color-lighter-gray;            
+            ion-avatar {
+                width: 56px;
+                margin: 0 8px 0 0 !important;
+                border: 1px solid $jp-color-white-gray;
+                @include borderRadius(2px);
+                img{
+                    height: auto;
+                    width: auto;
+                    @include borderRadius(0);
+                }
+            }
+            .item-inner{
+                padding: 0 !important;
+                border: 0 !important;
+                ion-label{
+                    white-space: unset;
+                    margin: 0 32px 0 0;
+                    .p-name{
+                        @include fontStyles($font-SBold,$jp-color-black,16px);
+                        line-height: 22px;
+                        padding-bottom:4PX; 
+                    }
+                    .p-desc{
+                        @include fontStyles($font-Regular,$jp-color-gray,14px); 
+                    }
+                }
+                ion-icon{
+                    margin: auto 0;
+                    &::before{
+                        content: "";
+                        // font-size: 22px;
+                        color: $jp-color-gray;
+                        background: url(../assets/icon/10-Universal-Icons/chevron-right.svg) no-repeat;
+                        width: 10px;
+                        height: 16px;
+                        background-size: 10px;
+                    }
+                }
+            }
+        }
+        .not-deliver{
+            .p-name, .p-desc{
+                color: $jp-color-green !important;
+            }
+
+        }
+
+        .search-filter{
+            margin: 0 16px 10px;
+            width: calc(100% - 32px);
+            ion-item{
+                border: 1px solid $jp-color-white-gray;
+                .p-name{
+                    color: $jp-color-lightblue !important;
+                }
+            }
+            button{
+                border: 1px solid $jp-color-white-gray;
+                border-top: none;
+                .item-inner{
+                    border: none !important;
+                    @include fontStyles($font-Regular,$jp-color-black,14px);
+                    background-image: url(../assets/icon/10-Universal-Icons/chevron-right.svg);
+                    background-position: right 14px center;
+                    background-repeat: no-repeat;
+                    background-size: 14px 14px;
+                }
+            }
+        }
+
+    }
+}

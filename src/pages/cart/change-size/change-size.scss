@@ -1,0 +1,120 @@
+page-change-size {
+
+}
+
+
+.change-product-size{
+
+    ion-backdrop { 
+        background-color: $jp-color-black;
+        opacity: 0.8 !important ;
+    }
+    
+    // @media #{$device} {
+        ion-backdrop {
+            visibility: visible;
+            z-index: -2;
+        }
+    
+        ion-content{
+            bottom: 0px !important;
+            top: unset;
+            background: none;
+            position: absolute;
+            width: 100%;
+            bottom: 0px;
+            .scroll-content{
+                overflow-y: hidden;
+                padding: 0px !important;
+                height: 239px;
+                .cross-btn{
+                    width: 24px;
+                    height: 24px;
+                    padding: 5px;
+                    background: #ecebeb;
+                    display: flex;
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    z-index: 99;
+                    img{
+                        width: 14px;
+                        height: 14px;
+                        opacity: 0.5;
+                    }
+                }
+                ion-row{
+                    padding: 16px;
+                    .product-item-image{
+                        padding: 0px;
+						padding-right: 8px;
+						
+						position: relative;
+						vertical-align: middle;
+                        width: 100%;
+                        top: 2px;
+                        figure{
+                            margin: 0;
+                            width: 100%;
+                            height: 142px;
+                            overflow: hidden;
+                            img{
+                           
+                                
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+                                
+                            }
+                        }
+                        
+                    }
+                    .product-item-descriptions{
+                        padding:30px 16px 8px 0px;
+                        h5{
+                            @include fontStyles($font-SBold, $jp-color-black, 16px);
+                            margin-bottom: 8px;
+                            padding-right: 35px;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                            overflow: hidden;
+                        }
+                        p{
+                            @include fontStyles($font-SBold, $jp-color-gray, 14px);
+                            line-height: 20px;
+                            margin: 0px;
+                        }
+                    }
+                }
+                .product-btn{
+                    padding: 8px;
+                    border-top:solid 1px $jp-color-lighter-gray;
+                    button{
+                        width: 100%;
+                        padding: 16px 0px;
+                        background: $jp-color-red;
+                        @include fontStyles($font-SBold, $jp-color-white, 14px);
+                        letter-spacing: 0.25px;
+                        @include borderRadius(2px);
+                    }
+                }
+            }
+        }
+        
+        .modal-wrapper{
+            bottom: 0px !important;
+            top: unset;
+            min-height : 165px;
+            position: absolute;
+            left: 0px;
+            width: 100%;
+            @include borderRadius(0px);
+            max-height: 239px;
+        }
+    // }
+
+    .scroll-content{
+        background: $jp-color-white;
+    }
+
+}

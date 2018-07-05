@@ -1,0 +1,653 @@
+$cartOptionBg:#f0f0f0;
+
+page-cart {
+	ion-header{
+		border-bottom: solid 2px #e0e0e0;
+		ion-navbar{
+			//min-height: 55px;
+      min-height: 48px !important;
+      padding: 0px !important;
+			.toolbar-background{
+				background: $jp-color-white;
+				border-style: none !important;
+			}
+			.toolbar-content{
+				ion-title{
+					//min-height: 55px !important;
+					padding: 0px !important;
+					//height: 55px !important;
+
+          .toolbar-title{
+						@include fontStyles($font-Regular, $jp-color-black, 16px);
+					}
+				}
+				button{
+					width: 24px;
+					height: 13px;
+					background: none;
+					float: left;
+					color: #979797;
+				}
+			}
+			.back-button{
+				min-width: auto;
+				width: 16px;
+				height: 16px;
+				background: url(../assets/icon/10-Universal-Icons/Back-Icon.svg) no-repeat center center ;
+				margin-left: 16px;
+				display: block !important;
+				.button-inner{
+					display: none;
+				}
+			}
+		}
+		&:after{
+			display: none;
+		}
+	}
+
+	.cart-items{
+		background: #f7f8fa;
+		h1, h2, h3, h4, h5, h6, p, span, strong, ul, li, ol{
+			margin: 0px;
+			padding: 0px;
+		}
+		.scroll-content{
+			// bottom : 64px;
+			// bottom: 0;
+			// padding-bottom: 64px;
+			// bottom : 58px;
+
+			h4{
+				@include fontStyles($font-SBold, $jp-color-black, 14px);
+				width: 100%;
+				margin-bottom: 10px;
+			}
+			.cart-products{
+				ion-row{
+					background: $jp-color-white;
+					@include borderRadius(4px);
+					@include boxShadow(0px 0px 3px 1px #f3f1f1);
+					margin-bottom: 8px;
+					position: relative;
+					h4{
+						@include fontStyles($font-SBold, $jp-color-yellow, 13px);
+						margin: 16px 0px 0px 16px;
+						line-height: 18px;
+					}
+					h5{
+						@include fontStyles($font-Regular, $jp-color-black, 14px);
+						margin-bottom: 8px;
+						padding-right: 35px;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						overflow: hidden;
+					}
+					h6{
+						@include fontStyles($font-SBold, $jp-color-gray, 12px);
+						margin-bottom: 8px;
+						letter-spacing: 0.5px;
+					}
+					.cross-btn{
+						width: 24px;
+						height: 24px;
+						padding: 5px;
+						background: #ecebeb;
+						display: flex;
+						position: absolute;
+						right: 0px;
+						top: 0px;
+						z-index: 99;
+						img{
+							width: 14apx;
+							height: 14px;
+						}
+					}
+					ion-col{
+						padding: 16px;
+						.size-quty{
+							display: inline-block;
+							width: 100%;
+							// margin-bottom: 5px;
+							ion-item{
+								min-height: auto;
+								// padding-left: 0px;
+								float: left;
+								width: auto;
+								padding: 4px 0;
+								.item-inner{
+									border-bottom: none;
+									.input-wrapper{
+										ion-label{
+											@include fontStyles($font-SBold, $jp-color-gray, 14px);
+											margin: 0px 2px 0px 0;
+											width: auto;
+											button{
+												background: none;
+												padding: 0px;
+												span{
+													width: 20px;
+													height: 12px;
+													background: url(../assets/icon/10-Universal-Icons/Drop-Down-Arrow.svg) no-repeat center center;
+													display: block;
+													float: right;
+												}
+											}
+										}
+										ion-select{
+											.select-text{
+												min-width: auto;
+												@include fontStyles($font-SBold, $jp-color-black, 14px);
+												line-height: 20px;
+											}
+											.select-icon{
+												width: auto;
+											}
+											max-width: auto;
+											width: 32px;
+											padding:0px;
+											.select-icon{
+												.select-icon-inner{
+													right: 0px;
+													left: auto;
+													border: none;
+													width: 15px;
+													height: 5px;
+													background: url(../assets/icon/10-Universal-Icons/Drop-Down-Arrow.svg) no-repeat right center;
+												}
+											}
+										}
+									}
+								}
+								&.qnty-select{
+									margin-top: -3px;
+								}
+							}
+						}
+						.prices{
+							display: inline-block;
+							width: 100%;
+							margin-bottom: 10px;
+							span{
+								@include fontStyles($font-SBold, $jp-color-black, 14px);
+								margin-right: 6px;
+								display: inline-block;
+							}
+							.price-discount{
+								color: $jp-color-white-gray;
+								text-decoration: line-through;
+							}
+							.price-offer{
+								color: $jp-color-red;
+							}
+						}
+						.dispatch-time{
+							@include fontStyles($font-SBold, $jp-color-yellow, 13px);
+							letter-spacing: 0.3px;
+						}
+					}
+					.wishlist-box{
+						width: 100%;
+						border-top: solid 1px $jp-color-lighter-gray;
+						button{
+							width: 100%;
+							padding: 16px 0px;
+							background: none;
+							@include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+							letter-spacing:0.5px;
+						}
+					}
+					.product-item-image{
+						padding-right: 8px;
+						//padding-bottom: 8px;
+						img{
+							width: 100%;
+						}
+					}
+					.product-item-descriptions{
+						padding:24px 16px 8px 0px;
+					}
+				}
+			}
+			.product-options{
+				padding-top: 8px;
+				.more-from-wishlist{
+					button{
+						background: #fff;
+						border: solid 1px #9e9e9e;
+						@include fontStyles($font-SBold, $jp-color-gray, 14px);
+						padding: 11px 0px;
+						width: 100%;
+						@include borderRadius(2px);
+					}
+				}
+				.options{
+					h6{
+						@include fontStyles($font-Regular, $jp-color-black, 14px);
+						margin-bottom: 8px;
+						margin-top: 24px;
+					}
+					.coupon-options{
+						ion-list{
+							ion-item{
+								margin-bottom: 8px;
+								padding: 0px;
+								@include borderRadius(4px);
+								@include boxShadow(0px 0px 5px -2px #a2a2a2);
+								.item-inner{
+									border-bottom: none;
+									padding: 0px;
+									.input-wrapper{
+										ion-label{
+											margin: 0px;
+											padding: 0px;
+											h3{
+												margin: 0px;
+												display: inline-block;
+												width: 100%;
+												@include fontStyles($font-Regular, $jp-color-black, 14px);
+												line-height: 33px;
+												padding: 12px 16px;
+												span{
+													width: 32px;
+													height: 32px;
+													background: $cartOptionBg;
+													display: flex;
+													float: left;
+													text-align: center;
+													margin-right: 24px;
+													@include borderRadius(100px);
+													img{
+														margin: auto;
+													}
+												}
+												ion-icon{
+													float: right;
+													margin: 0px;
+													margin-top: 10px;
+													color: $jp-color-gray;
+												}
+											}
+											h3.active{
+												color: $jp-color-green;
+												span{
+													background: rgba(76, 175, 80, 0.15);
+												}
+											}
+											.descriptions{
+												border-top: solid 1px $jp-color-lighter-gray;
+												padding: 16px;
+												ion-label{
+													@include fontStyles($font-Regular, $jp-color-black, 14px);
+													line-height: 22px;
+												}
+												h6{
+													margin: 0px;
+													@include fontStyles($font-SBold, $jp-color-black, 14px);
+													margin-bottom: 12px;
+												}
+												form{
+													position: relative;
+
+													input{
+														width: 100%;
+														height: 42px;
+														padding: 8px;
+														border: solid 1px #bdbdbd;
+														// border: none;
+														border-radius: none;
+														@include borderRadius(4px);
+														padding-right: 70px;
+														&:focus{
+															.input-div{
+																border-color: $jp-color-red;
+															}
+														}
+													}
+													.coupon-input{
+														position: relative;
+														@media #{$smallDevice} {
+															.status-icon{
+																display: none;
+															}
+														}
+														@media #{$device} {
+															.status-icon{
+																position: absolute;
+																top: 50%;
+																left: 100px;
+																width : 17px;
+																height  :17px;
+																transform: translateY(-50%);
+																margin : 0 8px;
+															}
+													}
+
+													}
+
+													button{
+														position: absolute;
+														right: 0px;
+														top: 0px;
+														width: 76px;
+														height: 42px;
+														padding: 0px;
+														background-color: $jp-color-red;
+														@include borderRadius(0px 4px 4px 0px);
+														@include fontStyles($font-SBold, $jp-color-white, 14px);
+														letter-spacing: 0.25px;
+														&:disabled{
+															background-color:  #bdbdbd !important;
+															@include fontStyles($font-SBold, $jp-color-gray, 14px);
+														}
+													}
+
+													.error{
+														@include fontStyles($font-Regular, $jp-color-red, 14px);
+														letter-spacing: 0.25px;
+														margin-top: 8px;
+													}
+													.success-coupon{
+														color: green !important;
+													}
+												}
+												.error-withBg{
+													padding: 16px;
+													@include fontStyles($font-Regular, $jp-color-red, 13px);
+													background: #fee2e3;
+													border: solid 1px #eb3840;
+													@include borderRadius(4px);
+													margin-right: 16px;
+												}
+												ion-checkbox{
+													position: relative;
+													float: left;
+													margin: 0px;
+													margin-right: 10px;
+													.checkbox-icon{
+														width: 22px;
+														height: 22px;
+														border-color: $jp-color-white-gray;
+														background:$jp-color-white;
+														@include borderRadius(2px);
+														//top: 2px;
+														.checkbox-inner{
+
+														}
+													}
+													.checkbox-icon.checkbox-checked{
+														border-color: $jp-color-red;
+														background:$jp-color-red;
+														.checkbox-inner{
+															left: 6px;
+															width: 7px;
+															height: 11px;
+															border-radius: 0px;
+															top: 2px;
+
+														}
+													}
+												}
+												&.creadit-container{
+													margin-right: -16px;
+													ion-label{
+														margin-bottom: 18px;
+														padding-right: 16px;
+														padding-bottom: 18px;
+														border-bottom: solid 2px $jp-color-lighter-gray;
+													}
+													form{
+														margin-right: 16px;
+														input{
+															padding-right: 100px;
+														}
+														button{
+															background: $jp-color-red;
+															color: $jp-color-white;
+															width: 91px;
+														}
+													}
+													p{
+														margin-top: 8px;
+														strong{
+															color: $jp-color-black;
+														}
+													}
+												}
+												&.gift-container{
+													p{
+														white-space: normal;
+														@include fontStyles($font-Regular, $jp-color-gray, 14px);
+														line-height: 20px;
+														margin-bottom: 16px;
+													}
+													form{
+														.form-row{
+															position: relative;
+															margin-bottom: 16px;
+															label{
+																@include fontStyles($font-Regular, $jp-color-gray, 14px);
+																margin-bottom: 8px;
+																display: block;
+																strong{
+																	color: $jp-color-black;
+																}
+															}
+															span{
+																position: absolute;
+																left: 1px;
+																bottom: 2px;
+																background: $jp-color-white;
+																height: 38px;
+																@include fontStyles($font-Regular, $jp-color-black, 14px);
+																padding: 13px 10px;
+															}
+															input{
+																height: 42px;
+																padding-right: 8px;
+																padding-left: 54px;
+																@include fontStyles($font-Regular, #9e9e9e, 14px);
+															}
+															textarea{
+																width: 100%;
+																height: 112px;
+																padding: 10px;
+																@include fontStyles($font-Regular, #9e9e9e, 14px);
+																@include borderRadius(4px);
+																resize: none;
+															}
+															&:last-child{
+																margin-bottom: 0px;
+															}
+														}
+														button{
+															position: static;
+														}
+													}
+												}
+											}
+
+										}
+									}
+								}
+							}
+						}
+					}
+					.price-details{
+						background: #fff;
+						display: inline-block;
+						width: 100%;
+						border: solid 1px #e0e0e0;
+						@include borderRadius(4px);
+						padding: 16px;
+						margin-bottom: 16px;
+						ion-row{
+							border-bottom: solid 2px #f0f0f0;
+							border-bottom-style: dashed;
+							padding-top: 16px;
+							padding-bottom: 14px;
+							ion-col{
+								padding: 8px 0px;
+								@include fontStyles($font-Regular, $jp-color-gray, 14px);
+								strong{
+									color: $jp-color-black;
+								}
+								button{
+									background: none;
+									@include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+									text-transform: uppercase;
+									letter-spacing: 0.25px;
+									padding: 0px;
+								}
+								.free{
+									color: $jp-color-green !important;
+									text-transform: uppercase;
+								}
+							}
+							ion-col.left{
+								text-align: left;
+							}
+							ion-col.right{
+								text-align: right;
+							}
+							ion-col.free{
+								color: $jp-color-green;
+								text-transform: uppercase;
+							}
+							&:first-child{
+								padding-top: 0px;
+							}
+							&:last-child{
+								padding-bottom: 0px;
+								border-bottom: none;
+							}
+						}
+
+					}
+				}
+			}
+		}
+
+
+		.empty-cart{
+			text-align: center;
+			.empty-img{
+				margin: 40px 0 24px 0;
+				text-align : center;
+				img{
+					height  : 147px;
+					width  : 147px;
+				}
+			}
+			.title{
+				@include fontStyles($font-SBold, $jp-color-black, 20px);
+				line-height: 20px;
+				text-align: center;
+			}
+			.subTitle{
+				@include fontStyles($font-Regular, $jp-color-gray, 14px);
+				line-height: 20px;
+				padding-top: 8px;
+				text-align: center;
+			}
+			.btn-red{
+				@include fontStyles($font-SBold, $jp-color-white, 16px);
+				line-height: 20px;
+				background-color: $jp-color-red;
+				margin-top: 80px;
+				letter-spacing: 0.25px;
+				width: 206px;
+				height: 48px;
+				border-radius: 2px;
+				text-align: center;
+			}
+			.btn-clear{
+				@include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+				line-height: 20px;
+				letter-spacing: 0.25px;
+				margin-top: 24px;
+				text-align: center;
+
+			}
+		}
+		.banner{
+            background: $jp-color-white;
+            padding: 16px;
+            @include borderRadius(2px);
+            border: 1px solid $jp-color-lighter-gray;
+				.b-img{
+					display: inline-block;
+					padding: 8px 0;
+					width: 45px;
+				}
+				.title{
+					@include fontStyles($font-SBold, $jp-color-black, 16px);
+					line-height: 22px;
+					text-align: center;
+					padding-bottom: 8px;
+				}
+			}
+		.action{
+            padding: 16px;
+                .retry-btn{
+                    @include fontStyles($font-SBold,$jp-color-white,16px);
+                    height: 48px;
+                    width: 200px;
+                    background: $jp-color-red;
+                    margin: 32px auto 38px;
+                    @include borderRadius(2px);
+                    letter-spacing: 0.25px;
+                }
+                .cshopping-btn{
+                    width: 180px;
+                    background: none;
+                    margin: 0 auto;
+                    text-align: center;
+                    @include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+                    padding: 10px 10px;
+                    @include borderRadius(0px);
+                    @include boxShadow(none);
+                }
+    }
+	}
+
+ion-footer{
+	// .cart-footer{
+		background: $jp-color-white;
+		padding: 8px;
+		border-top: solid 1px #e0e0e0;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		ion-col{
+			padding: 0px;
+		}
+		.left{
+			text-align: center;
+			padding-top: 8px;
+			p{
+				@include fontStyles($font-SBold, $jp-color-gray, 12px);
+				margin: 0px;
+			}
+			h6{
+				@include fontStyles($font-SBold, $jp-color-black, 14px);
+				margin: 3px;
+			}
+		}
+		.right{
+			text-align: center;
+			padding-left: 8px;
+			button{
+				padding: 16px 0px;
+				width: 100%;
+				background: $jp-color-red;
+				@include fontStyles($font-SBold, $jp-color-white, 16px);
+				letter-spacing: 0.25px;
+				@include borderRadius(2px);
+
+			}
+
+
+		}
+	}
+	}

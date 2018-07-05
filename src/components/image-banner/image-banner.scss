@@ -1,0 +1,33 @@
+.jp-image-banner{
+    background: $jp-color-white-gray;
+    border-bottom: solid 8px $jp-color-gray-devider;
+    .all-images{
+        padding: 16px;
+        background: $jp-color-white;
+        ion-slides{
+            .swiper-container{
+                .swiper-pagination{
+                    button{
+                        background: none;
+                        border: solid 1px $jp-color-white;
+                        opacity: 1;
+                        &.swiper-pagination-bullet-active{
+                            background: $jp-color-white;
+                        }
+                    }
+                }
+            }
+        }
+        h3{
+            @include fontStyles($font-Bold, $jp-color-black, 18px);
+            letter-spacing: 0.25px;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 0px;
+            margin-bottom: 8px;
+        }
+        img{
+            vertical-align: middle;
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<div class="great-offers-col2" *ngIf="tilesItems">
+  <div class="offers-items">
+    <div *ngFor="let item of tilesItems.component_data; let i = index;">
+        <ion-row *ngIf="i==0 || i%2==0">
+          <ion-col col-6 class="left">
+            <div class="tiles-item" *ngIf="tilesItems.component_data[i]" (click)="goToAction(tilesItems.component_data[i].type_id,tilesItems.component_data[i].type,tilesItems.component_data[i].myfilter,tilesItems.component_data[i].header)">
+              <img [src]="tilesItems.component_data[i].image" [alt]="">
+              <div class="item-overlay" *ngIf="tilesItems.component_data[i].header">
+                <h4  no-margin [innerHTML]="tilesItems.component_data[i].header"></h4>
+              </div>
+            </div>
+            <div class="desc1" *ngIf="tilesItems.component_data[i] && tilesItems.component_data[i+1].sub_header" [innerHTML]="tilesItems.component_data[i].sub_header | wordbreak : 40"></div>
+            <div class="desc2" *ngIf="tilesItems.component_data[i] && tilesItems.component_data[i+1].description" [innerHTML]="tilesItems.component_data[i].description"></div>
+          </ion-col>
+          <ion-col col-6 class="right">
+            <div class="tiles-item" *ngIf="tilesItems.component_data[i+1]" (click)="goToAction(tilesItems.component_data[i+1].type_id,tilesItems.component_data[i+1].type,tilesItems.component_data[i+1].myfilter,tilesItems.component_data[i+1].header)">
+              <img [src]="tilesItems.component_data[i+1].image" [alt]="tilesItems.component_data[i+1].description">
+              <div class="item-overlay" *ngIf="tilesItems.component_data[i+1].header">
+                <h4 no-margin  [innerHTML]="tilesItems.component_data[i+1].header"></h4>
+               </div>
+            </div>
+            <div class="desc1" *ngIf="tilesItems.component_data[i+1] && tilesItems.component_data[i+1].sub_header" [innerHTML]="tilesItems.component_data[i+1].sub_header | wordbreak : 40" ></div>
+            <div class="desc2"  *ngIf="tilesItems.component_data[i+1] && tilesItems.component_data[i+1].description" [innerHTML]="tilesItems.component_data[i+1].description"></div>
+          </ion-col> 
+      </ion-row>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Wishlist</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div padding *ngIf="(!wishlistCount > 0 && apiSuccess == 1 && errorTrue == false)" class="empty-cart">
+      <div class="empty-img">
+        <img src="assets/icon/07-Checkout/emptyCart.svg" />
+      </div>
+      <div class="title">No items yet</div>
+      <div class="subTitle"> Simply browse and tap on the heart icon.</div>
+      <button ion-button class="btn-red" (click)="goToHome()">CONTINUE SHOPPING</button>
+      <!-- <button ion-button block clear class="btn-clear">MOVE FROM WISHLIST</button> -->
+      <div> </div>
+  
+  </div>
+  <div class="wishlist-wrapper">
+    <h6 *ngIf="wishlistCount">ITEMS ({{wishlistCount}})</h6>  
+    
+
+    <ion-row class="wishlist-tems" *ngIf="wishlistItems">
+      <ion-col col-6 *ngFor="let item of wishlistItems; let i=index">
+        <div class="item-box" [ngStyle]="{'border-left': (i==1 || i%2==1) ? 'solid 1px #f7f8fa' : 'none', 'border-right': (i==0 || i%2==0) ? 'solid 1px #f7f8fa' : 'none'}">
+          <div class="item-image">
+            <!-- <button class="remove-product" [disabled]="disabelButton" (click)="removeProduct(item, $event); false"> -->
+              <button class="remove-product"  (click)="removeProduct(item, $event); false">
+                <img src="assets/icon/13-wishlist/RemoveWishlist.svg">
+            </button>
+            <span *ngIf="item.quantity == 0" class="soldout-product">SOLD OUT</span>
+            <img [src]="item.gallery" (click)="gotoPdp(item)">
+            <button class="share-product" (click)="shareProduct(item)">
+                <img src="assets/icon/13-wishlist/ShareWishlist.svg">
+            </button>
+          </div>
+          <div class="item-desc">
+            <div *ngIf="item.brand_name" class="p-title">{{(item.brand_name | wordbreak : 30) | uppercase}}</div>
+            <div class="p-desc">{{item.name | wordbreak : 50}}</div> 
+            
+            <!-- <div class="price-box">{{item.currency}} {{item.final_price}}</div> -->
+            <!-- <div class="price-box">{{'Currency' | translate}}{{item.final_price|number}}</div> -->
+
+            <div class="price-box" *ngIf="item.final_price>=10000" >{{'Currency' | translate}}{{item.final_price|number}}</div>
+
+            <div class="price-box" *ngIf="item.final_price < 10000">{{'Currency' | translate}}{{item.final_price}}</div>
+
+          </div>
+          <button class="wishlist-to-cart"  [disabled]="item.quantity == 0" (click)="addWishlistToBag(item, i)">
+            ADD TO BAG
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+    <!-- Error True -->
+    <div padding *ngIf="errorTrue" class="empty-cart">
+      <!-- <div class="empty-img">
+        <img src="assets/icon/07-Checkout/emptyCart.svg" />
+      </div>
+      <div class="title">Unexpected error found. <br />Please Try later</div> -->
+      <!-- <div class="subTitle"> Fill it with some handcrafted finds </div> -->
+      <!-- <button ion-button class="btn-red" (click)="goToHome()">Retry</button> -->
+      <!-- <button ion-button block clear class="btn-clear">MOVE FROM WISHLIST</button> -->
+
+      <div class="banner" text-center>
+          <img class="b-img" src="assets/icon/07-Checkout/Payment-Failed-Icon.svg" />
+          <div class="title"> Unexpected error found. <br>Please Try later</div>
+          </div>
+          <div class="action">   
+          <button ion-button outline class="Retry retry-btn" (click)="getWishItem()">Retry</button>
+          <button ion-button full class="Retry cshopping-btn" (click)="goToHome()">CONTINUE SHOPPING</button>
+        </div>
+
+    </div>
+
+
+</ion-content>

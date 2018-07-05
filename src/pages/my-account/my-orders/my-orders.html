@@ -1,0 +1,37 @@
+<ion-content>
+  <div class="header">
+    <button ion-button outline clear (click)="goToMyAccount()">
+      <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+      <ion-label>My Orders</ion-label>
+    </button>
+  </div>
+  <div class="content">
+      <!-- <div class="order-cancel">You order has been cancelled</div> -->
+    <div class="search">
+       <ion-searchbar class="orders-search" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+       <!-- <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar> -->
+       
+    </div>
+    <span class="title">Order Details</span>    
+    <!--<span *ngFor="let order of myOrder">-->
+    <ion-item *ngFor="let item of myOrdertmp" (click)="goToOrdersDetail(myOrder[item.order_key],item)" [ngClass]="{'not-deliver': !item.deliver }">
+          <ion-avatar item-start>
+            <img src={{item.img}}>
+          </ion-avatar>
+          <div class="p-name">{{item.product_name}}</div>
+          <div class="p-desc">{{item.item_status}}</div>
+          <ion-icon item-end name="arrow-forward"></ion-icon>
+    </ion-item>
+    <!--</span>-->
+    <!--<div class="search-filter">
+        <ion-item>
+            <ion-avatar item-start>
+              <img src="assets/icon/10/5.png">
+            </ion-avatar>
+            <div class="p-name">Mustard Ankle Strap Leather Sandals</div>
+            <div class="p-desc">Dispatched & delivered</div>
+        </ion-item>
+        <button menuClose ion-item icon-right>View Order Details</button>
+      </div>-->
+  </div>
+</ion-content>

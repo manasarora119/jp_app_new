@@ -1,0 +1,155 @@
+<ion-header>
+    <ion-navbar color="white">
+      <ion-title>Address</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <div [ngStyle]="{'margin-bottom' : isKeyboardShown ?  '0px' : '64px' }">
+    <form [formGroup]="addressForm" (ngSubmit)="saveAddress()">
+      <div class="shipping-address">
+        <div class="add-txt">Add a shipping address</div>
+        <div class="form-container">
+  
+  
+          <ion-list>
+            <div class="err-msg" *ngIf="addressForm.get('name').touched" (ionFocus)="hideFooter()" [hidden]="(addressForm.get('name').valid )">
+              Only alphabets allowed
+            </div>
+            <ion-item>
+              <ion-input type="text" formControlName="name" placeholder="Full Name*" onblur="this.placeholder='Full Name*'" required  autofocus></ion-input>
+            </ion-item>
+  
+            <div class="err-msg" *ngIf="addressForm.get('telephone').touched" [hidden]="(addressForm.get('telephone').valid )">
+              Number should be 10 digit
+            </div>
+            <ion-item>
+              <ion-input type="text" formControlName="telephone" placeholder="Mobile Number*" (ionFocus)="hideFooter()" onblur="this.placeholder='Mobile Number*'"
+                required></ion-input>
+            </ion-item>
+  
+            <ion-item class="textarea">
+              <ion-label stacked>Address*</ion-label>
+              <ion-textarea type="text" formControlName="street" (ionFocus)="hideFooter()" required></ion-textarea>
+            </ion-item>
+  
+            <ion-item>
+              <ion-input type="text" formControlName="city" placeholder="City*" (ionFocus)="hideFooter()" onfocus="this.placeholder='';" onblur="this.placeholder='City*'"
+                required></ion-input>
+            </ion-item>
+  
+            <ion-item>
+              <ion-input type="text" formControlName="postcode" placeholder="Pin Code*" onfocus="this.placeholder=''" onblur="this.placeholder='Pin Code*'"
+                required></ion-input>
+            </ion-item>
+  
+            <ion-item>
+              <ion-select formControlName="country_id" #selectedCountry placeholder="Country*" (ionChange)="getCountryStates(selectedCountry.value)"  
+                onfocus="this.placeholder=''" onblur="this.placeholder='Country*'" interface="popover">
+                <ion-option value="IN">India</ion-option>
+              </ion-select>
+            </ion-item>
+  
+            <ion-item>
+                
+              <ion-select [disabled]="!allStates" formControlName="region_id" placeholder="State*" class="state-select" onfocus="this.placeholder=''" 
+                onblur="this.placeholder='State*'" (ionChange)="onChangeState($event)"  interface="popover">
+                <!-- (ionFocus)="hideFooter()" -->
+                <ion-option [value]="state.region_id" *ngFor="let state of allStates">{{state.name}}</ion-option>
+              </ion-select>
+            </ion-item>
+     
+    
+            <!-- <ion-item>
+                  <ion-select formControlName="country" #selectedCountry placeholder="Country" (ionChange)="getCountryStates(selectedCountry.value)" onfocus="this.placeholder=''"
+                  onblur="this.placeholder='Country'" interface="popover">
+                      <ion-option [value]="country.country_id" *ngFor="let country of allCountrys">{{country.name}}</ion-option>
+                    </ion-select>
+              </ion-item> -->
+          </ion-list>
+          <ion-item class="same-checkbox">
+            <ion-label>Billing Address: Same as Shipping Address</ion-label>
+            <ion-checkbox [checked]="sameAddress" (ionChange)="updateBillingAddress()"></ion-checkbox>
+          </ion-item>
+        </div>
+      </div>
+  
+      <div class="billing-address" *ngIf="!sameAddress && formUpdated">
+        <div class="form-container">
+          <div class="add-txt">Add a Billing Address
+            <ion-icon name="ios-arrow-up"></ion-icon>
+          </div>
+          <form [formGroup]="addressForm" (ngSubmit)="save()">
+            <ion-list>
+              <div class="err-msg" *ngIf="addressForm.get('billing_name').touched" [hidden]="(addressForm.get('billing_name').valid )">
+                Only alphabets allowed
+              </div>
+              <ion-item>
+                <ion-input type="text" formControlName="billing_name" placeholder="Full Name*" onblur="this.placeholder='Full Name*'" required></ion-input>
+              </ion-item>
+  
+              <div class="err-msg" *ngIf="addressForm.get('billing_telephone').touched" [hidden]="(addressForm.get('billing_telephone').valid )">
+                Number should be 10 digit
+              </div>
+              <ion-item>
+                <ion-input type="text" formControlName="billing_telephone" placeholder="Mobile Number*" onblur="this.placeholder='Mobile Number*'"
+                  required></ion-input>
+              </ion-item>
+  
+              <ion-item class="textarea">
+                <ion-label stacked>Address*</ion-label>
+                <ion-textarea type="text" formControlName="billing_street" required></ion-textarea>
+              </ion-item>
+  
+              <ion-item>
+                <ion-input type="text" formControlName="billing_city" placeholder="City*" onfocus="this.placeholder=''" onblur="this.placeholder='City*'"
+                  required></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-input type="text" formControlName="billing_postcode" placeholder="Pin Code*" onfocus="this.placeholder=''" onblur="this.placeholder='Pin Code*'"
+                  required></ion-input>
+              </ion-item>
+  
+              <ion-item>
+                <ion-select formControlName="billing_country_id" #selectedCountry placeholder="Country*" (ionChange)="getCountryStates(selectedCountry.value)" 
+                  onfocus="this.placeholder=''" onblur="this.placeholder='Country*'" interface="popover">
+                  <ion-option value="IN">India</ion-option>
+                </ion-select>
+              </ion-item> 
+  
+              <ion-item>
+                <ion-select [disabled]="!allStates" (blur)="onChangeState()" (ionChange)="onChangeState()" formControlName="billing_region_id" placeholder="State*" class="state-select" onfocus="this.placeholder=''" 
+                  onblur="this.placeholder='State*'" interface="popover">
+                  <ion-option [value]="state.region_id" *ngFor="let state of allStates">{{state.name}}</ion-option>
+                </ion-select>
+              </ion-item>
+  
+  
+              <!-- <ion-item>
+                    <ion-select formControlName="country" #selectedCountry placeholder="Country" (ionChange)="getCountryStates(selectedCountry.value)" onfocus="this.placeholder=''"
+                    onblur="this.placeholder='Country'" interface="popover">
+                        <ion-option [value]="country.country_id" *ngFor="let country of allCountrys">{{country.name}}</ion-option>
+                      </ion-select>
+                </ion-item> -->
+            </ion-list>
+          </form>
+        </div>
+      </div>
+  
+    </form>
+  </div>
+  </ion-content>
+
+  <ion-footer *ngIf="!isKeyboardShown">
+      <div class="address-footer" *ngIf="KeyboardStatus==0">
+          <ion-row align-items-center>
+            <ion-col col-5 class="cancel-btn">
+              <button ion-button full outline (click)="cancel()">CANCEL</button>
+            </ion-col>
+            <ion-col col-7 class="save-btn">
+              <button ion-button full [disabled]="!addressForm.valid" (click)="saveAddress()">SAVE</button>
+            </ion-col>
+          </ion-row>
+        </div>
+  </ion-footer>

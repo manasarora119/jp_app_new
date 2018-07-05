@@ -1,0 +1,404 @@
+page-gift-cards-details {
+      .err-msg{
+                    padding-top: 4px;
+                    @include fontStyles($font-Regular, $jp-color-gray, 12px);
+                    min-height: 16px;
+                    position: relative;
+                    top: -5px;
+                    z-index: 2;
+                }
+    .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+        img{
+            width: 14px;
+            margin: 0 34px 0 16px;
+            display: inline-block;
+        }
+        ion-label{
+            @include fontStyles($font-Regular,$jp-color-black,16px);
+            @include borderRadius(4px);
+            letter-spacing: 0.5px;
+            text-align: left;
+            margin: 14px 0;;        
+        }
+    }
+    .content {
+        padding: 16px;
+        background-color: $jp-color-light-gray !important;
+        .scroll-content{
+            padding-bottom: 16px;
+        }
+        .gc-details{
+            //overflow: auto;
+            .gift-details{
+                padding: 0 16px 16px;
+                background-color: $jp-color-white;
+                @include borderRadius(4px);
+                @include boxShadow(0 0 1p 1px $jp-color-light-gray);
+            ion-item{
+                padding:  0px !important;
+                border: none !important;   
+                box-shadow: none !important;  
+                border-bottom: 1px solid $jp-color-lighter-gray !important;
+                min-height: 44px;
+                .item-inner{
+                    border: none !important;
+                    box-shadow: none !important;   
+                    padding:  0px !important;
+                
+                }
+
+                &:last-child .item-inner{
+                    border: none !important;
+                    box-shadow: none !important;   
+                }
+                &.input-has-focus{
+                    // border-bottom: 1px solid $jp-color-red !important;
+                    ion-label{
+                        color : $jp-color-dark-gray !important;
+                    }
+                }
+            
+                ion-input{
+                    input {
+                        margin : 12px 0px;
+                        padding: 0 10px;
+                        @include fontStyles($font-SBold, $jp-color-black, 14px);
+                        &::-webkit-input-placeholder {
+                            @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                        }
+
+                        &:-moz-placeholder   {
+                            @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                        }
+
+                        &::-moz-placeholder {
+                            @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                        }
+
+                        &:-ms-input-placeholder {
+                            @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                        }
+                    }
+                                
+                }
+                ion-select{
+                    max-width: 100% !important;
+                    width: 100% !important;
+                    padding: 0;
+                    padding-right: 5px !important;
+                    .select-text{
+                        @include fontStyles($font-SBold, $jp-color-black, 14px);
+                    }
+                    .select-placeholder{
+                        @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                    }
+                    .select-icon{
+                        .select-icon-inner{
+                            background: url('../../assets/icon/10-Universal-Icons/Drop-Down-Arrow.svg') no-repeat;
+                            width: 10px;
+                            height: 10px;
+                            border: none;
+                        }
+                    }
+                }
+              
+
+                ion-label{
+                    height: 49px;
+                    margin: 0;
+                    @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                    padding-top: 24px;
+                    padding-bottom: 8px;
+                }
+                ion-textarea{
+                    min-height: 100px !important;
+                    border: 1px solid $jp-color-lighter-gray;
+                    @include borderRadius(2px);
+                    @include fontStyles($font-Regular, $jp-color-black, 14px);
+                    line-height: 20px;
+                    resize: vertical;
+                    //padding: 12px 8px;
+                
+                    textarea{
+                        min-height: 100px !important;
+                        margin: 0 !important;
+                        width: 100% !important;
+                        padding: 12px 8px;
+                        &.text-input{
+                        resize: vertical;
+                        }
+                        &:focus{
+                        // border: 1px solid $jp-color-red !important;
+                        ion-label{
+                            // color : pink !important;
+                        }
+                        }
+                    }
+                    &.input-has-focus textarea{
+                        // border: 1px solid $jp-color-red !important;
+                    }
+                
+                }
+            }
+            .textarea{
+                border: none !important;
+                
+                &.input-has-focus{
+                    border: none !important;
+                }
+            }
+            .msg-text{
+                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                line-height: 20px;
+                padding: 24px 0 8px;
+            }
+            .txt-label{
+                @include fontStyles($font-SBold, $jp-color-black, 14px);
+                padding:16px 0 8px;
+                .label-gray{
+                    color: $jp-color-gray;
+                }
+            }
+            ion-item.borderAll{
+                    border: 1px solid $jp-color-lighter-gray !important;
+                    @include borderRadius(4px);
+                    height: 42px;
+                    ion-label[fixed]{
+                        width: 45px;
+                        max-width: 45px;
+                        min-width: 45px;
+                        line-height: 48px;
+                        padding: 0 0 0 9px;
+                        @include fontStyles($font-Regular, $jp-color-black, 14px);
+                    }
+                }
+        }
+
+        .gift-address-box{
+            background-color: $jp-color-white;
+            min-height: 461px;
+            border: 1px solid $jp-color-lighter-gray;
+            border-top: none;
+            @include borderRadius(0px 0px 4px 4px);
+            padding: 2px 0px 1px 0px;
+            margin-top: -2px;
+            ion-list{
+                margin : 0;
+                padding: 0 16px;
+                /* .err-msg{
+                        margin: 7px 0px -14px 15px;
+                        @include fontStyles($font-Regular, $jp-color-gray, 14px);
+                        min-height: 14px;
+                } */
+
+                ion-item{
+                    padding:  0px !important;
+                    border: none !important;
+                    box-shadow: none !important;
+                    border-bottom: 1px solid $jp-color-lighter-gray !important;
+                    min-height: 49px;
+                    .item-inner{
+                        border: none !important;
+                        box-shadow: none !important;
+                        padding:  0px !important;
+
+                    }
+
+                    &:last-child .item-inner{
+                        border: none !important;
+                        box-shadow: none !important;
+                    }
+                    &.input-has-focus{
+                        border-bottom: 1px solid $jp-color-red !important;
+                        ion-label{
+                            color : $jp-color-dark-gray !important;
+                        }
+                    }
+
+                    ion-input{
+                        input{
+                            margin: 16px 0px 0px 0px; 
+                            @include fontStyles($font-SBold, $jp-color-black, 14px);
+                            &::-webkit-input-placeholder {
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+
+                            &:-moz-placeholder   {
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+
+                            &::-moz-placeholder {
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+
+                            &:-ms-input-placeholder {
+                                @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                            }
+                        }
+
+                    }
+                    ion-select{
+                        max-width: 100% !important;
+                        width: 100% !important;
+                        padding: 0;
+                        padding-right: 5px !important;
+                        .select-text{
+                            @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                        }
+                        .select-icon{
+                            .select-icon-inner{
+                                position: relative;
+                                margin: 0px;
+                                border: none;
+                                font-family: "Ionicons";
+                                font-weight: bold;
+                                -webkit-transform: rotate(90deg);
+                                transform: rotate(90deg);
+                                &::before{
+                                    content: "\f3d1";
+                                    position: absolute;
+
+                                }
+                            }
+                        }
+
+                    }
+
+                    ion-label{
+                        height: 47px;
+                        margin: 0;
+                        @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                        padding-top: 24px;
+                        padding-bottom: 8px;
+
+                    }
+
+
+
+
+                    ion-textarea{
+                        min-height: 100px !important;
+                        border-radius: 2px;
+                        resize: vertical;
+                        //padding: 12px 8px;
+
+                        textarea{
+                            min-height: 100px !important;
+                            margin: 0 !important;
+                            width: 100% !important;
+                            padding: 12px 8px;
+                            border: 1px solid $jp-color-lighter-gray;
+                            @include borderRadius(2px);
+                            position: relative;
+                            &.text-input{
+                              resize: vertical;
+                              @include fontStyles($font-Regular, $jp-color-dark-gray, 14px);
+                              line-height: 17px;
+                            }
+                            &:focus{
+                             border: 1px solid $jp-color-red !important;
+                             ion-label{
+                                 color : pink !important;
+                             }
+                            &::after{
+                                content: "";
+                                width: 24px;
+                                height: 24px;
+                                background: url(../images/resizer.svg);
+                                position: absolute;
+                                right: 0px;
+                                bottom: 0px;
+                            }
+                            }
+                        }
+                        &.input-has-focus textarea{
+                            border: 1px solid $jp-color-red !important;
+                        }
+
+                    }
+
+
+                }
+                .textarea{
+                    border: none !important;
+
+                    &.input-has-focus{
+                        border: none !important;
+                    }
+                }
+                .err-msg{
+                    padding-top: 4px;
+                    @include fontStyles($font-Regular, $jp-color-gray, 12px);
+                    min-height: 16px;
+                    position: relative;
+                    top: 7px;
+                    z-index: 2;
+                }
+            }
+        }
+
+        .btn-card{
+            button:first-child{
+                margin-right: 16px;
+            }
+            button{
+                background: #bdbdbd;
+                border: none;
+                @include borderRadius(4px);
+                @include fontStyles($font-SBold,$jp-color-dark-gray,16px);
+                letter-spacing: 0.25px;
+                margin: 16px 0 0 0px !important;
+                height: 48px;
+                width: 100%;
+                float: left;
+                box-shadow: none;
+            }
+            button.active_btn{
+                background: $jp-color-red;
+                color: $jp-color-white !important;
+            }
+        }
+    }
+
+    .add-new-btn{
+            @include fontStyles($font-SBold, $jp-color-black, 14px);
+            letter-spacing: 0.25px;
+            text-align: left;
+            text-transform: none;
+            background-color: $jp-color-white;
+            height: 56px;
+            box-shadow: none;
+            margin: 0;
+            padding: 0 16px;
+            border: solid 1px $jp-color-lighter-gray;
+            @include borderRadius(4px);
+            margin-top: 16px;
+            span{
+                display: block;
+                line-height: 56px;
+                ion-icon{
+                    float: right;
+                    line-height: 56px;
+                    // transform: rotate(90deg);
+                    padding: 0;
+                    &::before{
+                        content: '';
+                        background : url(../../assets/icon/10-Universal-Icons/Drop-Down-Arrow.svg) no-repeat;
+                        width: 10px;
+                        height: 10px;
+                        border: none;
+                        // transform: rotate(90deg);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-0.9%" y="-4.2%" width="101.8%" height="112.5%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.86336488   0 0 0 0 0.882079917   0 0 0 0 0.919509991  0 0 0 1 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Reference" transform="translate(-21.000000, -78.000000)">
+            <g id="Group-6" filter="url(#filter-1)" transform="translate(16.000000, 73.000000)">
+                <g id="Group-3" transform="translate(7.000000, 6.000000)">
+                    <rect id="Rectangle-12-Copy" stroke="#CCD6DA" stroke-width="0.9" x="0" y="0" width="36" height="36" rx="18"></rect>
+                    <path d="M13.158,16.911 C14.454,19.458 16.542,21.546 19.089,22.842 L21.069,20.862 C21.321,20.61 21.672,20.538 21.987,20.637 C22.995,20.97 24.075,21.15 25.2,21.15 C25.6970563,21.15 26.1,21.5529437 26.1,22.05 L26.1,25.2 C26.1,25.6970563 25.6970563,26.1 25.2,26.1 C16.7500433,26.1 9.9,19.2499567 9.9,10.8 C9.9,10.5613052 9.99482116,10.3323866 10.1636039,10.1636039 C10.3323866,9.99482116 10.5613052,9.9 10.8,9.9 L13.95,9.9 C14.4470563,9.9 14.85,10.3029437 14.85,10.8 C14.85,11.925 15.03,13.005 15.363,14.013 C15.462,14.328 15.39,14.679 15.138,14.931 L13.158,16.911 Z" id="Shape" fill="#CCD6DA" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

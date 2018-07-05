@@ -1,0 +1,386 @@
+<ion-header class="jp-header" [ngClass]="{'searchHeader':search_key == 'searching'}">
+  <ion-navbar>
+    <button class="menutoggleBtn" ion-button menuToggle style="display:block !important" start (click)="loadmenudata()">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="search_key != 'searching'">
+      <img src="assets/icon/10-Universal-Icons/jaypore-logo-white.svg" (click)="gotohomepage()" alt="Logo">
+    </ion-title>
+    <!--<ion-buttons *ngIf="search_key != 'searching'" class="cartBtn" end [ngStyle]="{'top' : (this.isIos) ? '24px' : '0px' }">-->
+    <ion-buttons *ngIf="search_key != 'searching'" class="cartBtn" end>
+      <button (click)="gotoWishlist()" tappable class="wishlist-icon">
+        <img src="assets/icon/03-Header/wishlist-icon.svg" />
+      </button>
+      <button (click)="gotoCart()" tappable ion-button class="bag-icon">
+        <img src="assets/icon/10-Universal-Icons/cart-white.png" alt="Cart">
+        <ion-badge item-end *ngIf="isLoggedIn && bagcount != 0">{{bagcount}}</ion-badge>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+  <ion-toolbar>
+    <img (click)="showOption()" src="{{gridOptions ? 'assets/icon/05-Listing/View2x2.svg' : 'assets/icon/05-Listing/View1x1.svg' }}"
+    />
+  </ion-toolbar>
+</ion-header>
+
+<ion-header class="header-search" *ngIf="search_key == 'searching'">
+  <ion-navbar>
+    <ion-searchbar [(ngModel)]="search_query" class="brand-search search-searchbar" (ionFocus)="checkFocus()" (ionClear)="search('clear')"
+      placeholder="Search for brands and products">
+    </ion-searchbar>
+    <!-- <button no-margin no-padding class="search-clear" (click)="search('clear')">Clear</button> -->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="listing-content" [ngClass]="{'islisting' : (search_key != 'searching' && search_key != 'event_id' && filterData)}">
+  <div #goTosearchTop></div>
+  <!--Event Start-->
+  <ion-card *ngIf="search_key == 'event_id'" class="event jpCard">
+    <div class="content" *ngIf="listingData">
+      <span class="evBanner-img" *ngIf="listingData.data.event_banner[0]">
+        <img class="img-responsive" src="{{listingData.data.event_banner[0].banner}}" />
+      </span>
+      <div class="event-title">{{listingData.data.event_title}}</div>
+      <!--<div class="event-type">MEDHYA</div> -->
+      <div class="event-type">{{listingData.data.event_subtitle | uppercase}}</div>
+      <div class="event-desc" [innerHtml]="listingData.data.description"></div>
+      <div class="event-date">{{listingData.data.event_date_range}}</div>
+    </div>
+  </ion-card>
+  <!--Event End-->
+
+
+  <!--Brand Start-->
+  <ion-card *ngIf="search_key == 'brand_id' && listingData" class="brand jpCard">
+    <div class="content" *ngIf="listingData">
+      <span class="evBanner-img" *ngIf="listingData.data.banner_image">
+        <img class="img-responsive" *ngIf="listingData.data.banner_image" src="{{listingData.data.base_url+listingData.data.banner_image[0].image}}"
+        />
+      </span>
+
+      <div class="brand-title">{{filtername}}</div>
+
+      <div class="brand-desc" *ngIf="description" [innerHtml]="description"></div>
+    </div>
+  </ion-card>
+  <!--Brand End-->
+
+
+  <!--Category Start-->
+  <ion-card *ngIf="search_key == 'category_id' && listingData && filtername || wishListing" class="brand jpCard">
+    <div class="content" *ngIf="listingData">
+      <div class="brand-title">{{filtername}}</div>
+      <div class="brand-desc" *ngIf="description" [innerHtml]="description"></div>
+    </div>
+  </ion-card>
+  <!--Category End-->
+
+
+  <!--Listing Start-->
+  <div class="productItem jpCard" *ngIf="search_key != 'searching'">
+    <div class="contant {{listingType}}" *ngIf="listingData">
+      <!-- <ion-spinner name="bubble" *ngIf="spinnerLoad"></ion-spinner> -->
+      <ion-row class="img-text">
+          <!--class {{bannerData[i]!=undefined?'event_banner':''}} -->
+        <ion-col class="item" col-6 *ngFor="let item of listingData.data.result; let i=index;">
+          <div class="rm-boder" *ngIf="item" [ngStyle]="{'border-left': (i==1 || i%2==1) ? 'solid 1px #f7f8fa' : 'none', 'border-right': (i==0 || i%2==0) ? 'solid 1px #f7f8fa' : 'none'}">
+            <div class="wishlist-list-box">
+              <div class="wishlist-icon">
+                <!-- listingData.data.result[i].id != removedPidFromWishList -->
+                <!-- && checkDetetedItem(listingData.data.result[i].id) !== true) -->
+                <button (click)="addToWishlist(item.id, i)" tappable class="ab">
+                  <img *ngIf="loadinProd.indexOf(i) < 0" class="iconBL" [src]="(listingData.data.result[i].fave_flag ? 'assets/icon/05-Listing/heart-red-icon.svg' :'assets/icon/05-Listing/heart-gray-icon.svg' )"
+                  />
+                </button>
+              </div>
+              <!--  -->
+              <img *ngIf="loadinProd.indexOf(i) > -1" class="loading-icon" src="assets/icon/04-PDP/loader.gif" />
+
+              <div tappable (click)="gotoPdp(item.id,item.name,item.gallery.zoom,item.gallery.thumbnail,item.brand_name,'listingData', item.final_price, item.normal_price, getDiscount(item.normal_price,item.final_price),i)">
+                <div class="item-img">
+                  <!-- <ion-img cache src="{{item.gallery.thumbnail}}"></ion-img> -->
+                  <!--  <img class="p-image" src="{{getImageUrl(item.gallery.thumbnail)}}" onerror="this.src='assets/icon/05-Listing/BlankScreenListing.svg'"/> -->
+                  <img class="p-image" src="{{item.gallery.thumbnail}}" onerror="this.dsrc='assets/icon/05-Listing/BlankScreenListing.svg'"
+                  />
+                  <div class="size" *ngIf="item.child_products">
+                    <span *ngFor="let size of item.child_products.collection;">{{size.label}}</span>
+                  </div>
+                  <div class="readyToShip" *ngIf="item.ready_to_ship">
+                    <ion-buttons>
+                      <img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg" />
+                    </ion-buttons>
+                  </div>
+                  <span *ngIf="item.final_price != item.normal_price" class="item-discount">
+                    <span class="item-discount-persent">
+                      ({{ getDiscount(item.normal_price,item.final_price)}}% OFF)
+                    </span>
+                  </span>
+                </div>
+
+
+
+                <span *ngIf="item.qty == 0" class="soldout-product">SOLD OUT</span>
+                <div class="item-text">
+                  <div class="p-title">{{(item.brand_name | wordbreak : 30) | uppercase}}</div>
+                  <div class="p-desc">{{item.name.replace('by Jaypore','') | wordbreak : 50}}
+                  </div>
+                  <div class="p-price" *ngIf="item.final_price == item.normal_price
+                            &&  item.normal_price>=10000">
+                    {{'Currency' | translate}}{{ floor(item.final_price)| number }}
+                  </div>
+                  <div class="p-price" *ngIf="(item.final_price == item.normal_price) &&
+                      (item.normal_price < 10000) ">
+                    {{'Currency' | translate}}{{floor(item.final_price)}}
+                  </div>
+                  <div class="p-price" *ngIf="item.final_price != item.normal_price">
+                    <span class="item-price" *ngIf="item.final_price >=10000">
+                      {{'Currency' | translate}}{{floor(item.final_price) | number}}
+                    </span>
+                    <span class="item-price" *ngIf="item.final_price <10000">
+                      {{'Currency' | translate}}{{floor(item.final_price)}}
+                    </span>
+                    <span class="item-price-discount">
+                      {{'Currency' | translate}}{{floor(item.normal_price)}}
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="bannerData" class="image-text">
+
+            <div *ngIf="bannerData[i]">
+
+              <div class="content" *ngIf="bannerData[i]">
+
+                <!-- <img class="img-responsive" src="{{bannerData[i].banner}}" /> -->
+              </div>
+            </div>
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+
+  <!--Listing End-->
+
+
+  <!--Searching Start-->
+  <div class="productItem searchItems jpCard" *ngIf="search_key == 'searching'">
+    <div class="contant {{listingType}}" *ngIf="searchingData && searchingData.results.length > 0">
+      <ion-row>
+        <ion-col class="item" col-6 *ngFor="let item of searchingData.results; let i=index;">
+          <div class="rm-boder" *ngIf="item" [ngStyle]="{'border-left': (i==1 || i%2==1) ? 'solid 1px #f7f8fa' : 'none', 'border-right': (i==0 || i%2==0) ? 'solid 1px #f7f8fa' : 'none'}">
+            <div tappable (click)="gotoPdp(item.id, item.name, item._images[0], item._images[0], item.manufacturer, 'searchingData', item.discounted_price, item.price,item.discount, i)">
+              <div class="item-img">
+                <span *ngIf="item._images">
+                  <!-- <ion-img cache src="{{item._images[0]}}"></ion-img> -->
+                  <img class="p-image" src="{{item._images[0]}}" onerror="this.src='assets/icon/05-Listing/BlankScreenListing.svg'" />
+                </span>
+                <div class="size" *ngIf="item.Size">
+                  <span *ngFor="let size of item.Size;">{{size}}</span>
+                </div>
+
+                <div class="readyToShip" *ngIf="item.readyToShip">
+                  <ion-buttons>
+                    <img class="iconBL" src="assets/icon/05-Listing/Ready-To-Ship.svg" />
+                  </ion-buttons>
+                </div>
+
+                <!-- <div class="wishlist" (click)="addToWishList(i)">
+                   <ion-buttons><img class="iconBL" src="assets/icon/10/{{item.fave_flag ? 'Wishlist-filled.png' : 'Wishlist.png'}}"/></ion-buttons>
+                 </div> -->
+                <span *ngIf="item.qty == 0" class="soldout-product">SOLD OUT</span>
+                <span *ngIf="item.is_discount_available != 0" class="item-discount">
+                  <span class="item-discount-persent">({{item.discount}}% OFF)</span>
+                </span>
+              </div>
+              <div class="item-text">
+                <div class="p-title" *ngIf="item.manufacturer">
+                  {{item.manufacturer | wordbreak : 30}}
+                </div>
+                <div class="p-desc">
+                  {{item.name}}
+                </div>
+                <div class="p-price" *ngIf="item.is_discount_available == 0 && item.discounted_price >=10000">
+                  {{'Currency' | translate}}{{floor(item.discounted_price)| number}}
+                </div>
+                <div class="p-price" *ngIf="item.is_discount_available == 0 && item.discounted_price <10000">
+                  {{'Currency' | translate}}{{floor(item.discounted_price)}}
+                </div>
+
+                <div class="p-price" *ngIf="item.is_discount_available != 0">
+                  <span class="item-price" *ngIf="item.discounted_price >=10000">
+                    {{'Currency' | translate}}{{floor(item.discounted_price)| number}}
+                  </span>
+                  <span class="item-price" *ngIf="item.discounted_price <10000">
+                    {{'Currency' | translate}}{{floor(item.discounted_price)}}
+                  </span>
+
+                  <span class="item-price-discount">
+                    {{'Currency' | translate}}{{floor(item.price)}}
+                  </span>
+                  <!--<span class="item-discount-persent">({{listingData.data.result[i].discnt}}% OFF)</span>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <!--Searching End-->
+
+
+  <!-- Event  -->
+  <div *ngIf="search_key == 'event_id'">
+
+    <ion-card *ngIf="newarrivalData" class="new-arrival jpCard">
+      <div class="title" *ngIf="newarrivalData.error != true">NEW ARRIVALS</div>
+      <div class="contant slider" *ngIf="newarrivalData.error != true">
+        <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 262px">
+          <div class="ion-scroll-item" *ngFor="let item of newarrivalData">
+            <div class="carousel-content" tappable (click)="gotoPdp(item.id,item.name,item.img,item.img,'','newarrivalData',item.price,item.normal_price,'')">
+              <div class="slide-item-image">
+                <img src="{{item.img}}" />
+              </div>
+              <div class="slide-item-descriptions">
+                <p class="b-name">{{item.name | wordbreak : 20}}</p>
+                <p class="b-price" *ngIf="item.price  >=10000">{{'Currency' | translate}}{{floor(item.price)| number}}</p>
+                <p class="b-price" *ngIf="item.price <10000">{{'Currency' | translate}}{{item.price}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-scroll>
+      </div>
+    </ion-card>
+
+    <ion-card *ngIf="popularData" class="most-popular jpCard">
+      <div class="title" *ngIf="popularData.error != true">MOST POPULAR</div>
+      <div class="contant slider" *ngIf="popularData.error != true">
+        <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 262px">
+          <div class="ion-scroll-item" *ngFor="let item of popularData">
+            <div class="carousel-content" tappable (click)="gotoPdp(item.id,item.name,item.img,item.img,'','popularData',item.price,item.normal_price,'')">
+              <div class="slide-item-image">
+                <img src="{{item.img}}" />
+              </div>
+              <div class="slide-item-descriptions">
+                <p class="b-name">{{item.name | wordbreak : 20}}</p>
+                <p class="b-price" *ngIf="item.price>=10000">{{'Currency' | translate}}{{floor(item.price)| number}}</p>
+                <p class="b-price" *ngIf="item.price <10000">{{'Currency' | translate}}{{item.price}}</p>
+              </div>
+            </div>
+          </div>
+        </ion-scroll>
+      </div>
+    </ion-card>
+
+    <ion-card *ngIf="ShopAllImagechk !=2 && itemspartnersShopall" class="most-popular jpCard">
+      <div class="title" *ngIf="itemspartnersShopall.error != true">SHOP ALL EVENTS</div>
+      <div class="contant slider" *ngIf="ShopAllImagechk ==1">
+        <ion-scroll scrollX="true" scrollY="false" style="width: 100vw; height: 262px">
+          <div class="ion-scroll-item" *ngFor="let item of itemspartnersShopall">
+            <div class="carousel-content" (click)="golist(item.id,'event', '', item.title)">
+              <div class="slide-item-image" *ngIf="item.image">
+                <img src="{{item.image}}" />
+              </div>
+              <div class="slide-item-descriptions">
+                <p class="b-name" *ngIf="item.title">{{item.title | wordbreak : 18}}</p>
+                <p class="item-description" *ngIf="item.description">{{item.description | wordbreak : 10 }}</p>
+              </div>
+            </div>
+          </div>
+        </ion-scroll>
+      </div>
+    </ion-card>
+
+    <ion-spinner name="circles" class="spin" *ngIf="search_key == 'event_id' && listingData && ShopAllImagechk == 0">
+    </ion-spinner>
+
+    <div class="story" *ngIf="StoryStatus==1 ">
+      <h2 class="jp-divider">
+        <span>THE STORY</span>
+      </h2>
+      <div class="pd-sub" [innerHtml]="listingData.data.event_story"></div>
+    </div>
+
+
+
+  </div>
+
+  <ion-row class="next-prev" text-center *ngIf="allDataRes" [ngStyle]="{'padding':(searchFrom == 'searchProdct')? '16px 0 16px' : '16px 0 4px'}">
+    <button class="prev" (click)="goPrevius(goTosearchTop)" *ngIf="page > 1 && dataRes">
+      <img class="iconBL" src="assets/icon/05-Listing/Previous.svg" /> Previous
+    </button>
+    <!-- <button class="next" (click)="goNext(goTosearchTop)" *ngIf="allListingProductCount >= listingLimit && page * listingLimit < allListingProductCount"> -->
+
+    <button class="next" (click)="goNext(goTosearchTop)" *ngIf="allListingProductCount >= listingLimit && page * listingLimit < allListingProductCount && searchFrom !== 'searchProdct'&&this.search_key!='event_id'">
+      Next
+      <img class="iconBL" src="assets/icon/05-Listing/Next.svg" />
+    </button>
+
+    <button class="next" (click)="goNext(goTosearchTop)" *ngIf="searchFrom == 'searchProdct' && searchingData.results.length >= limit">
+      Next
+      <img class="iconBL" src="assets/icon/05-Listing/Next.svg" />
+    </button>
+
+  </ion-row>
+
+  <!-- Event  -->
+
+
+  <ion-card class="ls-footer jpCard" [ngClass]="{'endOfPage':search_key != 'searching' && search_key != 'event_id'}" *ngIf="searchingData || listingData">
+    <p class="f-text" *ngIf="searchFlagStatus ==1">Oops! No products found!</p>
+    <p class="f-text" *ngIf="searchFlagStatus == 0 && this.autoscrollflag ==0">You have reached the end of this page.
+    </p>
+  </ion-card>
+
+
+  <div *ngIf="autoscrollflag == 1
+  && search_key != 'event_id'">
+
+    <!-- <ion-infinite-scroll threshold="1000px" immediate-check="false" (ionInfinite)="doInfinite($event)"
+  [ngStyle]="{'bottom' : (search_key != 'searching' && search_key != 'event_id' && filterData) ? '24px' : '0px'  }"> -->
+
+
+    <!-- <ion-infinite-scroll [threshold]="threshold" immediate-check="false" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+
+  </div>
+
+
+</ion-content>
+
+
+<ion-footer>
+
+  <div class="bottom-582" [ngClass]="{'bottom-58': (search_key != 'searching' && search_key != 'event_id')}">
+    <ion-fab right bottom class="right-bottom search" *ngIf="search_key != 'searching'">
+      <button ion-fab color="light" (click)="searchFromListing()"></button>
+    </ion-fab>
+  </div>
+
+  <ion-card class="filter jpCard" *ngIf="search_key != 'searching' && search_key != 'event_id' && filterData && this.checkDataLenght>0">
+    <div class="addCart fixed-bottom">
+      <button full="" ion-button="" (click)="sortModalShow()" class="disable-hover button button-ios button-default button-default-ios"
+        ng-reflect-full="" [ngClass]="{'fullSort':search_key == 'event_id'}">
+        <span class="button-inner">SORT</span>
+      </button>
+      <button full="" ion-button="" (click)="filterModalShow()" class="disable-hover button button-ios button-default button-default-ios"
+        ng-reflect-full="">
+        <span class="button-inner">REFINE RESULTS</span>
+      </button>
+    </div>
+  </ion-card>
+
+</ion-footer>

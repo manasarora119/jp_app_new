@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-navbar>
+    <!-- <button class="menutoggleBtn" ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button> -->
+    <ion-buttons class="cartBtn" end>
+        <button ion-button clear small float-right class="help-btn" (click)="goToHelp()" >Need Help?</button>
+    </ion-buttons>
+
+    <!-- <button ion-button clear small float-right class="help-btn">Need Help?</button> -->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <!-- cod -->
+
+  <div class="content" *ngIf="paymentsData['paymentStatus'] == 'cod' || paymentsData['paymentStatus'] == 'zero'">
+    <div class="banner" text-center>
+      <img class="b-img" src="assets/icon/07-Checkout/Payment-Successful-Icon.svg" />
+      <div class="pay-title">We have received your order against cash on delivery. </div>
+      <!-- <div class="pay-desc" *ngIf="paymentsData == 'cod'">We have received your order against cash on delivery.</div> -->
+      <div class="transaction-id">Order ID: {{orderId}} </div>
+    </div>
+    <div class="sucess-note">An order confirmation email has been sent to
+      <div class="email">{{userData['email_id']}}</div>
+      <button ion-button outline class="view-order" (click)="viewOrderDetails(orderId)">View order</button>
+    </div>
+
+    <button ion-button full class="c-shopping" (click)="goToHomePage()">CONTINUE SHOPPING</button>
+  </div>
+
+  <!-- cod -->
+
+  <div class="content" *ngIf="paymentsData['paymentStatus'] == 'pending'">
+    <div class="banner" text-center>
+      <img class="b-img" src="assets/icon/07-Checkout/Payment-Pending-Icon.svg" />
+      <div class="pay-title">Payment Pending</div>
+      <div class="pay-desc">It looks like something went wrong. Please try again after a few minutes. <span class="time">15 minutes</span></div>
+    </div>
+    <button ion-button outline class="view-order">View order</button>
+
+    <button ion-button full class="c-shopping" onclick="goToHomePage()">CONTINUE SHOPPING</button>
+  </div>
+  <!-- fails due to the user action -->
+  <div class="content" *ngIf="paymentsData['paymentStatus'] == 'cancel'">
+    <div class="banner" text-center>
+      <img class="b-img" src="assets/icon/07-Checkout/Payment-Failed-Icon.svg" />
+      <div class="pay-title"> Sorry, there seems to have been a problem with the payment.<br>Please Try Again</div>
+      </div>
+      <div class="action">   
+      <button ion-button outline class="Retry retry-btn" (click)="checkCartStatus()">Retry</button>
+      <button ion-button full class="Retry cshopping-btn" (click)="goToHomePage()">CONTINUE SHOPPING</button>
+    </div>
+<!--     
+    <div class="what-do-now">
+      <div class="title">What you can do now :</div>
+      <ul>
+        <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+        <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</li>
+      </ul>
+    </div> -->
+
+  </div>
+
+  <div class="content" *ngIf="paymentsData['paymentStatus'] == 'success'">
+    <div class="banner" text-center>
+      <img class="b-img" src="assets/icon/07-Checkout/Payment-Successful-Icon.svg" />
+      <div class="pay-title">Payment Successful</div>
+      <div class="pay-desc" *ngIf="paymentsData['amount'] >=10000">Thank you for your order! We have received your payment of {{'Currency' | translate}} {{paymentsData['amount']|number}} .</div>
+      <div class="pay-desc" *ngIf="paymentsData['amount'] <10000">Thank you for your order! We have received your payment of {{'Currency' | translate}} {{paymentsData['amount']}} .</div>
+      <div class="transaction-id">Order ID: {{paymentsData['paymentID']}} </div>
+    </div>
+    <div class="sucess-note">An order confirmation email has been sent to
+      <div class="email">{{userData['email_id']}}</div>
+      <button ion-button outline class="view-order" (click)="viewOrderDetails()">View order</button>
+    </div>
+    <button ion-button full class="c-shopping" (click)="goToHomePage()">Continue Shopping</button>
+  </div>
+
+<!-- Gift card status details of success payments -->
+
+  <div class="content" *ngIf="paymentsData['paymentStatus'] == 'gift_success'">
+    <div class="banner" text-center>
+      <img class="b-img" src="assets/icon/07-Checkout/Payment-Successful-Icon.svg" />
+      <div class="pay-title">Your gift card has been sent to {{paymentsData['email']}}</div>
+    </div>
+    <div class="sucess-note">We’ve sent the {{invoice}} of this order to
+      <div class="email">{{userData['email_id']}}</div>
+    </div>
+
+    <button ion-button full class="c-shopping" (click)="goToHomePage()">CONTINUE SHOPPING</button>
+  </div>
+
+
+    <!-- payment fails due to Quote Updated -->
+    <div class="content" *ngIf="paymentsData['paymentStatus'] == 'quotes_updated'">
+      <div class="banner" text-center>
+        <img class="b-img" src="assets/icon/07-Checkout/Payment-Failed-Icon.svg" />
+        <div class="pay-title"> Sorry, there seems to have been a problem with the payment.<br>Please Try Again</div>
+        </div>
+        <div class="action">   
+        <button ion-button outline class="Retry retry-btn" (click)="goToCartPage()">Retry</button>
+        <button ion-button full class="Retry cshopping-btn" (click)="goToHomePage()">CONTINUE SHOPPING</button>
+      </div>
+     </div> 
+</ion-content>

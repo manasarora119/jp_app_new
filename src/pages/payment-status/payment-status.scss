@@ -1,0 +1,139 @@
+page-payment-status {
+    ion-navbar{
+      min-height: 55px !important;
+      padding: 0px !important;
+      height: 55px !important;
+        .back-button {
+            display: none !important;
+            // background: url(../assets/icon/10-Universal-Icons/Back-Icon.svg) no-repeat center center;
+        }
+
+      .toolbar-content {
+        ion-title {
+          min-height: 55px !important;
+          padding: 0px !important;
+          height: 55px !important;
+
+          .toolbar-title {
+            @include fontStyles($font-Regular, $jp-color-black, 16px);
+          }
+        }
+      }
+
+    }
+    .help-btn{
+        @include fontStyles($font-Regular,$jp-color-lightblue,12px);
+        letter-spacing: 0.2px;
+    }
+    .content{
+        background: $jp-color-light-gray;
+        padding: 16px;
+        text-align: center;
+        .banner{
+            background: $jp-color-white;
+            padding: 16px;
+            @include borderRadius(2px);
+            border: 1px solid $jp-color-lighter-gray;
+            .b-img{
+                display: inline-block;
+                padding: 8px 0;
+                width: 45px;
+            }
+            .pay-title{
+                @include fontStyles($font-SBold,$jp-color-black,16px);
+                padding: 8px 0;
+            }
+            .pay-desc{
+                @include fontStyles($font-Regular,$jp-color-gray,14px);
+                line-height: 20px;
+                padding-bottom: 8px;
+                .time{
+                    @include fontStyles($font-SBold,$jp-color-black,14px);
+                }
+            }
+            .view-order{
+                margin: 16px 0;
+                // padding-left: 24px;
+                // padding-right: 24px;
+            }
+            .transaction-id{
+                @include fontStyles($font-Regular,$jp-color-black,14px);
+                display: inline-block;
+                padding: 6px 8px;
+                background: rgba(216,216,216,.2);
+                padding-bottom: 8px;
+                @include borderRadius(2px);
+            }
+        }
+        .action{
+            padding: 16px;
+                .retry-btn{
+                    @include fontStyles($font-SBold,$jp-color-white,16px);
+                    height: 48px;
+                    width: 200px;
+                    background: $jp-color-red;
+                    margin: 32px auto 38px;
+                    @include borderRadius(2px);
+                    letter-spacing: 0.25px;
+                }
+                .cshopping-btn{
+                    width: 180px;
+                    background: none;
+                    margin: 0 auto;
+                    text-align: center;
+                    @include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+                    padding: 10px 10px;
+                    @include borderRadius(0px);
+                    @include boxShadow(none);
+                }
+    }
+        .view-order{
+            margin: 24px 0;
+            height: 40px;
+            @include fontStyles($font-Regular,$jp-color-lightblue,14px);
+            background: $jp-color-white;
+            border: 1px solid $jp-color-lighter-gray;
+            @include borderRadius(3px);
+            @include boxShadow(none);
+            padding: 11px 24px;
+        }
+        .c-shopping{
+            margin: 16px 0;
+            height: 48px;
+            @include fontStyles($font-SBold,$jp-color-white,16px);
+            letter-spacing: 0.25px;
+            background: $jp-color-red;
+            @include borderRadius(2px);
+            @include boxShadow(none);
+        }
+        .what-do-now{
+            .title{
+                @include fontStyles($font-Regular,$jp-color-black,14px);
+                text-align: left;
+                padding: 24px 0 16px;
+            }
+            ul{
+                margin: 0;
+                padding: 0 16px;
+                text-align: left;
+                li{
+                    @include fontStyles($font-Regular,$jp-color-gray,12px);
+                    line-height: 17px;
+                    padding-bottom: 8px;
+                }
+            }
+        }
+        .sucess-note{
+            @include fontStyles($font-Regular,#a0a0a0,12px);
+            line-height: 18px;
+            text-align: center;
+            margin-top: 16px;
+            .email{
+                color: $jp-color-gray;
+            }
+            button{
+                margin-top: 16px;
+            }
+        }
+    }
+}

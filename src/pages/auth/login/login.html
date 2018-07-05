@@ -1,0 +1,52 @@
+<ion-content class="" overflow-scroll="false" no-bounce>
+    <form [formGroup]="loginForm" (ngSubmit)="login($event)">
+        <div class="auth-container">
+            <div class="logo">
+                <img src="assets/icon/01-Login-Signup/jaypore_logo_retina.png" />
+            </div>
+            <div class="join-now">
+                Sign-in now for exclusive access to India’s most beautiful products
+            </div>
+
+            <ion-list>
+                <div class="err-msg">
+                    <div *ngIf="loginForm.get('email').dirty" [hidden]="loginForm.get('email').valid">
+                        Email ID must have @,. and a valid domain (.com etc)
+                    </div>
+                </div>
+                <ion-item>
+                    <ion-input type="email" formControlName="email" placeholder="Email Address" onfocus="this.placeholder=''" onblur="this.placeholder='Email Address'"
+                        required></ion-input>
+                </ion-item>
+                    
+                <ion-item>
+                    <ion-input #loginPass type="password" formControlName="password" placeholder="Password"
+                    clearOnEdit="false" onfocus="this.placeholder=''" onblur="this.placeholder='Password'"
+                        required></ion-input>
+                    <button type="button" ion-button item-end clear class="show-btn" (click)="toggle( loginPass)" [disabled]="!(loginForm.value.password &&
+                      loginForm.value.password.length > 0)">
+                      <span *ngIf="loginPass.type == 'password' " [ngStyle]="{opacity : (loginForm.value.password &&
+                      loginForm.value.password.length > 0) ? 1 : 0.2}">SHOW</span>
+                      <span *ngIf="loginPass.type == 'text' ">HIDE</span>
+                    </button>
+                </ion-item>
+            </ion-list>
+
+            
+
+            <button type="button" ion-button block clear class="forgot" (click)="goToForgot()">FORGOT PASSWORD? </button>
+            <div class="tnc-text" >
+                <!-- By Signing Up. You are agreeing to our<br/> -->
+                <!-- <span>Terms & Privacy Policy</span> -->
+                By Signing In, you are agreeing to our<br/>
+                 <span (click)="openTnc()"><u>Terms</u></span> <span (click)="openPP()">& <u>Privacy Policy</u></span>
+            </div>
+            <button ion-button block class="action-btn" [disabled]="!loginForm.valid" type="submit">LOGIN</button>
+
+            <button ion-button block clear class="back-btn" type="button" (click)="back()">GO BACK TO SOCIAL LOGIN</button>
+
+            <!-- <button ion-button block clear class="back-btn" type="button" *ngIf="this.backinfo" (click)="backtest()">GO BACK</button> -->
+        </div>
+    </form>
+
+</ion-content>

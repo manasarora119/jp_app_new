@@ -1,0 +1,182 @@
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+background: transparent none !important;
+
+}
+.white-bc{
+    background: #fff !important;
+    opacity: 1 !important;
+}
+button:focus{
+    background: transparent;
+}
+.right-bottom.qrcode{
+    background: url("../assets/icon/qr-code/ScanIcon.svg") 50% 42% no-repeat !important;
+    width: 50px;
+    height: 50px;
+    right: 8px !important;
+    bottom: 66px !important;
+    border-radius: 50px;
+    text-align: center;
+    z-index: 9999;
+    @include boxShadow(0 5px 18px 0px rgba(0,0,0,.5))
+}
+.transparentBody {
+    background: transparent !important;
+    .history-container{
+        top: 414px !important;
+    }
+}
+
+page-qr-code {
+   .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+     img{
+        width: 14px;
+        margin: 0 34px 0 16px;
+        display: inline-block;
+        }
+    ion-label{
+        @include fontStyles($font-Regular,$jp-color-black,16px);
+        @include borderRadius(4px);
+        letter-spacing: normal;
+        text-align: left;
+        margin: 14px 0;
+        text-transform: none;
+        }
+    }
+    .content {
+        .qrpage-btn{
+            box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.07);
+            background: #fff;
+            position: relative;
+            button{
+                background: transparent;
+                margin: 16px;
+                padding: 8px;
+                @include borderRadius(0px);
+                @include boxShadow(none);
+            }
+            .qrkeybord-btn{
+                float: right;
+            }
+        }
+
+        .history-container{
+            position: absolute;
+            top: 340px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #e3eef2;
+            .scan-history{
+                margin: 0px;
+                display: inline-block;
+                width: 100%;
+                background: $jp-color-white;
+                @include fontStyles($font-Regular, $jp-color-black, 16px);
+                line-height: 33px;
+                padding: 12px 16px;
+                // border: 1px solid $jp-color-lighter-gray;
+                margin-top: 4px;
+                span{
+                    width: 32px;
+                    height: 32px;
+                    // background: $cartOptionBg;
+                    display: flex;
+                    float: left;
+                    text-align: center;
+                    margin-right: 24px;
+                    @include borderRadius(100px);
+                    img{
+                        margin: auto;
+                    }
+                }
+                ion-icon{
+                    float: right;
+                    margin: 0px;
+                    margin-top: 10px;
+                    color: $jp-color-gray;
+                }
+                .chevron {
+                    position: absolute;
+                    right: 24px;
+                    width: 7.4px;
+                    height: 12px;
+                    // opacity: 0.54;
+                    top: 22px;
+                }
+            }
+        }
+        .keybord-wrapper{
+            background: #fff;
+            padding: 47px 0px;
+
+            text-align: center;
+            .title{
+                @include fontStyles($font-SBold,$jp-color-black,18px);
+                text-align: center;
+                margin-bottom: 25px;
+            }
+            ion-input{
+                width: 200px;
+                margin: auto;
+                input{
+                    @include fontStyles($font-SBold,$jp-color-black,18px);
+                    border-bottom: 2px dashed $jp-color-white-gray;
+                    padding-bottom: 8px;
+                    line-height: 22px;
+                    letter-spacing: 4px;
+                    text-align: center;
+                    margin: 0;
+                }
+            }
+            // button{
+            //     background: #fff;
+            //     border: solid 1px #9e9e9e;
+            //     @include fontStyles($font-SBold, $jp-color-gray, 14px);
+            //     padding: 11px 0px;
+            //     width: 100%;
+            //     @include borderRadius(2px);
+            //     width: 93px;
+            //     margin: auto;
+            // }
+            button{
+                width: 93px;
+                height: 32px;
+                padding: 0px;
+                background-color: $jp-color-red;
+                margin: 20px 0 0 0;
+                @include borderRadius(4px);
+                @include fontStyles($font-SBold, $jp-color-white, 14px);
+                letter-spacing: 0.25px;
+                &:disabled{
+                    background-color:  #bdbdbd !important;
+                    @include fontStyles($font-SBold, $jp-color-gray, 14px);
+                }
+            }
+        }
+        }
+     .dark{
+         display: none;
+     }   
+.active-tab{
+    .dark{
+        display: block;
+    }
+    .light{
+        display: none;
+    }
+}
+.button-effect{
+    display: none !important;
+}
+
+}
+

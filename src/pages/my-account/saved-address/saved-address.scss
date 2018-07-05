@@ -1,0 +1,77 @@
+page-saved-address {
+    .header button{
+        margin: 0;
+        padding: 0;
+        @include borderRadius(0px);
+        width: 100%;
+        height: 52px;
+        background: $jp-color-white;
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        @include boxShadow(none);
+        img{
+            width: 14px;
+            margin: 0 24px 0 16px;
+            display: inline-block;
+        }
+        ion-label{
+            @include fontStyles($font-Regular,$jp-color-black,16px);
+            @include borderRadius(4px);
+            letter-spacing: 0.5px;
+            text-align: left;
+            margin: 14px 0;;        
+        }
+    }
+    .content {
+        padding: 16px;
+        background-color: $jp-color-light-gray !important;
+        .address-banner{
+            padding: 16px;
+            background-color: $jp-color-white;
+            overflow: auto;
+            border: 1px solid $jp-color-lighter-gray;                
+            @include borderRadius(4px);
+            .ab-img{
+                width: 24px;
+                float: left;
+                margin-right: 16px;
+            }
+            .text{
+                width: calc(100% - 48px);
+                float: left;
+                max-width: 340px;
+                .desc{
+                    @include fontStyles($font-Regular,$jp-color-gray,14px);
+                    line-height: 20px;
+                }
+            }
+        }
+        .title{
+            @include fontStyles($font-SBold,$jp-color-gray,14px); 
+            line-height: normal;
+            margin: 24px 0 8px !important;
+        }
+        .address-container{
+            border: 1px solid $jp-color-lighter-gray;
+            @include borderRadius(4px);
+            background: $jp-color-white;
+            margin-bottom: 16px;
+            .address-card{
+                padding: 16px;
+                border-top: 1px solid $jp-color-lighter-gray;
+                .name{
+                    @include fontStyles($font-SBold,$jp-color-black,14px); 
+                    padding-bottom: 8px;
+                    max-width: 340px;
+                }
+                .detail{
+                    @include fontStyles($font-Regular,$jp-color-darker-grey,14px); 
+                    line-height: 20px;
+                    max-width: 340px;
+                }
+                &:first-child{
+                    border: none;
+                }
+            }
+        }
+    }
+}

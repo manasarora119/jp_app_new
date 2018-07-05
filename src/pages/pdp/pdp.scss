@@ -1,0 +1,983 @@
+image-viewer.ion-page {
+    ion-navbar{
+        .bar-button-default{
+            display: block !important; 
+        }
+    }
+} 
+
+
+page-pdp {
+
+.headingStyles{
+    @include fontStyles($font-SBold, $jp-color-black, 14px);
+}
+.grayBg{
+    background: $jp-color-light-gray;
+    border-top: solid 1px $jp-color-lighter-gray;
+    border-bottom: solid 1px $jp-color-lighter-gray;
+}
+ion-header{
+    &:after{
+        display: none;
+    }
+    ion-navbar{
+        height: 54px;
+        .toolbar-background{
+            @include linearGradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0));
+            border: none !important;
+        }
+        .bar-button-menutoggle{
+            margin-left: 12px;
+            .button-inner{
+                font-size: 27px;
+                color: $jp-color-white;
+            }
+        }
+        .back-button-ios{
+            display: none !important;
+        }
+        button{
+            background: none;
+            &.back-button{
+                min-width: auto;
+                width: 44px;
+                height: 23px;
+                background: url(../assets/icon/10-Universal-Icons/Back-Icon-White.svg) no-repeat 10px 5px;
+                margin-left: 0px;
+                display: block !important;
+                .button-inner{
+                    display: none;
+                }
+            }
+        }
+
+        ion-buttons{
+            button{
+                background: none;
+                padding: 0 4px !important;
+                
+                .bag-icon{
+                    top: -14px;
+                }
+            }
+            .wishlist-icon{
+                top: -12px;
+                margin: 0px 1px;
+                padding: 0px 8px !important;
+                width: auto;
+            }
+
+            
+            .pdp-share-icon{
+                 margin-right: 6px;
+                img{
+                    width: 17px;
+                    height: 18px;
+                }
+            }
+            
+        }
+    }
+    ion-navbar.toolbar-md{
+        @include linearGradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0));
+    }
+}
+ion-content.pdp-initial{
+    .scroll-content{        
+    margin-bottom: 0px !important;
+    }
+}
+ion-content{
+
+    .scroll-content{
+        margin: 0px !important;
+        margin-bottom: 64px !important;
+        .mastHead{
+
+            ion-slides{
+                .swiper-container{
+                    .swiper-wrapper{
+                        ion-slide{
+                            // height: 400px;
+                            .slide-zoom{
+                                // height: 100%;
+                                div{
+                                    height: 100%;
+                                }
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                    object-fit: cover;
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+                    }
+                    .swiper-pagination{
+                        button{
+                            background: none;
+                            border: solid 1px $jp-color-white;
+                            opacity: 1;
+                            width: 6px;
+                            height: 6px;
+                            margin: 0 6px;
+                        }
+                        button.swiper-pagination-bullet-active{
+                            background: $jp-color-white;
+                        }
+                    }
+                }
+                .soldout-product{
+                    position: absolute;
+                    right: 12px;
+                    bottom: 12px;
+                    @include fontStyles($font-SBold, $jp-color-lite-red, 16px);
+                    background: $jp-color-white;
+                    padding: 3px 5px;
+                    line-height: 16px;
+                    text-align: center;
+                    @include borderRadius(2px);
+                }
+            }
+        }
+    }
+
+    .brand-details{
+        border-bottom: solid 1px $jp-color-lighter-gray;        
+        .content{
+            width: 100%;
+            padding: 16px;
+            .product-details-box{
+                display: inline-block;
+                width: 100%;
+                clear: both;
+                position: relative;
+                h4{
+                    @include fontStyles($font-SBold, $jp-color-black, 14px);
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    float: left;
+                    width: 80%;
+                    margin: 0px;
+                    margin-bottom: 8px;
+                    padding-right: 45px;
+                }
+                button{
+                    background: none;
+                    width: 40px;
+                    float: right;
+                    margin-top: 0px;
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                }
+
+                h5{
+                    @include fontStyles($font-Regular, $jp-color-gray, 18px);
+                    margin: 0px;
+                    line-height: 24px;
+                    clear: both;
+                    padding-right: 45px;
+                }
+                .wishlist-box{
+                    width: 24px;
+                    height: 24px;
+                    position: absolute;
+                    right: 0px;
+                    top: 16px;
+                    button{
+                        background:none;
+                        padding: 0px;
+                        width: auto;
+                        position: static;
+                    }
+                    .loading-icon {
+                        position: absolute;
+                        width: 17px;
+                        height: 18px;
+                        //top: 2px;
+                        /* z-index: 2; */
+                        left: 4px;   
+                    }  
+                }
+            }
+            .price-container{
+                margin-top: 16px;
+                .current-price{
+                    @include fontStyles($font-SBold, $jp-color-black, 18px);
+                }
+                .discount-price{
+                    @include fontStyles($font-Regular, $jp-color-white-gray, 16px);
+                    margin-left: 10px;
+                    text-decoration: line-through;
+                }
+                .discont-persent{
+                    @include fontStyles($font-SBold, $jp-color-dark-red, 15px);
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+   
+    .select-your-size{
+        padding: 16px 16px 8px;
+        .size-and-chart{
+            width: 100%;
+            .title{
+                @extend .headingStyles;
+                letter-spacing: 0.5px;
+            }
+
+            button{
+                display: block;
+                @include fontStyles($font-SBold,$jp-color-lightblue,14px);
+                height: auto;
+                margin: 0;
+                padding: 0;
+                letter-spacing: 0.5px;
+            }
+
+            }
+            
+        .sizes{
+            display: flex;
+            width: 100%;
+            justify-content: left;
+            margin: 6px 0px;
+            overflow-x: scroll;
+            button{
+                // min-width: 44px;
+                // height: 44px;
+                padding: 0px;
+                margin: 0px;
+                margin-right: 5px;
+                text-align: center;
+                display: block;
+                color: $jp-color-black;
+                // margin-right: 8px;
+                @include fontStyles($font-Regular,$jp-color-black,18px);
+                letter-spacing: 0.5px;
+                @include borderRadius(8px);
+                border: solid 1px $jp-color-lighter-gray;
+                height: 44px;
+                overflow: unset;
+                .button-inner{
+                    color: $jp-color-black;
+                    padding: 9px 10px;
+                    min-width: 44px;
+                    line-height: 44px;
+                }
+                .button-effect{
+                    height: 0px !important;
+                    display: none !important;
+                }
+            }
+            .select-size{
+                border-color: #bb4225;
+                background: #bb4225;
+                .button-inner{
+                    color: $jp-color-white;
+                }
+            }
+            .not-availabel{
+                background: $jp-color-white-gray;
+                color: rgba(33,33,33,.25);
+                border-color: $jp-color-white-gray;
+                
+                .button-inner{
+                    // background: $jp-color-white-gray;
+                    // position: relative;
+                    // border-color: $jp-color-white-gray;                    
+                    &::after{
+                        content: '';
+                        width: 100%;
+                        height: 1px;
+                        background: #bababa;
+                        border-color: #bababa;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        margin-top: -1px;
+                    }
+                }
+            }
+        }
+        .size-not-available{
+            p{
+                @include fontStyles($font-SBold,$jp-color-black,14px);
+                letter-spacing: 0.5px;
+                button{
+                    padding: 0px;
+                    margin: 0px;
+                    height: auto;
+                    margin-top: -8px;
+                    @include fontStyles($font-SBold,$jp-color-lightblue,14px);
+                    letter-spacing: 0.5px;
+                }
+            }
+        }
+    }
+    .fixSize{
+        button{
+            display: block;
+        }
+    }
+
+    .product-options{
+        padding: 16px;
+        border-top: 1px solid $jp-color-lighter-gray;        
+        border-bottom: 1px solid $jp-color-lighter-gray;
+        display: block;
+        .title{
+            @extend .headingStyles;
+            margin-bottom: 6px;
+        }
+        .product-contant{
+            ion-grid{
+                padding-left: 0px;
+                padding-bottom: 0px;
+                ion-row{
+                    ion-col{
+                        @include fontStyles($font-Regular,$jp-color-black,16px);
+                        padding: 6px;
+                        padding-left: 0px;
+                    }
+                    .value{
+                        color: $jp-color-gray !important;
+                        button{
+                            background: none;
+                            @include fontStyles($font-Regular,$jp-color-lightblue,16px);
+                            // color: $jp-color-lightblue;
+                            padding: 0px;
+                        }
+                    }
+                    .refer-to{
+                        display: block;
+                        @include fontStyles($font-SBold,$jp-color-lightblue,16px);
+                        height: auto;
+                        // margin: 0;
+                        // padding: 0;
+                        // letter-spacing: 0.5px;
+                    }
+                }
+            }
+            .tip-desc{
+                @include fontStyles($font-Regular,$jp-color-darker-grey,14px);
+                background: url(../assets/icon/09-My-Account/Tips-Bulb.svg) no-repeat;
+                line-height: 20px;
+                margin: 0px;
+                padding: 0px 0px 4px 34px;
+                margin: 21px 0 10px;
+            }
+        }
+    }
+    .shipping-details{
+        display: block;
+        padding: 16px;
+        .title{
+            @extend .headingStyles;
+        }
+        .shipping-list{
+            margin-top: 16px;
+            p{
+                @include fontStyles($font-Regular, $jp-color-black, 16px);
+            }
+            .dispatched{
+                background: url(../assets/icon/04-PDP/Dispatch-Icon.svg) no-repeat;
+                margin: 0px;
+                padding: 3px 0px 4px 34px;
+                margin-bottom: 10px;
+            }
+            .return{
+                background: url(../assets/icon/04-PDP/Return-Icon.svg) no-repeat;
+                margin: 0px;
+                padding: 3px 0px 4px 34px;
+            }
+        }
+    }
+    .similar-products{
+        padding: 16px 16px 0px 16px;
+        border-bottom: 8px solid $jp-color-light-gray;
+        .title{
+            @extend .headingStyles;
+            margin-bottom: 12px;
+            width: 100%;
+            font-size: 14px !important;
+        }
+        .contant{
+            width: 100%;
+            ion-grid{
+                padding: 0px;
+                .prodict-row{
+                    ion-row{
+
+                         .prodct-box-left{
+                            padding-left: 0px;
+                         }
+                         .prodct-box-right{
+                             padding-right: 0px;
+                         }
+                        ion-col{
+                            padding: 8px;
+                            .item{
+                                .item-images{
+                                    height: 207px;
+                                    position: relative;
+                                    @include borderRadius(2px);
+                                   // background: #fdf5f3;
+                                    &.item-images:nth-child(2n+1){
+                                        //background: #fdebe6;
+                                        .readyToShip{
+                                            // width: 36px;
+                                            position: absolute;
+                                            bottom: 8px;
+                                            left: 8px;
+                                            height: auto !important;
+                                            img{
+                                                width: auto;
+                                            }
+                                            }    
+                                    }
+                                    img{
+                                        width: 100%;
+                                        height: 100%;
+                                        -o-object-fit: cover;
+                                        object-fit: cover;
+                                        vertical-align: middle;
+                                        @include borderRadius(2px);
+                                    }
+                                    .item-discount-persent{
+                                        @include fontStyles($font-SBold, $jp-color-red, 12px);
+                                        position: absolute;
+                                        bottom: 8px;
+                                        right: 8px;
+                                        padding: 4px 5px 3px;
+                                        background: rgba(255,255,255, .9);
+                                        line-height: 12px;
+                                        @include borderRadius(2px);
+                                    }
+                                }
+                                .item-descriptions{
+                                    padding: 8px 0px;
+                                    P{
+                                        margin: 0px;
+                                        margin-bottom: 8px;
+                                    }
+                                    .item-name{
+                                        line-height: 15px;
+                                        // height: 30px;
+                                        overflow: hidden;
+                                        @include fontStyles($font-Regular, $jp-color-darker-grey, 14px);
+                                    }
+                                    .item-price{
+                                        @include fontStyles($font-SBold, $jp-color-black, 14px);
+                                        margin-bottom: 0px;
+                                        .item-price-discount{
+                                            color: $jp-color-white-gray;
+                                            text-decoration: line-through;
+                                            font-size: 11px;
+                                        }
+                                        .item-discount-persent{
+                                            color: $jp-color-red;
+                                            font-size: 11px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .jp-socials{
+        padding: 16px;
+        // border-top: solid 1px $jp-color-lighter-gray;
+        // border-bottom: solid 1px $jp-color-lighter-gray;
+        background: $jp-color-light-gray;
+        .title{
+            @extend .headingStyles;
+            text-align: center;
+            width: 100%;
+            font-size: 14px !important;
+            // margin-top: 8px;
+            line-height: 26px;
+        }
+        .contant{
+            text-align: center;
+            width: 100%;
+            button{
+                @include fontStyles($font-SBold, $jp-color-lightblue, 16px);
+                border-color: $jp-color-lighter-gray;
+                background: $jp-color-white;
+                line-height: 21px;
+                margin: 8px;
+                padding: 10px;
+                height: 42px;
+                    img{
+                        width: 18px;
+                        float: left;
+                        margin: 0 12px 0 6px;
+                    }
+            }
+    }
+}
+
+.complete-look{
+    padding:16px 0;
+    background: $jp-color-light-gray;
+    .heading{
+        @include fontStyles($font-Bold, $jp-color-black, 18px);
+        width: 100%;
+        text-align: center;
+        letter-spacing: .5px;
+        padding-bottom: 8px;
+    }
+    .carousel2{
+        // padding: 0 16px;
+        // width: calc(100% - 62px);
+        .title{
+            @include fontStyles($font-SBold, $jp-color-gray, 14px);
+            margin:16px 0 8px;
+            // letter-spacing: 0.5px;
+        }
+
+    }
+}
+
+.ps-spinner {
+    width: 100%;
+    text-align: center;
+    padding: 32px 0;
+}
+    .carousel-box{
+        padding: 16px 16px 16px 0px;
+        border-bottom: 8px solid $jp-color-light-gray;
+        
+        .title{
+            @extend .headingStyles;
+            letter-spacing: 0.5px;
+            padding-left: 16px;
+            margin: 8px 0 14px;
+            font-size: 14px !important;
+            text-transform: uppercase;
+        }
+        .contant{
+            ion-scroll{
+                 white-space: nowrap;
+                 margin-left: -3px;
+                .ion-scroll-item {
+                    display: inline-block;
+                    width: 140px;
+                    vertical-align: top;
+                    margin-left: 8px;
+                    @include boxShadow(none); 
+                    border: 1px solid $jp-color-lighter-gray;
+                    @include borderRadius(2px);
+                    margin-top: 1px; 
+                    overflow: hidden;                  
+                    &:first-child{
+                        margin-left: 16px;
+                    }
+                    &:last-child{
+                        margin-right: 8px;
+                    }
+                }
+                .scroll-content{
+                    padding-left: 3px;
+                    .scroll-zoom-wrapper{
+                        .ion-scroll-item{
+                            .slide-item-image{
+                                position: relative;
+                                height: 188px;
+                                // @include borderRadius(2px);
+                                border-bottom: 1px solid $jp-color-lighter-gray;
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                    -o-object-fit: cover;
+                                    object-fit: cover;
+                                    vertical-align: middle;
+                                    // @include borderRadius(2px);
+                                }
+                                .item-discount-persent{
+                                    @include fontStyles($font-SBold, $jp-color-dark-red, 12px);
+                                    position: absolute;
+                                    right: 4px;
+                                    bottom: 4px;
+                                    padding: 4px 4px 1px;
+                                    background: rgba(255,255,255, .9);
+                                    line-height: 12px;
+                                    @include borderRadius(2px);
+                                }
+                            }
+                            .slide-item-descriptions{
+                                text-align: left;
+                                padding: 8px;
+                                // @include boxShadow(0px 0px 3px 1px $jp-color-lighter-gray);
+                                @include borderRadius(0px 0px 2px 2px);
+                                background:$jp-color-white;
+                                &.events-details{
+                                    height: 103px;
+                                    padding: 8px 0px;
+                                    @include boxShadow(none);
+                                }
+                                .item-name{
+                                    @include fontStyles($font-Regular, $jp-color-black, 14px);
+                                    line-height: 20px;
+                                    padding: 0px;
+                                    margin: 0px;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    height: 20px;
+                                }
+                                .item-description{
+                                    @include fontStyles($font-Regular, $jp-color-black, 14px);
+                                    padding: 0px;
+                                    margin: 5px 0px;
+                                    white-space: normal;
+                                    height: 20px;
+                                }
+                                .item-price{
+                                    @include fontStyles($font-SBold, $jp-color-black, 14px);
+                                    padding: 0px;
+                                    margin: 0px;
+                                    margin-top: 4px;
+                                }
+                                .item-price-discount{
+                                    color: $jp-color-white-gray;
+                                    text-decoration: line-through;
+                                    font-size: 11px;
+                                }
+                                button{
+                                    background: none;
+                                    color:$jp-color-lightblue;
+                                    padding: 0px;
+                                    margin-top: 10px;
+                                    letter-spacing: 0.5px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+     .looking-more{
+        padding: 16px;
+        background: $jp-color-light-gray !important;
+        border-top: solid 1px $jp-color-lighter-gray;
+        border-bottom: solid 1px $jp-color-lighter-gray;
+        .title{
+            @extend .headingStyles;
+            margin-bottom: 10px;
+        }
+        .contant{
+            ion-badge {
+                @include fontStyles($font-Regular,$jp-color-black,14px);
+                letter-spacing: 0.5px;
+                padding: 8px 16px;
+                margin: 8px 8px 0px 0;
+                background-color: $jp-color-white;
+                border: 1px solid $jp-color-lighter-gray;
+                text-transform: uppercase;
+                @include borderRadius(100px);
+                top: -12px !important;
+            }
+        }
+    }
+
+    .jp-experiences{
+        padding: 16px 16px 8px 16px;
+        .title{
+            @include fontStyles($font-Bold, $jp-color-black, 18px);
+            text-align: center;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+        .contant{
+            .experience-image{
+                padding: 8px;
+                border: solid 1px $jp-color-lighter-gray;
+                @include borderRadius(2px);
+                img{
+                    display: block;
+                    @include borderRadius(2px); 
+                }
+            }
+            p{
+                @include fontStyles($font-Regular, $jp-color-gray, 16px);
+                line-height: 22px;
+                margin: 12px 0px 0px;
+            }
+            button{
+                margin: 5px 0px 0px;
+                padding: 0px;
+                height: auto;
+                @include fontStyles($font-SBold, $jp-color-lightblue, 14px);
+                text-transform: none;
+            }
+            .maxheight{
+                height: auto !important;
+                overflow: visible;
+            }
+        }
+    }
+
+    .mastHead{
+        position: relative;
+        min-height: 416px;
+        .right-bottom{
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+            width: 38px;
+            height: 38px;
+            z-index: 99;
+            button{
+                background: none;
+                padding: 0px;
+                margin: 0px;
+            }
+        }
+        .top-icon {
+        position: absolute;
+        top: 0;
+        padding: 16px;
+        width: 100%;
+            .iconArrback{
+                width: 16px;
+            }
+            .iconCard{
+                width: 24px;
+                margin:0 8px;
+            }
+            .iconShare{
+                width: 24px;
+                margin: 0 8px;
+            }
+            }
+
+            .readyToShip{
+                // width: 36px;
+                position: absolute;
+                bottom: 16px;
+                left: 16px;
+                height: auto !important;
+                img{
+                    width: auto;
+                }
+                }    
+    }
+
+      .jpCard.footer{
+        height: 177px;
+        padding: 16px;
+        // border-top: 1px solid $jp-color-lighter-gray;
+        background: $jp-color-light-gray !important;
+        text-align: center;
+        .f-logo{
+            width: 120px;
+            display: block;
+            margin: auto;
+        }
+        .p-small{
+            @include fontStyles($font-Regular,$jp-color-gray,12px);
+            line-height: 20px;
+            margin: auto;
+            width: 100%;
+        }
+        .p-title{
+            width: 100%;
+            @include fontStyles($font-SBold,$jp-color-black,18px);
+            text-align: center;
+            line-height: 24px;
+            margin: auto;
+        }
+    }
+
+    ion-scroll.scroll-x .scroll-content {
+        overflow-x: auto;
+        margin: 0px !important;
+    }
+
+}
+
+
+
+
+
+ .contant.pdpItems{
+            .item{
+                width: 40% !important;
+                min-width: 140px;
+                float: left;
+                padding: 0 8px 0 0;
+                ion-card{
+                    margin: 1px;
+                    width: 98%;
+                }
+                .b-name{
+                    @include fontStyles($font-Regular,$jp-color-gray,14px);
+                    padding: 8px;
+                    margin: 0;
+                    text-align: left;
+                }
+                .b-price{
+                    @include fontStyles($font-SBold,$jp-color-black,14px);
+                    padding: 4px 8px 8px;
+                    margin: 0;
+                    text-align: left;
+                }
+            }
+
+        }
+
+
+.releaseFix{
+    position: static !important;
+}
+
+.addCart{
+    padding: 8px;
+    border-bottom: 1px solid $jp-color-lighter-gray;
+    background: $jp-color-light-gray;
+
+}
+.addCart.fixed-bottom{
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 2;
+    }
+.addCart button{
+    background: $jp-color-red !important;
+    @include borderRadius(2px);
+    @include fontStyles($font-SBold,$jp-color-white,16px);
+    @include boxShadow(none);
+    letter-spacing: 0.25px;
+    margin: 0px;
+    height: 48px;
+}
+
+.fixSize{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    z-index: 99;
+    background: $jp-color-white;
+}
+
+.not-availabel{
+background: $jp-color-gray;
+color: $jp-color-black;
+}
+
+
+.maxheight{
+    height: 60px !important;
+    overflow: hidden
+}
+.center{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.img-loaded + ion-spinner {
+  display:none;
+}
+.search-bottom{
+    bottom: 75px !important;
+    right: 8px !important;
+    position:absolute;
+    button{
+        background: $jp-color-red;
+        border: solid 1px $jp-color-red;
+        color: $jp-color-white;
+    }
+}
+
+
+.select-qnty{
+    padding: 8px 16px 16px 16px;
+    .item-inner{
+        border: none !important;
+        .input-wrapper{
+            -webkit-box-flex: unset;
+            -webkit-flex: unset;
+            -ms-flex: unset;
+            flex: unset;
+            display: block;
+        }
+    }
+    .title{
+        @extend .headingStyles;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        padding-bottom: 6px;
+        margin: 0px;
+    }
+    ion-select.select{
+        padding: 10px 16px !important;
+        min-width: 84px !important;
+        height: 44px;
+        border: 1px solid $jp-color-lighter-gray;
+        @include borderRadius(2px);
+        position: relative;
+        left: 0px;
+        .select-text{
+            min-width: auto;
+            @include fontStyles($font-SBold, $jp-color-black, 14px);
+            line-height: 20px;
+        }
+        .select-icon{
+            width: auto;
+            border-left: solid 1px $jp-color-lighter-gray;
+        }
+        max-width: auto;
+        width: 32px;
+        padding:0px;
+        .select-icon{
+            .select-icon-inner{
+                right: 0px;
+                left: auto;
+                border: none;
+                width: inherit;
+                height: 5px;
+                background: url(../assets/icon/10-Universal-Icons/Drop-Down-Arrow.svg) no-repeat center center;
+            }
+        }
+    }
+        .select-icon {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        background: $jp-color-light-gray;
+        width: 40px !important;
+        right: 0;
+        text-align: center;
+        height: 100%;
+    }
+    }
+
+
+
+}
+.all-events{
+    .ion-scroll-item{
+        @include boxShadow(none !important);
+        border: none !important;
+    }
+}
+ion-footer{
+    padding: 0 !important;
+}
+.alert-title{
+        @extend .headingStyles;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        padding-bottom: 8px;
+    }

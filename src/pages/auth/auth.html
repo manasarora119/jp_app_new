@@ -1,0 +1,8 @@
+<ion-content >
+   <!--<ion-tabs tabsPlacement="top" -->
+   <!--[selectedIndex]="index" [ngStyle]="{'margin-top' : (this.isIos) ? '24px' : '0px' }">-->
+  <ion-tabs tabsPlacement="top" [selectedIndex]="index">
+      <ion-tab tabTitle="REGISTER" [root]="tab1" [rootParams]="tab2Params"></ion-tab>
+      <ion-tab tabTitle="LOGIN" [root]="tab2" [rootParams]="tab2Params"></ion-tab>
+    </ion-tabs>
+</ion-content>

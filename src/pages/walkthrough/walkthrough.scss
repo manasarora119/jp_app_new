@@ -1,0 +1,80 @@
+page-walkthrough {
+    ion-content{
+        .scroll-content{
+            padding-top: 0px !important;
+            &:after{
+                display: none;
+            }
+            &:before{
+                display: none;
+            }
+        }
+        .walkthrough-slider{
+            ion-slides{
+                .swiper-container{
+                    padding-bottom: 20px;
+                }
+                .swiper-pagination {
+                bottom: 0px;
+                .swiper-pagination-bullet{
+                    width: 7px;
+                    height: 7px;
+                    background: $jp-color-gray !important;
+                    opacity: 0.5;
+
+                }
+                .swiper-pagination-bullet-active {
+                    background: #0eadf4 !important;
+                    opacity: 1;
+                    }
+                }
+                ion-slide{
+                    
+                    .walkthrough-image{
+                        //height: 416px;
+                        img{
+                            width: 100%;
+                            height: auto;
+                            -o-object-fit: cover;
+                            object-fit: cover;
+                            vertical-align: middle;
+                        }
+                    }
+                    .walkthrough-desc{
+                        padding: 24px 16px;
+                        height: 108px;
+                        text-align: center;
+                        h4{
+                            @include fontStyles($font-Bold, $jp-color-black, 20px);
+                            letter-spacing: 1px;
+                            margin: 0px;
+                            padding: 0px;
+                            margin-bottom: 8px;
+                        }
+                        p{
+                            @include fontStyles($font-Regular, $jp-color-black, 14px);
+                            line-height: 20px;
+                            letter-spacing: 1px;
+                            margin: 0px;
+                            padding: 0px;
+                        }
+                    }
+                }
+
+
+
+            }
+            .skip-wrapper{
+                text-align: center;
+                margin-bottom: 20px;
+                button{
+                    background: none;
+                    @include fontStyles($font-SBold, $jp-color-lightblue, 16px);
+                    letter-spacing: 0.29px;
+                    margin-top: 0px;
+                }
+            }
+        }
+    }
+}
+

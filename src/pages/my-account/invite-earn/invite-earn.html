@@ -1,0 +1,58 @@
+<ion-content>
+  <div class="header">
+    <button ion-button outline clear (click)="goToMyAccount()">
+          <img class="iconShare" float-right src="assets/icon/10-Universal-Icons/Cross-Icon.svg"  />
+          <ion-label>Refer & Earn</ion-label>
+        </button>
+  </div>
+  <div class="content" *ngIf="errorTrue === false">
+    <div class="banner">
+      <div class="banner-inner">
+        <span class="invite">REFER YOUR FRIENDS</span>
+        <div class="label">with Refer code</div>
+        <button ion-button outline class="code" *ngIf="inviteCode">{{inviteCode}}</button>      
+        <!-- <div class="code">SHAHNAWAZ01</div> -->
+        <div class="code-desc">{{referalText}} </div>
+        <div class="social-icon">
+          <!-- <div class="s-title">INVITE USING</div> -->
+          <div class="contant" (click)="shareInfo()">
+              <button ion-button outline item-end icon-left>
+                REFER NOW
+                </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="terms-condition">
+        <div class="title">Terms & Conditions:</div>
+        <ul>
+          <!-- <li>{{termAndCondition}}</li> -->
+          <li>You can Refer as many people. For each successful referral we will give you a Rs. 750 off code. Codes cannot be clubbed and can be used only on separate orders. You can avail upto 100 such codes.</li>
+          <li>Your friend can use your code to get Rs. 500 on their first purchase. This can be used only on orders of Rs. 1500 and above.</li>
+          <li>You will receive your Rs. 750 code 10 days after the product purchased by your friend is delivered. This can be used only on orders of Rs. 3000 and above.</li>
+          <li>This code is only applicable if your friend is a new Jaypore customer. The refer and earn will only work on purchases made on the app.</li>
+        </ul>
+    </div>
+  </div>
+    <!-- Error True -->
+    <div padding *ngIf="errorTrue" class="error-div">
+      <!-- <div class="empty-img">
+        <img src="assets/icon/07-Checkout/emptyCart.svg" />
+      </div>
+      <div class="title">Unexpected error found. <br />Please Try later</div> -->
+      <!-- <div class="subTitle"> Fill it with some handcrafted finds </div> -->
+      <!-- <button ion-button class="btn-red" (click)="goToHome()">Retry</button> -->
+      <!-- <button ion-button block clear class="btn-clear">MOVE FROM WISHLIST</button> -->
+
+      <div class="banner" text-center>
+          <img class="b-img" src="assets/icon/07-Checkout/Payment-Failed-Icon.svg" />
+          <div class="title"> Unexpected error found. <br>Please Try later</div>
+          </div>
+          <div class="action">   
+          <button ion-button outline class="Retry retry-btn" (click)="getInviteCode()">Retry</button>
+          <button ion-button full class="Retry cshopping-btn" (click)="goToHome()">CONTINUE SHOPPING</button>
+        </div>
+
+    </div>
+
+</ion-content>
